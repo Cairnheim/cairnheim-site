@@ -1,0 +1,439 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cairnheim — a logistics colony builder in your browser</title>
+<meta name="description" content="Cairnheim is an isometric colony builder in the spirit of The Settlers: every good is carried by hand, cairn by cairn, along the roads you draw. Playable in the browser.">
+<meta property="og:title" content="Cairnheim — a logistics colony builder">
+<meta property="og:description" content="Every good is carried by hand, cairn by cairn, along the roads you draw.">
+<meta property="og:image" content="/assets/img/hero.webp">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#f2e6cf">
+<link rel="icon" href="/assets/img/cairn.webp">
+<link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="/"><span class="mark" aria-hidden="true"></span> Cairnheim</a>
+    <button class="nav-toggle" aria-expanded="false" aria-label="Menu">☰</button>
+    <nav class="nav-links">
+      <a href="#loop">The loop</a>
+      <a href="#chains">Chains</a>
+      <a href="#world">World</a>
+      <a href="#ownership">Ownership</a>
+      <a href="#roadmap">Roadmap</a>
+      <a href="/docs.html">Docs</a>
+      <a class="btn btn-primary" data-play="short" href="#roadmap"><span data-play-label>Play</span></a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<!-- ============================ HERO ============================ -->
+<section class="hero">
+  <div class="wrap hero-inner">
+    <p class="eyebrow">Isometric colony builder · playable in the browser</p>
+    <h1>Nothing moves<br>unless <span>someone carries it</span></h1>
+    <p class="lede">
+      Cairnheim is a colony builder in the lineage of <em>The Settlers</em>. There is no abstract
+      inventory: every plank, every loaf, every iron ingot is a physical object that a settler picks
+      up and walks to its destination, cairn by cairn, along roads you drew yourself.
+    </p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" data-play="long" href="#roadmap"><span data-play-label>Play the prototype</span></a>
+      <a class="btn btn-ghost" href="/docs.html">Read the docs</a>
+    </div>
+    <p class="hero-note">Free · no install · no wallet required to play</p>
+
+    <figure class="shot">
+      <img src="/assets/img/hero.webp" width="1440" height="810" alt="An isometric colony around a stone castle: roads, cairns, carriers walking with goods, forests and rock deposits.">
+      <figcaption>Actual in-game capture — 156 × 156 tiles, all art hand-painted for the project.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ============================ PILLARS ============================ -->
+<section id="pillars">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Three pillars</p>
+      <h2>The flow is the spectacle</h2>
+      <p class="lede">
+        Most builders hide logistics behind a number that goes up. Cairnheim puts it on screen: you
+        watch the bottleneck happen, and you fix it with a road.
+      </p>
+    </div>
+    <div class="grid grid-3">
+      <article class="card">
+        <span class="ico" aria-hidden="true">🚶</span>
+        <h3>Visible logistics</h3>
+        <p>
+          Goods travel hop by hop between cairns, each leg walked by its own carrier. A saturated
+          cairn queues up in front of you — congestion you can see, not a hidden modifier.
+        </p>
+      </article>
+      <article class="card">
+        <span class="ico" aria-hidden="true">⚖️</span>
+        <h3>Decisions under constraint</h3>
+        <p>
+          Workers, tools, food and road capacity pull against each other constantly. There is always
+          an interesting bottleneck — split a route, add a cairn, or reroute the whole district.
+        </p>
+      </article>
+      <article class="card">
+        <span class="ico" aria-hidden="true">🏰</span>
+        <h3>A colony that is yours</h3>
+        <p>
+          Your map is private and persistent. What it becomes is the product of the hours and the
+          planning you put into it — which is exactly what makes it worth owning later.
+        </p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ CORE LOOP ============================ -->
+<section id="loop">
+  <div class="wrap">
+    <div class="split">
+      <div>
+        <p class="eyebrow">The core loop</p>
+        <h2>Cairns, roads, carriers</h2>
+        <p>
+          A road links two <strong>cairns</strong> — the stone markers that play the role of flags in
+          <em>The Settlers</em>. One carrier serves one leg, and only that leg: goods are handed over
+          from cairn to cairn like a bucket chain.
+        </p>
+        <p>
+          That single rule produces everything else. A long route is slow because it has few
+          carriers. A busy cairn backs up because it holds eight goods at most. Adding a cairn in
+          the middle of a road doesn't just shorten it — it puts another pair of legs on the network.
+        </p>
+        <p>
+          When several workshops want the same good, the game uses the original Settlers arbitration:
+          the highest-priority claimant is served first, and its priority <strong>halves with every
+          unit it already holds</strong>. A favoured workshop can't starve its neighbours forever.
+        </p>
+        <p><a href="/docs.html#transport">How the transport network works →</a></p>
+      </div>
+      <figure class="shot shot--flush">
+        <img src="/assets/img/wood.webp" width="1000" height="583" loading="lazy" alt="Carriers walking between cairns along a sand-coloured road, from the forest back to the castle.">
+        <figcaption>One carrier per leg — the good is passed along, never carried the whole way.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ CHAINS ============================ -->
+<section id="chains">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Production</p>
+      <h2>Twelve chains, one shared road network</h2>
+      <p class="lede">
+        Every chain is short enough to read at a glance and long enough to fight over transport.
+        They all draw on the same carriers — which is where the game actually happens.
+      </p>
+    </div>
+
+    <div class="chain">
+      <h3>Wood — the backbone</h3>
+      <div class="flow">
+        <span class="node b"><img src="/assets/img/buildings/lumberjack.webp" alt="">Woodcutter</span>
+        <span class="arrow">→</span>
+        <span class="node"><img src="/assets/img/goods/log.webp" alt="">Log</span>
+        <span class="arrow">→</span>
+        <span class="node b"><img src="/assets/img/buildings/sawmill.webp" alt="">Sawmill</span>
+        <span class="arrow">→</span>
+        <span class="node"><img src="/assets/img/goods/plank.webp" alt="">Plank</span>
+        <span class="arrow">→</span>
+        <span class="node b"><img src="/assets/img/buildings/house.webp" alt="">Every building</span>
+      </div>
+    </div>
+
+    <div class="chain">
+      <h3>Bread — feeding the colony</h3>
+      <div class="flow">
+        <span class="node b"><img src="/assets/img/buildings/farm.webp" alt="">Farm</span>
+        <span class="arrow">→</span>
+        <span class="node"><img src="/assets/img/goods/wheat.webp" alt="">Wheat</span>
+        <span class="arrow">→</span>
+        <span class="node b"><img src="/assets/img/buildings/mill.webp" alt="">Mill</span>
+        <span class="arrow">→</span>
+        <span class="node"><img src="/assets/img/goods/flour.webp" alt="">Flour</span>
+        <span class="arrow">+</span>
+        <span class="node"><img src="/assets/img/goods/water.webp" alt="">Water</span>
+        <span class="arrow">→</span>
+        <span class="node b"><img src="/assets/img/buildings/bakery.webp" alt="">Bakery</span>
+        <span class="arrow">→</span>
+        <span class="node"><img src="/assets/img/goods/bread.webp" alt="">Bread</span>
+      </div>
+    </div>
+
+    <div class="chain">
+      <h3>Iron — tools, then weapons</h3>
+      <div class="flow">
+        <span class="node b"><img src="/assets/img/buildings/ironmine.webp" alt="">Iron mine</span>
+        <span class="arrow">→</span>
+        <span class="node"><img src="/assets/img/goods/iron_ore.webp" alt="">Ore</span>
+        <span class="arrow">+</span>
+        <span class="node"><img src="/assets/img/goods/coal.webp" alt="">Coal</span>
+        <span class="arrow">→</span>
+        <span class="node b"><img src="/assets/img/buildings/ironsmelter.webp" alt="">Smelter</span>
+        <span class="arrow">→</span>
+        <span class="node"><img src="/assets/img/goods/iron_ingot.webp" alt="">Ingot</span>
+        <span class="arrow">→</span>
+        <span class="node b"><img src="/assets/img/buildings/forge.webp" alt="">Toolmaker</span>
+        <span class="arrow">→</span>
+        <span class="node"><img src="/assets/img/goods/pickaxe.webp" alt="">Tools</span>
+      </div>
+    </div>
+
+    <div class="chain">
+      <h3>Gold — the only source of money</h3>
+      <div class="flow">
+        <span class="node b"><img src="/assets/img/buildings/goldmine.webp" alt="">Gold mine</span>
+        <span class="arrow">→</span>
+        <span class="node"><img src="/assets/img/goods/gold_ore.webp" alt="">Ore</span>
+        <span class="arrow">→</span>
+        <span class="node b"><img src="/assets/img/buildings/goldsmelter.webp" alt="">Smelter</span>
+        <span class="arrow">→</span>
+        <span class="node"><img src="/assets/img/goods/gold_ingot.webp" alt="">Ingot</span>
+        <span class="arrow">→</span>
+        <span class="node b"><img src="/assets/img/buildings/mint.webp" alt="">Mint</span>
+        <span class="arrow">→</span>
+        <span class="node"><img src="/assets/img/goods/coin.webp" alt="">Coins</span>
+      </div>
+    </div>
+
+    <p class="muted small">
+      Plus stone, fish, meat, copper, bows, swords and the rare expedition gems —
+      <a href="/docs.html#chains">the full table is in the docs</a>.
+    </p>
+
+    <figure class="shot">
+      <img src="/assets/img/village.webp" width="1000" height="583" loading="lazy" alt="Close view of a village: mill, market stall, well, houses and a mine at the foot of a rocky ridge.">
+      <figcaption>Every chain has its own silhouette on the map — you read a colony by looking at it.</figcaption>
+    </figure>
+
+    <h3 class="h-gallery">Twenty-eight buildings, every one hand-painted</h3>
+    <div class="gallery">
+      <div class="tile"><img src="/assets/img/buildings/castle.webp" loading="lazy" alt=""><span>Castle</span></div>
+      <div class="tile"><img src="/assets/img/buildings/lumberjack.webp" loading="lazy" alt=""><span>Woodcutter</span></div>
+      <div class="tile"><img src="/assets/img/buildings/sawmill.webp" loading="lazy" alt=""><span>Sawmill</span></div>
+      <div class="tile"><img src="/assets/img/buildings/forester.webp" loading="lazy" alt=""><span>Forester</span></div>
+      <div class="tile"><img src="/assets/img/buildings/quarry.webp" loading="lazy" alt=""><span>Quarry</span></div>
+      <div class="tile"><img src="/assets/img/buildings/farm.webp" loading="lazy" alt=""><span>Farm</span></div>
+      <div class="tile"><img src="/assets/img/buildings/mill.webp" loading="lazy" alt=""><span>Mill</span></div>
+      <div class="tile"><img src="/assets/img/buildings/bakery.webp" loading="lazy" alt=""><span>Bakery</span></div>
+      <div class="tile"><img src="/assets/img/buildings/fisher.webp" loading="lazy" alt=""><span>Fisher</span></div>
+      <div class="tile"><img src="/assets/img/buildings/pig_farm.webp" loading="lazy" alt=""><span>Pig farm</span></div>
+      <div class="tile"><img src="/assets/img/buildings/butcher.webp" loading="lazy" alt=""><span>Butcher</span></div>
+      <div class="tile"><img src="/assets/img/buildings/ironmine.webp" loading="lazy" alt=""><span>Iron mine</span></div>
+      <div class="tile"><img src="/assets/img/buildings/ironsmelter.webp" loading="lazy" alt=""><span>Iron smelter</span></div>
+      <div class="tile"><img src="/assets/img/buildings/forge.webp" loading="lazy" alt=""><span>Toolmaker</span></div>
+      <div class="tile"><img src="/assets/img/buildings/mint.webp" loading="lazy" alt=""><span>Mint</span></div>
+      <div class="tile"><img src="/assets/img/buildings/weaponsmith.webp" loading="lazy" alt=""><span>Weaponsmith</span></div>
+      <div class="tile"><img src="/assets/img/buildings/fletcher.webp" loading="lazy" alt=""><span>Fletcher</span></div>
+      <div class="tile"><img src="/assets/img/buildings/training_camp.webp" loading="lazy" alt=""><span>Training camp</span></div>
+      <div class="tile"><img src="/assets/img/buildings/warehouse.webp" loading="lazy" alt=""><span>Warehouse</span></div>
+      <div class="tile"><img src="/assets/img/buildings/house.webp" loading="lazy" alt=""><span>House</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ WORLD ============================ -->
+<section id="world">
+  <div class="wrap">
+    <div class="split reverse">
+      <figure class="shot shot--flush">
+        <img src="/assets/img/map.webp" width="1100" height="629" loading="lazy" alt="Zoomed-out view of the map: forests, rock deposits and a lake around the colony.">
+        <figcaption>A single map is 156 × 156 tiles — 24 336 of them.</figcaption>
+      </figure>
+      <div>
+        <p class="eyebrow">The world</p>
+        <h2>Finite ground, renewable forest</h2>
+        <p>
+          Rock deposits run out for good. Fishing waters run dry. Forests, on the other hand, grow
+          back — but only if a forester replants faster than the woodcutter fells. Every map pushes
+          you outward eventually, which is what makes territory matter.
+        </p>
+        <p>
+          Colonists are recruited with <strong>coins</strong> — 8 apiece, which is the reason to bother
+          minting money at all. An <strong>attractiveness</strong> system that draws immigrants to a
+          place worth living in is being reworked, and will come back alongside the decorations that
+          feed it.
+        </p>
+        <p>
+          Hunger never kills anyone. Running out of food slows production down to half speed and no
+          further: the game punishes you with a bad hour, never with a death spiral you can't escape.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ OWNERSHIP ============================ -->
+<section id="ownership">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Where this is going</p>
+      <h2>Ownership later — fun first</h2>
+      <p class="lede">
+        Cairnheim is designed to end up with real ownership of land and rare goods on Solana. It is
+        also built on one rule that outranks that plan.
+      </p>
+    </div>
+
+    <div class="note green">
+      <p>
+        <strong>The golden rule of the project:</strong> the game must be fun with no wallet
+        connected. The blockchain adds <em>ownership</em> and <em>trade</em> — never <em>fun</em>.
+        If you removed the crypto and the game stopped being enjoyable, we would have failed.
+      </p>
+    </div>
+
+    <div class="grid grid-3">
+      <article class="card">
+        <h3>Not a faucet</h3>
+        <p>
+          No token rains down for logging in. What you can sell is what you actually built: a
+          developed map, a surplus of rare goods, a trained specialist. Value comes from time and
+          skill, not from emission.
+        </p>
+      </article>
+      <article class="card">
+        <h3>Not pay-to-win</h3>
+        <p>
+          Paying buys land, cosmetics and time — never logistics advantage. Route planning stays the
+          only thing that separates a good colony from a bad one.
+        </p>
+      </article>
+      <article class="card">
+        <h3>Not a pyramid</h3>
+        <p>
+          Studio revenue comes from marketplace fees and cosmetics — activity that already happened,
+          not new entrants arriving. Capped emission, real sinks, a ceiling on offline production.
+        </p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ ROADMAP ============================ -->
+<section id="roadmap">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Roadmap</p>
+      <h2>Where the project stands</h2>
+      <p class="lede">Built in the open, in order, with no step skipped.</p>
+    </div>
+    <div class="road">
+      <div class="step done">
+        <span class="tag">Done</span>
+        <h3>Design document</h3>
+        <p class="muted">Pillars, loops, economy, tokenomics and the guardrails that come with them.</p>
+      </div>
+      <div class="step done">
+        <span class="tag">Done</span>
+        <h3>Playable prototype — no blockchain</h3>
+        <p class="muted">
+          Cairn-and-road transport, 28 buildings, twelve production chains, workers who walk out to
+          the resource, population and morale, tools, an army, saves. Everything on this page is
+          running today.
+        </p>
+      </div>
+      <div class="step now">
+        <span class="tag">In progress</span>
+        <h3>Making it deep — expeditions &amp; trade</h3>
+        <p class="muted">
+          Instanced expedition maps with rare veins, explorers who bring back charts, camp defences,
+          and a player-to-player market. Your home map stays private; expeditions are where you go
+          looking for what it lacks.
+        </p>
+      </div>
+      <div class="step">
+        <span class="tag">Next</span>
+        <h3>Ownership on Solana</h3>
+        <p class="muted">
+          Phantom wallet, land as NFTs on devnet first, the $CAIRN utility token, marketplace and
+          fees, Anchor contracts with the economic guardrails written into them from day one.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ FAQ ============================ -->
+<section id="faq">
+  <div class="wrap wrap--narrow">
+    <div class="section-head"><p class="eyebrow">FAQ</p><h2>Straight answers</h2></div>
+
+    <details class="faq">
+      <summary>Do I need a wallet to play?</summary>
+      <p>No. The game is free and playable in the browser with nothing installed. A wallet will only
+        ever be needed to <em>own</em> and <em>trade</em> things, never to play.</p>
+    </details>
+    <details class="faq">
+      <summary>Is this multiplayer?</summary>
+      <p>Not in the sense of a shared map. Each player builds on their own map, the way
+        <em>The Settlers Online</em> did it. Players meet through trade, chat and expeditions —
+        no real-time synchronised world, which keeps it cheap to run and pleasant to play.</p>
+    </details>
+    <details class="faq">
+      <summary>How close is it to The Settlers?</summary>
+      <p>The transport model is ported deliberately: cairns stand in for flags, one carrier per road
+        leg, distribution priorities that decay by half per unit in stock. Several timings come
+        straight from the original — a farmer's harvest, for instance, takes 7.8 seconds because
+        that is what it took in Settlers 1.</p>
+    </details>
+    <details class="faq">
+      <summary>What does the token actually do?</summary>
+      <p>It is a utility token: premium crafting, rare recipes, lower marketplace fees, light
+        governance. Capped supply, burned by the crafts that use it. It is not distributed for
+        playing and it is not a yield promise.</p>
+    </details>
+    <details class="faq">
+      <summary>Can I lose my colony?</summary>
+      <p>No. Starvation slows production to a floor of 50% and never removes colonists — there is no
+        state you can reach that you cannot climb back out of.</p>
+    </details>
+    <details class="faq">
+      <summary>Who is building this?</summary>
+      <p>A small independent project. The prototype, the art direction and the economy are being
+        built and balanced in public, one system at a time.</p>
+    </details>
+  </div>
+</section>
+
+<!-- ============================ CTA ============================ -->
+<section class="cta-band">
+  <div class="wrap">
+    <h2>Draw a road. Watch it fill.</h2>
+    <p class="lede center-lede">
+      The first ten minutes are a woodcutter, a sawmill and the road between them. It gets
+      complicated on its own after that.
+    </p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" data-play="long" href="#roadmap"><span data-play-label>Play the prototype</span></a>
+      <a class="btn btn-ghost" href="/docs.html">Read the docs</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span>Cairnheim — colony builder prototype. Art and code in progress.</span>
+    <span><a href="/docs.html">Documentation</a> · <a href="#pillars">Back to top</a></span>
+  </div>
+</footer>
+
+<script src="/assets/js/site.js"></script>
+</body>
+</html>

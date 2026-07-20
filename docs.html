@@ -1,0 +1,552 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cairnheim — Documentation</title>
+<meta name="description" content="How Cairnheim works: the cairn-and-road transport network, distribution priorities, every production chain, building costs, population, food and the military.">
+<meta name="theme-color" content="#f2e6cf">
+<link rel="icon" href="/assets/img/cairn.webp">
+<link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="/"><span class="mark" aria-hidden="true"></span> Cairnheim</a>
+    <button class="nav-toggle" aria-expanded="false" aria-label="Menu">☰</button>
+    <nav class="nav-links">
+      <a href="/">Home</a>
+      <a href="/docs.html" aria-current="page">Docs</a>
+      <a class="btn btn-primary" data-play="short" href="/#roadmap"><span data-play-label>Play</span></a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap docs">
+
+  <!-- ============================ SOMMAIRE ============================ -->
+  <aside class="toc">
+    <strong>Start here</strong>
+    <a href="#start">First ten minutes</a>
+    <a href="#controls">Controls</a>
+    <strong>Systems</strong>
+    <a href="#transport">Transport network</a>
+    <a href="#priorities">Priorities &amp; distribution</a>
+    <a href="#workers">Workers &amp; tools</a>
+    <a href="#population">Population &amp; attractiveness</a>
+    <a href="#food">Food &amp; morale</a>
+    <a href="#military">Military</a>
+    <strong>Reference</strong>
+    <a href="#chains">Production chains</a>
+    <a href="#buildings">Buildings</a>
+    <a href="#goods">Goods</a>
+    <a href="#decorations">Decorations</a>
+    <a href="#world">World &amp; resources</a>
+    <a href="#quests">Quests</a>
+    <strong>Coming</strong>
+    <a href="#expeditions">Expeditions</a>
+    <a href="#web3">Ownership</a>
+  </aside>
+
+  <!-- ============================ CORPS ============================ -->
+  <main class="doc-body">
+
+    <p class="eyebrow">Documentation</p>
+    <h1 class="doc-h1">How Cairnheim works</h1>
+    <p class="lede">
+      Everything below describes the prototype as it runs today. Numbers are the live values from the
+      game's balance file, not intentions.
+    </p>
+
+    <!-- ---------------- START ---------------- -->
+    <section>
+      <h2 id="start">First ten minutes</h2>
+      <p>
+        You start with a <strong>castle</strong>, ten colonists, and a stock of planks, stone, food
+        and a starter set of tools. The castle is both your warehouse and your reserve of workers.
+      </p>
+      <ol>
+        <li><strong>Place a woodcutter</strong> within range of a forest. It does not need to touch
+          the trees — its worker walks out, fells one, and carries the log home.</li>
+        <li><strong>Place a sawmill</strong> nearby and <strong>draw a road</strong> from the castle
+          to both. Every building must touch a road or nothing will ever reach it.</li>
+        <li><strong>Add a forester.</strong> A woodcutter with no forester eventually clears the
+          forest and stops for good.</li>
+        <li><strong>Quarry, then food.</strong> Farm → mill → bakery, plus a well: bread needs flour
+          <em>and</em> water. A fisher on a lake is the quick alternative.</li>
+        <li><strong>Houses.</strong> 6 planks and 3 stone each; each one shelters 5 colonists.</li>
+      </ol>
+      <div class="note">
+        <p>
+          <strong>The one mistake everyone makes:</strong> building far too much before the road
+          network can feed it. A workshop with no delivery is a workshop that holds a worker hostage.
+          Watch the icons above your buildings — ⛔ means unconnected, ⏳ means waiting on an input.
+        </p>
+      </div>
+    </section>
+
+    <!-- ---------------- CONTROLS ---------------- -->
+    <section>
+      <h2 id="controls">Controls</h2>
+      <div class="tablewrap"><table>
+        <thead><tr><th>Action</th><th>Input</th></tr></thead>
+        <tbody>
+          <tr><td>Pan the camera</td><td>Right-click and drag</td></tr>
+          <tr><td>Zoom</td><td>Mouse wheel (centred on the cursor)</td></tr>
+          <tr><td>Draw a road</td><td>Road tool, then click-drag across tiles</td></tr>
+          <tr><td>Select a building</td><td>Click its <strong>cairn</strong>, not its sprite</td></tr>
+          <tr><td>Demolish</td><td>Demolish tool, then click the cairn</td></tr>
+          <tr><td>Speed</td><td>Pause · ×1 · ×2 · ×3</td></tr>
+        </tbody>
+      </table></div>
+      <p class="muted small">
+        Buildings are drawn larger than the tile they sit on, so a sprite often overlaps its
+        neighbours. Selection and demolition therefore go through the cairn, which is always exactly
+        one tile.
+      </p>
+    </section>
+
+    <!-- ---------------- TRANSPORT ---------------- -->
+    <section>
+      <h2 id="transport">Transport network</h2>
+      <p>
+        This is the heart of the game, ported from <em>The Settlers</em>. Three objects matter:
+      </p>
+      <ul>
+        <li><strong>Cairns</strong> — the stone markers that stand in for Settlers' flags. Every
+          building has one at its door; you can also place them along a road.</li>
+        <li><strong>Roads</strong> — the segments between two cairns. A road is at least 2 tiles long.</li>
+        <li><strong>Carriers</strong> — one per road, and one only. A carrier works its own segment
+          and nothing else.</li>
+      </ul>
+      <p>
+        A good therefore never travels in a straight line to its destination. It is set down on a
+        cairn, picked up by the next leg's carrier, set down again, and so on. Routing picks the
+        cheapest path through the graph — with a penalty for each good already waiting at the
+        arrival cairn, so traffic spreads itself over parallel routes instead of piling onto one.
+      </p>
+
+      <h3>Congestion</h3>
+      <p>
+        A cairn holds <strong>8 goods</strong>. Once it is full, nothing more can be dropped there
+        and the queue backs up along the road. That is the signal to act, and you have three answers:
+      </p>
+      <ul>
+        <li><strong>Split the road</strong> with an extra cairn — shorter legs, and one more carrier
+          on that stretch.</li>
+        <li><strong>Build a parallel route</strong> so the router has somewhere else to send goods.</li>
+        <li><strong>Move the consumer</strong> closer to its supplier and stop crossing the map.</li>
+      </ul>
+      <div class="note green">
+        <p>
+          <strong>Warehouses are part of the network, not an escape from it.</strong> A producer with
+          no customer ships its surplus to storage instead of jamming; a consumer with no supplier
+          draws from it. Storage holds 999 per good at the castle, 300 at a warehouse.
+        </p>
+      </div>
+    </section>
+
+    <!-- ---------------- PRIORITIES ---------------- -->
+    <section>
+      <h2 id="priorities">Priorities &amp; distribution</h2>
+      <p>There are two separate settings, and they are often confused.</p>
+
+      <h3>Distribution — who gets the good</h3>
+      <p>
+        When several workshops want the same good, each one has a slider from 0 to 100 (50 is
+        neutral). The claim is then weighted by what the workshop already holds:
+      </p>
+      <p><code>priority = slider ÷ 2<sup>units already in stock</sup></code></p>
+      <p>
+        The highest priority wins; ties are broken by distance. Because the score <strong>halves with
+        every unit delivered</strong>, a favoured workshop fills up fast and then automatically hands
+        the queue to its rivals. Setting a slider to 0 excludes a building entirely.
+      </p>
+      <p>These are the defaults, taken from the original game:</p>
+      <div class="tablewrap"><table>
+        <thead><tr><th>Good</th><th>Priority order</th></tr></thead>
+        <tbody>
+          <tr><td><img src="/assets/img/goods/coal.webp" alt="">Coal</td>
+              <td>Gold smelter 100 › Weaponsmith 80 › Iron smelter 50 · Copper smelter 50</td></tr>
+          <tr><td><img src="/assets/img/goods/iron_ingot.webp" alt="">Iron ingot</td>
+              <td>Weaponsmith 100 › Toolmaker 70</td></tr>
+          <tr><td><img src="/assets/img/goods/wheat.webp" alt="">Wheat</td>
+              <td>Pig farm 100 › Mill 50</td></tr>
+        </tbody>
+      </table></div>
+
+      <h3>Transport — who gets carried first</h3>
+      <p>
+        A separate ordering decides which good jumps the queue at a saturated cairn. Gems, gold,
+        coins and tools go first; bulk materials like stone and planks go last, on the grounds that
+        they can afford to wait. Full order, highest first:
+      </p>
+      <p class="muted small">
+        diamond · platinum · gold ore · gold ingot · coin · axe · saw · pickaxe · scythe · rod ·
+        cleaver · wheat · flour · water · tool · sword · bow · shield · spear · meat · bread · fish ·
+        livestock · iron ore · copper ore · log · coal · iron ingot · copper ingot · stone · plank
+      </p>
+    </section>
+
+    <!-- ---------------- WORKERS ---------------- -->
+    <section>
+      <h2 id="workers">Workers &amp; tools</h2>
+      <p>
+        Every production building needs <strong>one colonist</strong> to run, taken from your free
+        population. Most of them also need a <strong>tool</strong>, consumed once when the worker is
+        assigned. No tool, no worker, no production — the building sits there showing its icon.
+      </p>
+      <div class="tablewrap"><table>
+        <thead><tr><th>Tool</th><th>Required by</th></tr></thead>
+        <tbody>
+          <tr><td><img src="/assets/img/goods/axe.webp" alt="">Axe</td><td>Woodcutter</td></tr>
+          <tr><td><img src="/assets/img/goods/saw.webp" alt="">Saw</td><td>Sawmill</td></tr>
+          <tr><td><img src="/assets/img/goods/pickaxe.webp" alt="">Pickaxe</td><td>Quarry, all mines</td></tr>
+          <tr><td><img src="/assets/img/goods/scythe.webp" alt="">Scythe</td><td>Farm</td></tr>
+          <tr><td><img src="/assets/img/goods/rod.webp" alt="">Fishing rod</td><td>Fisher</td></tr>
+          <tr><td><img src="/assets/img/goods/cleaver.webp" alt="">Cleaver</td><td>Butcher</td></tr>
+        </tbody>
+      </table></div>
+      <p>
+        Tools come from the <strong>toolmaker</strong>, which is a made-to-order workshop: you pick
+        which tool and how many, and it works through the queue. One iron ingot per tool. The castle
+        gives you a starter set, and running out of pickaxes with three mines idle is a normal mid-game
+        crisis.
+      </p>
+      <p>
+        Woodcutters, quarrymen, fishers and farmers do not stand still. They leave the building, walk
+        up to <strong>8 tiles</strong> to the resource, work it on the spot and carry the result back
+        — which is why an over-far placement quietly halves your output.
+      </p>
+    </section>
+
+    <!-- ---------------- POPULATION ---------------- -->
+    <section>
+      <h2 id="population">Population &amp; attractiveness</h2>
+      <p>
+        Houses do not produce colonists — they <strong>shelter</strong> them. The castle holds 12,
+        each house 5. Colonists arrive in two ways:
+      </p>
+      <ul>
+        <li><strong>Recruitment.</strong> 8 coins buys one immediately — the reason to run the gold
+          chain all the way to the mint. This is currently the only route.</li>
+        <li><strong>Immigration <span class="soon">— locked</span>.</strong> Attractiveness points
+          bring one colonist per <strong>20 accumulated points</strong>, provided a bed is free. Its
+          only source was <a href="#decorations">decorations</a>, which are disabled while that loop
+          is reworked — so immigration cannot trigger at the moment.</li>
+      </ul>
+      <p>
+        Population is a hard ceiling on how much you can operate: every workshop holds one colonist
+        for as long as it runs. Expanding means housing, feeding and attracting more of them — three
+        separate constraints that fail at different times.
+      </p>
+    </section>
+
+    <!-- ---------------- FOOD ---------------- -->
+    <section>
+      <h2 id="food">Food &amp; morale</h2>
+      <p>
+        Each colonist eats roughly one meal every <strong>52 seconds</strong>. Foods are not equal:
+      </p>
+      <div class="tablewrap"><table>
+        <thead><tr><th>Food</th><th>Meals</th><th>Chain</th></tr></thead>
+        <tbody>
+          <tr><td><img src="/assets/img/goods/meat.webp" alt="">Meat</td><td>3</td><td>Pig farm → butcher (needs a cleaver)</td></tr>
+          <tr><td><img src="/assets/img/goods/bread.webp" alt="">Bread</td><td>2</td><td>Farm → mill → bakery (+ well)</td></tr>
+          <tr><td><img src="/assets/img/goods/fish.webp" alt="">Fish</td><td>1</td><td>Fisher on water — no processing at all</td></tr>
+        </tbody>
+      </table></div>
+      <p>
+        A house stores up to 8 meals as a buffer. Colonists eat the most nourishing food first.
+      </p>
+      <div class="note green">
+        <p>
+          <strong>Hunger cannot spiral.</strong> Morale tracks the share of colonists living in a
+          supplied home, and it only modulates production <em>speed</em>, between 100% and a floor of
+          50%. Nobody ever starves to death and nobody ever leaves. A famine costs you an hour, not a
+          save file.
+        </p>
+      </div>
+      <p class="muted small">
+        Morale moves slowly on purpose — a smoothed average that takes 30–40 seconds to respond, so
+        one house briefly running dry doesn't make the whole colony stutter.
+      </p>
+    </section>
+
+    <!-- ---------------- MILITARY ---------------- -->
+    <section>
+      <h2 id="military">Military</h2>
+      <p>
+        Weapons are the last sink of the iron chain. The <strong>weaponsmith</strong> is a
+        made-to-order workshop like the toolmaker — you choose what it forges.
+      </p>
+      <div class="tablewrap"><table>
+        <thead><tr><th>Item</th><th>Cost</th><th>Made by</th></tr></thead>
+        <tbody>
+          <tr><td><img src="/assets/img/goods/sword.webp" alt="">Sword</td><td>1 iron ingot + 1 coal</td><td>Weaponsmith</td></tr>
+          <tr><td><img src="/assets/img/goods/shield.webp" alt="">Shield</td><td>1 iron ingot + 1 plank</td><td>Weaponsmith</td></tr>
+          <tr><td><img src="/assets/img/goods/spear.webp" alt="">Spear</td><td>1 iron ingot + 1 coal</td><td>Weaponsmith</td></tr>
+          <tr><td><img src="/assets/img/goods/bow.webp" alt="">Bow</td><td>1 plank</td><td>Fletcher</td></tr>
+        </tbody>
+      </table></div>
+      <p>The <strong>training camp</strong> turns a free colonist plus a kit into a soldier:</p>
+      <div class="tablewrap"><table>
+        <thead><tr><th>Soldier</th><th>Kit</th></tr></thead>
+        <tbody>
+          <tr><td>Swordsman</td><td>1 sword + 1 shield</td></tr>
+          <tr><td>Spearman</td><td>1 spear</td></tr>
+          <tr><td>Archer</td><td>1 bow</td></tr>
+        </tbody>
+      </table></div>
+      <p class="muted small">
+        Note the trade-off: every soldier is a colonist who has stopped working. An army is paid for
+        in production, twice over — the iron it consumes and the labour it withdraws.
+      </p>
+    </section>
+
+    <!-- ---------------- CHAINS ---------------- -->
+    <section>
+      <h2 id="chains">Production chains</h2>
+      <p class="muted small">
+        Times are the workshop's own cycle, not counting transport. One tick is 1.3 seconds.
+      </p>
+      <div class="tablewrap"><table>
+        <thead><tr><th>Building</th><th>Consumes</th><th>Produces</th><th>Cycle</th></tr></thead>
+        <tbody>
+          <tr><td>Woodcutter</td><td>a mature tree</td><td>1 log</td><td>3 t · 3.9 s</td></tr>
+          <tr><td>Sawmill</td><td>1 log</td><td>1 plank</td><td>7 t · 9.1 s</td></tr>
+          <tr><td>Quarry</td><td>a stone deposit</td><td>1 stone</td><td>3 t · 3.9 s</td></tr>
+          <tr><td>Farm</td><td>its own fields</td><td>1 wheat</td><td>4 t · 5.2 s</td></tr>
+          <tr><td>Mill</td><td>1 wheat</td><td>1 flour</td><td>5 t · 6.5 s</td></tr>
+          <tr><td>Well</td><td>—</td><td>1 water</td><td>5 t · 6.5 s</td></tr>
+          <tr><td>Bakery</td><td>1 flour + 1 water</td><td>1 bread</td><td>5 t · 6.5 s</td></tr>
+          <tr><td>Fisher</td><td>a water tile</td><td>1 fish</td><td>3 t · 3.9 s</td></tr>
+          <tr><td>Pig farm</td><td>2 wheat + 1 water</td><td>1 livestock</td><td>12 t · 15.6 s</td></tr>
+          <tr><td>Butcher</td><td>1 livestock</td><td>1 meat</td><td>8 t · 10.4 s</td></tr>
+          <tr><td>Coal mine</td><td>a coal deposit</td><td>1 coal</td><td>3 t · 3.9 s</td></tr>
+          <tr><td>Iron / copper mine</td><td>the matching deposit</td><td>1 ore</td><td>3 t · 3.9 s</td></tr>
+          <tr><td>Gold mine</td><td>a gold deposit</td><td>1 gold ore</td><td>4 t · 5.2 s</td></tr>
+          <tr><td>Copper smelter</td><td>1 copper ore + 1 coal</td><td>1 copper ingot</td><td>14 t · 18.2 s</td></tr>
+          <tr><td>Iron smelter</td><td>1 iron ore + 1 coal</td><td>1 iron ingot</td><td>16 t · 20.8 s</td></tr>
+          <tr><td>Gold smelter</td><td>1 gold ore + 1 coal</td><td>1 gold ingot</td><td>18 t · 23.4 s</td></tr>
+          <tr><td>Mint</td><td>1 gold ingot</td><td>1 coin</td><td>16 t · 20.8 s</td></tr>
+          <tr><td>Toolmaker</td><td>1 iron ingot</td><td>1 tool of your choice</td><td>10 t · 13 s</td></tr>
+          <tr><td>Weaponsmith</td><td>see <a href="#military">military</a></td><td>sword · shield · spear</td><td>10 t · 13 s</td></tr>
+          <tr><td>Fletcher</td><td>1 plank</td><td>1 bow</td><td>7 t · 9.1 s</td></tr>
+          <tr><td>Training camp</td><td>1 colonist + a kit</td><td>1 soldier</td><td>15 t · 19.5 s</td></tr>
+        </tbody>
+      </table></div>
+      <p class="note">
+        The three smelters run at deliberately different speeds — copper fastest, gold slowest. Coal
+        is the shared input for all of them <em>and</em> for the weaponsmith, which is why coal
+        priority is the most consequential slider in the game.
+      </p>
+    </section>
+
+    <!-- ---------------- BUILDINGS ---------------- -->
+    <section>
+      <h2 id="buildings">Buildings</h2>
+      <div class="tablewrap"><table>
+        <thead><tr><th>Building</th><th>Cost</th><th>Needs</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td>Castle</td><td>pre-placed</td><td>—</td><td>HQ · shelters 12 · stores 999 per good</td></tr>
+          <tr><td>Woodcutter</td><td>2 planks</td><td>axe · forest within 8</td><td>Fells one tree per log</td></tr>
+          <tr><td>Forester</td><td>2 planks</td><td>—</td><td>Replants every ~16 s within 4 tiles</td></tr>
+          <tr><td>Sawmill</td><td>3 planks + 1 stone</td><td>saw</td><td>2 × 2 footprint</td></tr>
+          <tr><td>Quarry</td><td>3 planks</td><td>pickaxe · stone within 8</td><td>Deposits are finite</td></tr>
+          <tr><td>Farm</td><td>4 planks + 1 stone</td><td>scythe</td><td>Works 5 fixed fields around itself</td></tr>
+          <tr><td>Mill</td><td>3 planks + 2 stone</td><td>—</td><td></td></tr>
+          <tr><td>Bakery</td><td>3 planks + 2 stone</td><td>—</td><td>Needs water as well as flour</td></tr>
+          <tr><td>Well</td><td>2 planks + 2 stone</td><td>—</td><td>No terrain requirement</td></tr>
+          <tr><td>Fisher</td><td>3 planks</td><td>rod · water within 8</td><td>Waters run dry (10 fish per tile)</td></tr>
+          <tr><td>Pig farm</td><td>5 planks + 2 stone</td><td>—</td><td>Large footprint</td></tr>
+          <tr><td>Butcher</td><td>5 planks + 3 stone</td><td>cleaver</td><td></td></tr>
+          <tr><td>Mines (coal, iron, gold, copper)</td><td>4 planks</td><td>pickaxe · matching deposit</td><td>3 × 2 footprint</td></tr>
+          <tr><td>Smelters (copper, iron, gold)</td><td>4 planks + 2 stone</td><td>—</td><td>Lights up while working</td></tr>
+          <tr><td>Toolmaker</td><td>4 planks + 2 stone</td><td>—</td><td>Made to order</td></tr>
+          <tr><td>Mint</td><td>4 planks + 3 stone</td><td>—</td><td>The only source of coins</td></tr>
+          <tr><td>Weaponsmith</td><td>4 planks + 2 stone</td><td>—</td><td>Made to order</td></tr>
+          <tr><td>Fletcher</td><td>3 planks</td><td>—</td><td></td></tr>
+          <tr><td>Training camp</td><td>5 planks + 3 stone</td><td>—</td><td>Large footprint</td></tr>
+          <tr><td>House</td><td>6 planks + 3 stone</td><td>—</td><td>Shelters 5 · stores 8 meals</td></tr>
+          <tr><td>Warehouse</td><td>6 planks + 4 stone</td><td>—</td><td>Stores 300 per good</td></tr>
+          <tr><td>Explorer hut</td><td>4 planks + 1 stone</td><td>—</td><td>For the expedition mode</td></tr>
+          <tr><td>Palisade / watchtower</td><td>1 plank / 4 planks + 1 stone</td><td>—</td><td>Free placement, no road needed</td></tr>
+        </tbody>
+      </table></div>
+      <p class="muted small">
+        Buildings need one clear tile between them, and the door tile — south-east by default — must
+        stay free for its road and cairn.
+      </p>
+    </section>
+
+    <!-- ---------------- GOODS ---------------- -->
+    <section>
+      <h2 id="goods">Goods</h2>
+      <p>Thirty-one goods circulate on the network.</p>
+      <div class="gallery gallery--sm">
+        <div class="tile"><img src="/assets/img/goods/log.webp" loading="lazy" alt=""><span>Log</span></div>
+        <div class="tile"><img src="/assets/img/goods/plank.webp" loading="lazy" alt=""><span>Plank</span></div>
+        <div class="tile"><img src="/assets/img/goods/stone.webp" loading="lazy" alt=""><span>Stone</span></div>
+        <div class="tile"><img src="/assets/img/goods/wheat.webp" loading="lazy" alt=""><span>Wheat</span></div>
+        <div class="tile"><img src="/assets/img/goods/flour.webp" loading="lazy" alt=""><span>Flour</span></div>
+        <div class="tile"><img src="/assets/img/goods/water.webp" loading="lazy" alt=""><span>Water</span></div>
+        <div class="tile"><img src="/assets/img/goods/bread.webp" loading="lazy" alt=""><span>Bread</span></div>
+        <div class="tile"><img src="/assets/img/goods/fish.webp" loading="lazy" alt=""><span>Fish</span></div>
+        <div class="tile"><img src="/assets/img/goods/livestock.webp" loading="lazy" alt=""><span>Livestock</span></div>
+        <div class="tile"><img src="/assets/img/goods/meat.webp" loading="lazy" alt=""><span>Meat</span></div>
+        <div class="tile"><img src="/assets/img/goods/coal.webp" loading="lazy" alt=""><span>Coal</span></div>
+        <div class="tile"><img src="/assets/img/goods/iron_ore.webp" loading="lazy" alt=""><span>Iron ore</span></div>
+        <div class="tile"><img src="/assets/img/goods/copper_ore.webp" loading="lazy" alt=""><span>Copper ore</span></div>
+        <div class="tile"><img src="/assets/img/goods/gold_ore.webp" loading="lazy" alt=""><span>Gold ore</span></div>
+        <div class="tile"><img src="/assets/img/goods/iron_ingot.webp" loading="lazy" alt=""><span>Iron ingot</span></div>
+        <div class="tile"><img src="/assets/img/goods/copper_ingot.webp" loading="lazy" alt=""><span>Copper ingot</span></div>
+        <div class="tile"><img src="/assets/img/goods/gold_ingot.webp" loading="lazy" alt=""><span>Gold ingot</span></div>
+        <div class="tile"><img src="/assets/img/goods/coin.webp" loading="lazy" alt=""><span>Coin</span></div>
+        <div class="tile"><img src="/assets/img/goods/axe.webp" loading="lazy" alt=""><span>Axe</span></div>
+        <div class="tile"><img src="/assets/img/goods/saw.webp" loading="lazy" alt=""><span>Saw</span></div>
+        <div class="tile"><img src="/assets/img/goods/pickaxe.webp" loading="lazy" alt=""><span>Pickaxe</span></div>
+        <div class="tile"><img src="/assets/img/goods/scythe.webp" loading="lazy" alt=""><span>Scythe</span></div>
+        <div class="tile"><img src="/assets/img/goods/rod.webp" loading="lazy" alt=""><span>Rod</span></div>
+        <div class="tile"><img src="/assets/img/goods/cleaver.webp" loading="lazy" alt=""><span>Cleaver</span></div>
+        <div class="tile"><img src="/assets/img/goods/sword.webp" loading="lazy" alt=""><span>Sword</span></div>
+        <div class="tile"><img src="/assets/img/goods/shield.webp" loading="lazy" alt=""><span>Shield</span></div>
+        <div class="tile"><img src="/assets/img/goods/spear.webp" loading="lazy" alt=""><span>Spear</span></div>
+        <div class="tile"><img src="/assets/img/goods/bow.webp" loading="lazy" alt=""><span>Bow</span></div>
+        <div class="tile"><img src="/assets/img/goods/diamond.webp" loading="lazy" alt=""><span>Diamond</span></div>
+        <div class="tile"><img src="/assets/img/goods/platinum.webp" loading="lazy" alt=""><span>Platinum</span></div>
+      </div>
+    </section>
+
+    <!-- ---------------- DECORATIONS ---------------- -->
+    <section>
+      <h2 id="decorations">Decorations &amp; attractiveness <span class="soon">— temporarily locked</span></h2>
+      <div class="note">
+        <p>
+          <strong>The decorations menu is disabled for now</strong>, while the attractiveness loop is
+          reworked. What follows describes it as it will return. In the meantime, population grows
+          only through <a href="#population">coin recruitment</a>.
+        </p>
+      </div>
+      <p>
+        Decorations are placed instantly, need no road and no worker, and are paid for out of stock.
+        They all cost <strong>coins</strong> as well as materials — that is what the gold chain is
+        ultimately for.
+      </p>
+      <div class="tablewrap"><table>
+        <thead><tr><th>Decoration</th><th>Cost</th><th>Attractiveness</th></tr></thead>
+        <tbody>
+          <tr><td>Signpost</td><td>1 plank + 1 coin</td><td>+1</td></tr>
+          <tr><td>Flower bed</td><td>2 planks + 1 coin</td><td>+1</td></tr>
+          <tr><td>Hedge</td><td>2 planks + 1 coin</td><td>+1</td></tr>
+          <tr><td>Banner</td><td>2 planks + 2 coins</td><td>+3</td></tr>
+          <tr><td>Market stall</td><td>4 planks + 1 stone + 3 coins</td><td>+4</td></tr>
+          <tr><td>Statue</td><td>4 stone + 4 coins</td><td>+6</td></tr>
+          <tr><td>Fountain</td><td>6 stone + 4 planks + 8 coins</td><td>+12</td></tr>
+        </tbody>
+      </table></div>
+      <p class="muted small">
+        Small pieces are deliberately the worst value per coin. Twenty points of attractiveness is
+        one immigrant — the fountain gets you there in under two.
+      </p>
+    </section>
+
+    <!-- ---------------- WORLD ---------------- -->
+    <section>
+      <h2 id="world">World &amp; resources</h2>
+      <div class="tablewrap"><table>
+        <thead><tr><th>Property</th><th>Value</th></tr></thead>
+        <tbody>
+          <tr><td>Map size</td><td>156 × 156 tiles (24 336)</td></tr>
+          <tr><td>Forest cover</td><td>~18% of the surface</td></tr>
+          <tr><td>Mountains</td><td>~12% — stone, coal, iron, gold, copper</td></tr>
+          <tr><td>Ore per deposit</td><td>15, then exhausted permanently</td></tr>
+          <tr><td>Fish per water tile</td><td>10, then that tile is dead</td></tr>
+          <tr><td>Tree growth</td><td>3 stages; only a mature tree can be felled</td></tr>
+          <tr><td>Simulation tick</td><td>1.3 s</td></tr>
+        </tbody>
+      </table></div>
+      <p>
+        Wood is the only renewable resource, and only if you plant it. Everything else is a countdown
+        — which is the pressure that eventually pushes you off your starting ground.
+      </p>
+      <p class="muted small">
+        Drawing a road through a forest clears the tree in its way. Convenient, and a slow way to
+        ruin a woodcutter's district if you are not paying attention.
+      </p>
+    </section>
+
+    <!-- ---------------- QUESTS ---------------- -->
+    <section>
+      <h2 id="quests">Quests</h2>
+      <p>A chain of objectives guides the early game. Each reward is a choice: materials to reinvest, or coins.</p>
+      <div class="tablewrap"><table>
+        <thead><tr><th>Objective</th><th>Materials</th><th>or Coins</th></tr></thead>
+        <tbody>
+          <tr><td>Chop 50 logs</td><td>10 planks</td><td>15</td></tr>
+          <tr><td>Saw 30 planks</td><td>10 stone</td><td>20</td></tr>
+          <tr><td>Build 3 houses</td><td>15 planks + 8 stone</td><td>25</td></tr>
+          <tr><td>Grow to 15 colonists</td><td>20 planks</td><td>30</td></tr>
+          <tr><td>Mint 20 coins</td><td>15 stone</td><td>40</td></tr>
+          <tr><td>Train 5 soldiers</td><td>25 planks + 15 stone</td><td>50</td></tr>
+        </tbody>
+      </table></div>
+    </section>
+
+    <!-- ---------------- EXPEDITIONS ---------------- -->
+    <section>
+      <h2 id="expeditions">Expeditions <span class="soon">— in progress</span></h2>
+      <p>
+        Your home map is private and permanent. Expeditions are the opposite: instanced maps you
+        travel to, strip of what they hold, and leave.
+      </p>
+      <ul>
+        <li><strong>Explorers</strong> trained at the explorer's hut bring back charts to new sites.</li>
+        <li><strong>Rare veins</strong> — diamond and platinum — exist only out there, mined by a
+          single all-purpose expedition mine.</li>
+        <li><strong>Camp defences</strong>: palisades and watchtowers, placed freely with no road
+          and no worker, to fence off a temporary dig.</li>
+      </ul>
+      <p class="muted small">
+        The buildings and art are in the game already; the mode that gives them a purpose is what is
+        being built now.
+      </p>
+    </section>
+
+    <!-- ---------------- WEB3 ---------------- -->
+    <section>
+      <h2 id="web3">Ownership <span class="soon">— planned</span></h2>
+      <div class="note green">
+        <p>
+          <strong>Nothing in this section is required to play.</strong> The prototype has no
+          blockchain in it at all, and the rule is that it must stay fun that way.
+        </p>
+      </div>
+      <ul>
+        <li><strong>Land as NFTs</strong> — limited supply, devnet first. A developed map is worth
+          what someone will pay for the hours in it.</li>
+        <li><strong>$CAIRN</strong> — a utility token with capped, decreasing emission. Spent on
+          premium crafting and burned by it. Not handed out for playing.</li>
+        <li><strong>Marketplace</strong> — player to player, with a fee that funds the studio. That
+          fee is the business model: it depends on activity, not on new arrivals.</li>
+        <li><strong>Guardrails, written into the contracts</strong> — emission cap, a sink for every
+          faucet, a ceiling on offline production so bot farms are pointless, and no pay-only
+          gameplay advantage.</li>
+      </ul>
+      <p><a href="/#ownership">The reasoning behind this model →</a></p>
+    </section>
+
+  </main>
+</div>
+
+<footer>
+  <div class="wrap foot">
+    <span>Cairnheim — documentation for the current prototype.</span>
+    <span><a href="/">Home</a> · <a href="#start">Back to top</a></span>
+  </div>
+</footer>
+
+<script src="/assets/js/site.js"></script>
+</body>
+</html>

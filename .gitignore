@@ -1,0 +1,14 @@
+# Ce dépôt est PUBLIC : rien de sensible ne doit y entrer.
+node_modules/
+.vercel/
+
+# OS / éditeurs
+.DS_Store
+Thumbs.db
+.vscode/*
+.idea/
+
+# Aucune variable d'environnement n'est nécessaire ici (site 100 % statique),
+# mais la règle reste, au cas où.
+.env
+.env.*
