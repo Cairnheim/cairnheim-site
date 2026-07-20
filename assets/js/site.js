@@ -7,19 +7,20 @@
 // ---------------------------------------------------------------------------
 const PLAY_URL = '';
 
+// Le HTML annonce « coming soon » PAR DÉFAUT, et ce script ACTIVE le lien quand l'URL existe.
+// Le sens de la bascule compte : tout ce qui n'exécute pas JS — robots d'indexation, aperçus de
+// liens sur les réseaux, lecteurs simplifiés — ne voit que le HTML. S'il y était écrit « Play the
+// prototype », ces surfaces annonceraient un jeu jouable qui ne l'est pas encore.
 (function play() {
+  if (!PLAY_URL) return;
   document.querySelectorAll('[data-play]').forEach((a) => {
-    if (PLAY_URL) {
-      a.href = PLAY_URL;
-      a.target = '_blank';
-      a.rel = 'noopener';
-      return;
-    }
-    a.href = '#roadmap';
-    a.setAttribute('aria-disabled', 'true');
-    a.title = 'The playable build is not online yet.';
+    a.href = PLAY_URL;
+    a.target = '_blank';
+    a.rel = 'noopener';
+    a.removeAttribute('aria-disabled');
+    a.removeAttribute('title');
     const label = a.querySelector('[data-play-label]') || a;
-    label.textContent = a.dataset.play === 'short' ? 'Coming soon' : 'Playable build coming soon';
+    label.textContent = a.dataset.play === 'short' ? 'Play' : 'Play the prototype';
   });
 })();
 
