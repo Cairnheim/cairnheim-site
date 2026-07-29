@@ -5,7 +5,7 @@
 // Tant qu'elle est vide, tous les boutons « Play » passent en « bientôt » et
 // deviennent inertes : jamais de lien mort sur la page.
 // ---------------------------------------------------------------------------
-const PLAY_URL = '';
+const PLAY_URL = 'https://cairnheim.vercel.app';
 
 // Le HTML annonce « coming soon » PAR DÉFAUT, et ce script ACTIVE le lien quand l'URL existe.
 // Le sens de la bascule compte : tout ce qui n'exécute pas JS — robots d'indexation, aperçus de
