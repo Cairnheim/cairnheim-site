@@ -22,6 +22,7 @@
     <nav class="nav-links">
       <a href="#loop">The loop</a>
       <a href="#chains">Chains</a>
+      <a href="#mine">The mine</a>
       <a href="#world">World</a>
       <a href="#ownership">Ownership</a>
       <a href="#roadmap">Roadmap</a>
@@ -47,7 +48,7 @@
       <a class="btn btn-primary" data-play="long" href="#roadmap" aria-disabled="true" title="The playable build is not online yet."><span data-play-label>Playable build coming soon</span></a>
       <a class="btn btn-ghost" href="/docs.html">Read the docs</a>
     </div>
-    <p class="hero-note">Free browser prototype · no install · no sign-up</p>
+    <p class="hero-note">Free · nothing to install · sign in with a Solana wallet, and your colony follows the wallet</p>
 
     <figure class="shot">
       <img src="/assets/img/hero.webp" width="1440" height="810" alt="An isometric colony around a stone castle: roads, cairns, carriers walking with goods, forests and rock deposits.">
@@ -133,10 +134,12 @@
   <div class="wrap">
     <div class="section-head">
       <p class="eyebrow">Production</p>
-      <h2>Twelve chains, one shared road network</h2>
+      <h2>Thirty-six goods, one shared road network</h2>
       <p class="lede">
-        Every chain is short enough to read at a glance and long enough to fight over transport.
-        They all draw on the same carriers — which is where the game actually happens.
+        Twenty-nine workshops turn one good into another; eight more sit on a deposit and pull raw
+        material out of the ground. Every chain is short enough to read at a glance and long enough
+        to fight over transport — and they all draw on the same carriers, which is where the game
+        actually happens.
       </p>
     </div>
 
@@ -211,7 +214,7 @@
     </div>
 
     <p class="muted small">
-      Plus stone, fish, meat, copper, bows, swords and the rare expedition gems —
+      Plus stone, fish, meat, copper, platinum, charcoal, bows, swords and the rare expedition gems —
       <a href="/docs.html#chains">the full table is in the docs</a>.
     </p>
 
@@ -220,28 +223,115 @@
       <figcaption>Every chain has its own silhouette on the map — you read a colony by looking at it.</figcaption>
     </figure>
 
-    <h3 class="h-gallery">Twenty-eight buildings, every one hand-painted</h3>
+    <h3 class="h-gallery">Forty-two buildings, every one hand-painted</h3>
     <div class="gallery">
       <div class="tile"><img src="/assets/img/buildings/castle.webp" loading="lazy" alt=""><span>Castle</span></div>
+      <div class="tile"><img src="/assets/img/buildings/house.webp" loading="lazy" alt=""><span>House</span></div>
+      <div class="tile"><img src="/assets/img/buildings/warehouse.webp" loading="lazy" alt=""><span>Warehouse</span></div>
       <div class="tile"><img src="/assets/img/buildings/lumberjack.webp" loading="lazy" alt=""><span>Woodcutter</span></div>
-      <div class="tile"><img src="/assets/img/buildings/sawmill.webp" loading="lazy" alt=""><span>Sawmill</span></div>
       <div class="tile"><img src="/assets/img/buildings/forester.webp" loading="lazy" alt=""><span>Forester</span></div>
+      <div class="tile"><img src="/assets/img/buildings/sawmill.webp" loading="lazy" alt=""><span>Sawmill</span></div>
       <div class="tile"><img src="/assets/img/buildings/quarry.webp" loading="lazy" alt=""><span>Quarry</span></div>
+      <div class="tile"><img src="/assets/img/buildings/well.webp" loading="lazy" alt=""><span>Well</span></div>
       <div class="tile"><img src="/assets/img/buildings/farm.webp" loading="lazy" alt=""><span>Farm</span></div>
+      <div class="tile"><img src="/assets/img/buildings/corn_farm.webp" loading="lazy" alt=""><span>Corn farm</span></div>
       <div class="tile"><img src="/assets/img/buildings/mill.webp" loading="lazy" alt=""><span>Mill</span></div>
       <div class="tile"><img src="/assets/img/buildings/bakery.webp" loading="lazy" alt=""><span>Bakery</span></div>
       <div class="tile"><img src="/assets/img/buildings/fisher.webp" loading="lazy" alt=""><span>Fisher</span></div>
+      <div class="tile"><img src="/assets/img/buildings/fish_farm.webp" loading="lazy" alt=""><span>Fish farm</span></div>
       <div class="tile"><img src="/assets/img/buildings/pig_farm.webp" loading="lazy" alt=""><span>Pig farm</span></div>
+      <div class="tile"><img src="/assets/img/buildings/chicken_coop.webp" loading="lazy" alt=""><span>Chicken coop</span></div>
       <div class="tile"><img src="/assets/img/buildings/butcher.webp" loading="lazy" alt=""><span>Butcher</span></div>
+      <div class="tile"><img src="/assets/img/buildings/cookhouse.webp" loading="lazy" alt=""><span>Kitchen</span></div>
+      <div class="tile"><img src="/assets/img/buildings/provisioner.webp" loading="lazy" alt=""><span>Provisioner</span></div>
+      <div class="tile"><img src="/assets/img/buildings/coalmine.webp" loading="lazy" alt=""><span>Coal mine</span></div>
+      <div class="tile"><img src="/assets/img/buildings/charcoalburner.webp" loading="lazy" alt=""><span>Charcoal burner</span></div>
       <div class="tile"><img src="/assets/img/buildings/ironmine.webp" loading="lazy" alt=""><span>Iron mine</span></div>
       <div class="tile"><img src="/assets/img/buildings/ironsmelter.webp" loading="lazy" alt=""><span>Iron smelter</span></div>
+      <div class="tile"><img src="/assets/img/buildings/coppermine.webp" loading="lazy" alt=""><span>Copper mine</span></div>
+      <div class="tile"><img src="/assets/img/buildings/coppersmelter.webp" loading="lazy" alt=""><span>Copper smelter</span></div>
+      <div class="tile"><img src="/assets/img/buildings/goldmine.webp" loading="lazy" alt=""><span>Gold mine</span></div>
+      <div class="tile"><img src="/assets/img/buildings/goldsmelter.webp" loading="lazy" alt=""><span>Gold smelter</span></div>
+      <div class="tile"><img src="/assets/img/buildings/platinumsmelter.webp" loading="lazy" alt=""><span>Platinum smelter</span></div>
       <div class="tile"><img src="/assets/img/buildings/forge.webp" loading="lazy" alt=""><span>Toolmaker</span></div>
       <div class="tile"><img src="/assets/img/buildings/mint.webp" loading="lazy" alt=""><span>Mint</span></div>
       <div class="tile"><img src="/assets/img/buildings/weaponsmith.webp" loading="lazy" alt=""><span>Weaponsmith</span></div>
       <div class="tile"><img src="/assets/img/buildings/fletcher.webp" loading="lazy" alt=""><span>Fletcher</span></div>
       <div class="tile"><img src="/assets/img/buildings/training_camp.webp" loading="lazy" alt=""><span>Training camp</span></div>
-      <div class="tile"><img src="/assets/img/buildings/warehouse.webp" loading="lazy" alt=""><span>Warehouse</span></div>
-      <div class="tile"><img src="/assets/img/buildings/house.webp" loading="lazy" alt=""><span>House</span></div>
+      <div class="tile"><img src="/assets/img/buildings/military_school.webp" loading="lazy" alt=""><span>Military school</span></div>
+      <div class="tile"><img src="/assets/img/buildings/explorer_hut.webp" loading="lazy" alt=""><span>Explorer hut</span></div>
+      <div class="tile"><img src="/assets/img/buildings/military_camp.webp" loading="lazy" alt=""><span>Expedition camp</span></div>
+      <div class="tile"><img src="/assets/img/buildings/expedition_mine.webp" loading="lazy" alt=""><span>Expedition mine</span></div>
+      <div class="tile"><img src="/assets/img/buildings/geologist_guild.webp" loading="lazy" alt=""><span>Geologists' guild</span></div>
+      <div class="tile"><img src="/assets/img/buildings/cairn_mine.webp" loading="lazy" alt=""><span>Cairn Mine</span></div>
+      <div class="tile"><img src="/assets/img/buildings/chapel.webp" loading="lazy" alt=""><span>Chapel</span></div>
+      <div class="tile"><img src="/assets/img/buildings/bathhouse.webp" loading="lazy" alt=""><span>Bathhouse</span></div>
+      <div class="tile"><img src="/assets/img/buildings/temple.webp" loading="lazy" alt=""><span>Temple</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ THE CAIRN MINE ============================ -->
+<section id="mine">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">The monument</p>
+      <h2>One ruin on your map, and it is the whole endgame</h2>
+      <p class="lede">
+        Every colony starts with a collapsed shaft it did not build. Restoring it is the long
+        project the rest of the economy exists to serve — and it is the only thing that mints
+        $CAIRN.
+      </p>
+    </div>
+
+    <div class="grid grid-3">
+      <article class="card">
+        <h3>Three stages</h3>
+        <p>
+          <strong>Ruin</strong> → <strong>Shored</strong> (30 stone, 30 planks) →
+          <strong>Awakened</strong> (200 marble, 200 platinum). Each stage raises the shaft's
+          <em>Strike</em>. That is all it does, and it is enough.
+        </p>
+      </article>
+      <article class="card">
+        <h3>Strike is your share</h3>
+        <p>
+          The network mints a fixed amount per day and splits it by Strike. Your share is your
+          Strike over the whole network's — so the pot never grows when players arrive, the slices
+          just get thinner. Emission is bounded by construction, not by attendance.
+        </p>
+      </article>
+      <article class="card">
+        <h3>Thrift is the sink</h3>
+        <p>
+          The base shaft burns nothing and never stops. Every pick you set beyond it eats coal:
+          <strong>40</strong> per hundred strikes at first, down to a hard floor of <strong>12</strong>.
+          You buy that efficiency with diamonds — and with comfort.
+        </p>
+      </article>
+    </div>
+
+    <div class="split" style="margin-top:2rem">
+      <div>
+        <h3>Comfort buildings — the second lever</h3>
+        <p>
+          A miner who lives well works cleaner. Three buildings, one of each per colony, close a
+          share of the gap between your current Thrift and its floor:
+        </p>
+        <ul>
+          <li><strong>Chapel</strong> — 3 % · 40 planks, 40 stone, 60 coins</li>
+          <li><strong>Bathhouse</strong> — 5 % · 60 planks, 60 stone, 40 copper ingots, 80 coins</li>
+          <li><strong>Temple</strong> — 6 % · 80 planks, 80 stone, 30 gold ingots, 120 coins</li>
+        </ul>
+        <p class="muted small">
+          They are the reason the copper and gold chains exist past the toolmaker. All three unlock
+          only once the shaft is Awakened.
+        </p>
+      </div>
+      <figure class="shot shot--flush">
+        <img src="/assets/img/temple.webp" width="640" height="544" loading="lazy" alt="The gilded temple, an isometric building with a golden dome on a stepped stone platform.">
+        <figcaption>The temple — 30 gold ingots went into that dome and it shows.</figcaption>
+      </figure>
     </div>
   </div>
 </section>
@@ -263,14 +353,17 @@
           you outward eventually, which is what makes territory matter.
         </p>
         <p>
-          Colonists are recruited with <strong>coins</strong> — 8 apiece, which is the reason to bother
-          minting money at all. An <strong>attractiveness</strong> system that draws immigrants to a
-          place worth living in is being reworked, and will come back alongside the decorations that
-          feed it.
+          You start with <strong>ten colonists</strong>. More are recruited with <strong>coins</strong>
+          — 8 apiece, which is the reason to bother minting money at all.
         </p>
         <p>
           Hunger never kills anyone. Running out of food slows production down to half speed and no
           further: the game punishes you with a bad hour, never with a death spiral you can't escape.
+        </p>
+        <p>
+          Beyond your own map there are <strong>expedition islands</strong> — instanced, hostile,
+          and the only place some materials come from. You send a general, you land, you take
+          camps off bandits, and you mine what you came for.
         </p>
       </div>
     </div>
@@ -340,28 +433,40 @@
       </div>
       <div class="step done">
         <span class="tag">Done</span>
-        <h3>Playable prototype — no blockchain</h3>
+        <h3>Playable prototype</h3>
         <p class="muted">
-          Cairn-and-road transport, 28 buildings, twelve production chains, workers who walk out to
-          the resource, population and morale, tools, an army, saves. Everything on this page is
-          running today.
+          Cairn-and-road transport, 42 buildings, 36 goods, workers who walk out to the resource,
+          population and morale, tools, an army, cloud saves tied to your wallet. Everything on this
+          page is running today.
+        </p>
+      </div>
+      <div class="step done">
+        <span class="tag">Done</span>
+        <h3>Depth — expeditions, trade, the mine</h3>
+        <p class="muted">
+          Instanced expedition islands with bandit camps to take, explorers and geologists with
+          their own skill tree, a player-to-player market, and the Cairn Mine with its three stages
+          and its coal sink.
         </p>
       </div>
       <div class="step now">
         <span class="tag">In progress</span>
-        <h3>Making it deep — expeditions &amp; trade</h3>
+        <h3>Server authority</h3>
         <p class="muted">
-          Instanced expedition maps with rare veins, explorers who bring back charts, camp defences,
-          and a player-to-player market. Your home map stays private; expeditions are where you go
-          looking for what it lacks.
+          A headless copy of the engine runs on our own machine and re-checks what every client
+          reports. It is live today in <strong>shadow mode</strong> — it logs disagreements and
+          punishes nobody. When the ledger it keeps becomes the one that counts, no client can
+          invent a balance.
         </p>
       </div>
       <div class="step">
         <span class="tag">Next</span>
         <h3>Ownership on Solana</h3>
         <p class="muted">
-          Phantom wallet, land as NFTs on devnet first, the $CAIRN utility token, marketplace and
-          fees, Anchor contracts with the economic guardrails written into them from day one.
+          Sign-in with Phantom is already how you play. Next comes the $CAIRN claim on devnet, land
+          as NFTs, the marketplace and its fees, and Anchor contracts with the economic guardrails
+          written into them from day one — cold authority split before anything is initialised
+          on mainnet.
         </p>
       </div>
     </div>
@@ -374,15 +479,36 @@
     <div class="section-head"><p class="eyebrow">FAQ</p><h2>Straight answers</h2></div>
 
     <details class="faq">
-      <summary>Do I need a wallet for the prototype?</summary>
-      <p>No. The prototype is free and runs in your browser with nothing to install and no wallet.
-        How access to the full, on-chain game works will be detailed at the token launch.</p>
+      <summary>Do I need a wallet to play?</summary>
+      <p>Yes. You sign in with a Solana wallet — Phantom — and the game starts once that session is
+        open. Nothing is installed, nothing is charged, and no transaction is signed to play: the
+        wallet is your identity, and your colony follows it from one machine to the next. It also
+        means the same browser can serve several players without them ever seeing each other's map.</p>
+    </details>
+    <details class="faq">
+      <summary>Is it free?</summary>
+      <p>The prototype is free. What access to the full, on-chain game will look like is detailed at
+        the token launch, not before.</p>
     </details>
     <details class="faq">
       <summary>Is this multiplayer?</summary>
       <p>Not in the sense of a shared map. Each player builds on their own map, the way
-        <em>The Settlers Online</em> did it. Players meet through trade, chat and expeditions —
+        <em>The Settlers Online</em> did it. Players meet through trade, chat, mail and expeditions —
         no real-time synchronised world, which keeps it cheap to run and pleasant to play.</p>
+    </details>
+    <details class="faq">
+      <summary>What is Strike?</summary>
+      <p>Your mining power at the Cairn Mine, and the only thing that sets your share of what the
+        network mints. Your share is your Strike divided by the whole network's, yours included —
+        so growing your own Strike dilutes the pot a little for everyone, yourself included.
+        Nothing here scales for free.</p>
+    </details>
+    <details class="faq">
+      <summary>What stops someone from cheating the balance?</summary>
+      <p>A headless copy of the game engine runs on our own server and replays what each client
+        reports. Today it runs in shadow mode — it records disagreements and sanctions nobody. It
+        goes live before any real value moves, and it is the reason the market is not open to
+        strangers yet.</p>
     </details>
     <details class="faq">
       <summary>How close is it to The Settlers?</summary>

@@ -37,6 +37,8 @@
     <a href="#population">Population &amp; attractiveness</a>
     <a href="#food">Food &amp; morale</a>
     <a href="#military">Military</a>
+    <a href="#cairnmine">The Cairn Mine</a>
+    <a href="#expeditions">Expeditions</a>
     <strong>Reference</strong>
     <a href="#chains">Production chains</a>
     <a href="#buildings">Buildings</a>
@@ -45,7 +47,6 @@
     <a href="#world">World &amp; resources</a>
     <a href="#quests">Quests</a>
     <strong>Coming</strong>
-    <a href="#expeditions">Expeditions</a>
     <a href="#web3">Ownership</a>
   </aside>
 
@@ -305,28 +306,74 @@
       </p>
     </section>
 
+    <!-- ---------------- CAIRN MINE ---------------- -->
+    <section>
+      <h2 id="cairnmine">The Cairn Mine</h2>
+      <p>
+        Every map carries one collapsed shaft it did not build. Restoring it is the long project the
+        rest of the economy exists to serve, and it is the only thing that mints $CAIRN.
+      </p>
+      <div class="tablewrap"><table>
+        <thead><tr><th>Stage</th><th>Cost to reach it</th><th>Effect</th></tr></thead>
+        <tbody>
+          <tr><td>Ruin</td><td>—</td><td>Where every colony starts</td></tr>
+          <tr><td>Shored</td><td>30 stone + 30 planks</td><td>Raises Strike</td></tr>
+          <tr><td>Awakened</td><td>200 marble + 200 platinum</td><td>Raises Strike · unlocks the comfort buildings</td></tr>
+        </tbody>
+      </table></div>
+      <p>
+        <strong>Strike</strong> is your mining power, and the only thing that sets your share. The
+        network mints a fixed amount per day and splits it by Strike: your share is your Strike over
+        the whole network's, yours included. The pot does not grow when players arrive — the slices
+        get thinner. Emission is bounded by construction, not by attendance.
+      </p>
+      <h3>Thrift — the coal sink</h3>
+      <p>
+        The base shaft burns nothing and never stops. Every pick you set beyond it eats fuel:
+        <strong>40</strong> per hundred strikes at first, down to a hard floor of <strong>12</strong>.
+        You buy that efficiency two ways — diamonds, and comfort:
+      </p>
+      <div class="tablewrap"><table>
+        <thead><tr><th>Building</th><th>Cost</th><th>Closes</th></tr></thead>
+        <tbody>
+          <tr><td>Chapel</td><td>40 planks + 40 stone + 60 coins</td><td>3% of the remaining gap</td></tr>
+          <tr><td>Bathhouse</td><td>60 planks + 60 stone + 40 copper ingots + 80 coins</td><td>5%</td></tr>
+          <tr><td>Temple</td><td>80 planks + 80 stone + 30 gold ingots + 120 coins</td><td>6%</td></tr>
+        </tbody>
+      </table></div>
+      <p class="muted small">
+        One of each per colony, all three locked until the shaft is Awakened. They are the reason the
+        copper and gold chains keep going past the toolmaker.
+      </p>
+    </section>
+
     <!-- ---------------- CHAINS ---------------- -->
     <section>
       <h2 id="chains">Production chains</h2>
       <p class="muted small">
-        Times are the workshop's own cycle, not counting transport. One tick is 1.3 seconds.
+        One tick is 1.3 seconds. <strong>Workshops</strong> have a fixed cycle, listed below and
+        measured on the running engine. <strong>Extractors</strong> do not: their worker walks to the
+        resource, spends 2.2 s on the spot and walks back, so their rate is set by
+        <em>distance</em>, not by a timer. The figures given for them are the measured maximum with
+        the deposit at the building's foot — placing a mine 8 tiles from the rock face instead of 4
+        costs half the output.
       </p>
       <div class="tablewrap"><table>
         <thead><tr><th>Building</th><th>Consumes</th><th>Produces</th><th>Cycle</th></tr></thead>
         <tbody>
-          <tr><td>Woodcutter</td><td>a mature tree</td><td>1 log</td><td>3 t · 3.9 s</td></tr>
+          <tr><td>Woodcutter</td><td>a mature tree</td><td>1 log</td><td>6.75 / min measured</td></tr>
           <tr><td>Sawmill</td><td>1 log</td><td>1 plank</td><td>7 t · 9.1 s</td></tr>
-          <tr><td>Quarry</td><td>a stone deposit</td><td>1 stone</td><td>3 t · 3.9 s</td></tr>
-          <tr><td>Farm</td><td>its own fields</td><td>1 wheat</td><td>4 t · 5.2 s</td></tr>
+          <tr><td>Quarry</td><td>a stone deposit</td><td>1 stone</td><td>7.67 / min measured</td></tr>
+          <tr><td>Farm</td><td>its own fields</td><td>1 wheat</td><td>7.8 s per harvest, on its fields</td></tr>
           <tr><td>Mill</td><td>1 wheat</td><td>1 flour</td><td>5 t · 6.5 s</td></tr>
           <tr><td>Well</td><td>—</td><td>1 water</td><td>5 t · 6.5 s</td></tr>
           <tr><td>Bakery</td><td>1 flour + 1 water</td><td>1 bread</td><td>5 t · 6.5 s</td></tr>
-          <tr><td>Fisher</td><td>a water tile</td><td>1 fish</td><td>3 t · 3.9 s</td></tr>
+          <tr><td>Fisher</td><td>a water tile</td><td>1 fish</td><td>5.0 s per catch, plus the walk</td></tr>
           <tr><td>Pig farm</td><td>2 wheat + 1 water</td><td>1 livestock</td><td>12 t · 15.6 s</td></tr>
           <tr><td>Butcher</td><td>1 livestock</td><td>1 meat</td><td>8 t · 10.4 s</td></tr>
-          <tr><td>Coal mine</td><td>a coal deposit</td><td>1 coal</td><td>3 t · 3.9 s</td></tr>
-          <tr><td>Iron / copper mine</td><td>the matching deposit</td><td>1 ore</td><td>3 t · 3.9 s</td></tr>
-          <tr><td>Gold mine</td><td>a gold deposit</td><td>1 gold ore</td><td>4 t · 5.2 s</td></tr>
+          <tr><td>Coal mine</td><td>a coal deposit</td><td>1 coal</td><td>7.67 / min measured</td></tr>
+          <tr><td>Iron / copper mine</td><td>the matching deposit</td><td>1 ore</td><td>7.67 / min measured</td></tr>
+          <tr><td>Gold mine</td><td>a gold deposit</td><td>1 gold ore</td><td>5.13 / min measured — longer rest</td></tr>
           <tr><td>Copper smelter</td><td>1 copper ore + 1 coal</td><td>1 copper ingot</td><td>14 t · 18.2 s</td></tr>
           <tr><td>Iron smelter</td><td>1 iron ore + 1 coal</td><td>1 iron ingot</td><td>16 t · 20.8 s</td></tr>
           <tr><td>Gold smelter</td><td>1 gold ore + 1 coal</td><td>1 gold ingot</td><td>18 t · 23.4 s</td></tr>
@@ -334,6 +381,7 @@
           <tr><td>Toolmaker</td><td>1 iron ingot</td><td>1 tool of your choice</td><td>10 t · 13 s</td></tr>
           <tr><td>Weaponsmith</td><td>see <a href="#military">military</a></td><td>sword · shield · spear</td><td>10 t · 13 s</td></tr>
           <tr><td>Fletcher</td><td>1 plank</td><td>1 bow</td><td>7 t · 9.1 s</td></tr>
+          <tr><td>Charcoal burner</td><td>2 logs</td><td>1 emberwood</td><td>31.6 s measured</td></tr>
           <tr><td>Training camp</td><td>1 colonist + a kit</td><td>1 soldier</td><td>15 t · 19.5 s</td></tr>
         </tbody>
       </table></div>
@@ -373,6 +421,17 @@
           <tr><td>Warehouse</td><td>6 planks + 4 stone</td><td>—</td><td>Stores 300 per good</td></tr>
           <tr><td>Explorer hut</td><td>4 planks + 1 stone</td><td>—</td><td>For the expedition mode</td></tr>
           <tr><td>Palisade / watchtower</td><td>1 plank / 4 planks + 1 stone</td><td>—</td><td>Free placement, no road needed</td></tr>
+          <tr><td>Charcoal burner</td><td>see in game</td><td>—</td><td>Turns logs into emberwood, the mine's fuel</td></tr>
+          <tr><td>Platinum smelter</td><td>see in game</td><td>—</td><td>Expedition metal only</td></tr>
+          <tr><td>Corn farm · Chicken coop · Fish farm</td><td>see in game</td><td>—</td><td>Second food tier</td></tr>
+          <tr><td>Kitchen · Provisioner</td><td>see in game</td><td>—</td><td>Cooked meals, worth more than raw food</td></tr>
+          <tr><td>Geologists' guild</td><td>see in game</td><td>—</td><td>Trains and sends geologists · 8 coins a survey</td></tr>
+          <tr><td>Military school</td><td>see in game</td><td>—</td><td>Raises a general's troop cap: 24 basic, 48 premium</td></tr>
+          <tr><td>Expedition camp · Expedition mine</td><td>see in game</td><td>—</td><td>Placed on expedition islands only</td></tr>
+          <tr><td>Chapel</td><td>40 planks + 40 stone + 60 coins</td><td>Awakened shaft</td><td>Comfort · one per colony</td></tr>
+          <tr><td>Bathhouse</td><td>60 planks + 60 stone + 40 copper ingots + 80 coins</td><td>Awakened shaft</td><td>Comfort · one per colony</td></tr>
+          <tr><td>Temple</td><td>80 planks + 80 stone + 30 gold ingots + 120 coins</td><td>Awakened shaft</td><td>Comfort · one per colony</td></tr>
+          <tr><td>Cairn Mine</td><td>pre-placed, in ruin</td><td>—</td><td><a href="#cairnmine">Restored in three stages</a></td></tr>
         </tbody>
       </table></div>
       <p class="muted small">
@@ -384,7 +443,7 @@
     <!-- ---------------- GOODS ---------------- -->
     <section>
       <h2 id="goods">Goods</h2>
-      <p>Thirty-one goods circulate on the network.</p>
+      <p>Thirty-six goods circulate on the network.</p>
       <div class="gallery gallery--sm">
         <div class="tile"><img src="/assets/img/goods/log.webp" loading="lazy" alt=""><span>Log</span></div>
         <div class="tile"><img src="/assets/img/goods/plank.webp" loading="lazy" alt=""><span>Plank</span></div>
@@ -416,6 +475,13 @@
         <div class="tile"><img src="/assets/img/goods/bow.webp" loading="lazy" alt=""><span>Bow</span></div>
         <div class="tile"><img src="/assets/img/goods/diamond.webp" loading="lazy" alt=""><span>Diamond</span></div>
         <div class="tile"><img src="/assets/img/goods/platinum.webp" loading="lazy" alt=""><span>Platinum</span></div>
+        <div class="tile"><img src="/assets/img/goods/maize.webp" loading="lazy" alt=""><span>Maize</span></div>
+        <div class="tile"><img src="/assets/img/goods/egg.webp" loading="lazy" alt=""><span>Egg</span></div>
+        <div class="tile"><img src="/assets/img/goods/meal.webp" loading="lazy" alt=""><span>Cooked meal</span></div>
+        <div class="tile"><img src="/assets/img/goods/tool.webp" loading="lazy" alt=""><span>Tool</span></div>
+        <div class="tile"><img src="/assets/img/goods/copper_pickaxe.webp" loading="lazy" alt=""><span>Copper pickaxe</span></div>
+        <div class="tile"><img src="/assets/img/goods/emberwood.webp" loading="lazy" alt=""><span>Emberwood</span></div>
+        <div class="tile"><img src="/assets/img/goods/pick_cairn.webp" loading="lazy" alt=""><span>Cairn pick</span></div>
       </div>
     </section>
 
@@ -496,7 +562,7 @@
 
     <!-- ---------------- EXPEDITIONS ---------------- -->
     <section>
-      <h2 id="expeditions">Expeditions <span class="soon">— in progress</span></h2>
+      <h2 id="expeditions">Expeditions</h2>
       <p>
         Your home map is private and permanent. Expeditions are the opposite: instanced maps you
         travel to, strip of what they hold, and leave.
@@ -508,21 +574,34 @@
         <li><strong>Camp defences</strong>: palisades and watchtowers, placed freely with no road
           and no worker, to fence off a temporary dig.</li>
       </ul>
+      <p>
+        <strong>Geologists</strong> are the other half of it. Trained at their guild, they survey a
+        deposit for 8 coins a mission and come back with what it really holds — and they have their
+        own skill tree, spent on the results they bring in.
+      </p>
       <p class="muted small">
-        The buildings and art are in the game already; the mode that gives them a purpose is what is
-        being built now.
+        Islands, landings, bandit camps and the fight are all in the game. What is still moving is
+        the balance of the loot they pay out.
       </p>
     </section>
 
     <!-- ---------------- WEB3 ---------------- -->
     <section>
-      <h2 id="web3">Ownership <span class="soon">— planned</span></h2>
+      <h2 id="web3">Ownership <span class="soon">— in progress</span></h2>
       <div class="note green">
         <p>
-          <strong>Nothing in this section is required to play.</strong> The prototype has no
-          blockchain in it at all, and the rule is that it must stay fun that way.
+          <strong>You already sign in with a Solana wallet</strong> — that is how the game knows
+          which colony is yours, and it follows you from one machine to the next. Nothing is
+          charged and no transaction is signed to play. Everything below is what comes after, and
+          the rule stands: none of it may be required to enjoy the game.
         </p>
       </div>
+      <p>
+        A headless copy of the engine already runs on our own server and re-checks what every client
+        reports. It is live in <strong>shadow mode</strong>: it logs disagreements and sanctions
+        nobody. It becomes the ledger that counts before any real value moves — which is also why
+        the player-to-player market is not open to strangers yet.
+      </p>
       <ul>
         <li><strong>Land as NFTs</strong> — limited supply, devnet first. A developed map is worth
           what someone will pay for the hours in it.</li>
