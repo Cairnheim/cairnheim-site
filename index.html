@@ -23,6 +23,7 @@
       <a href="#loop">The loop</a>
       <a href="#chains">Chains</a>
       <a href="#mine">The mine</a>
+      <a href="#calc">Calculator</a>
       <a href="#world">World</a>
       <a href="#ownership">Ownership</a>
       <a href="#roadmap">Roadmap</a>
@@ -336,6 +337,21 @@
   </div>
 </section>
 
+<!-- ============================ CALCULATEUR ============================ -->
+<section id="calc">
+  <div class="wrap wrap--narrow">
+    <div class="section-head">
+      <p class="eyebrow">Run the numbers</p>
+      <h2>What a pick actually pays</h2>
+      <p class="lede">
+        Every figure below is read straight from the game's balance file — not a marketing estimate.
+        Move the sliders and check it yourself.
+      </p>
+    </div>
+    <div id="calc-rig" class="calc"></div>
+  </div>
+</section>
+
 <!-- ============================ WORLD ============================ -->
 <section id="world">
   <div class="wrap">
@@ -558,8 +574,15 @@
     <span>Cairnheim — colony builder prototype. Art and code in progress.</span>
     <span><a href="/docs.html">Documentation</a> · <a href="#pillars">Back to top</a></span>
   </div>
+  <!-- Liens communauté : remplis par site.js. Une entrée vide n'est pas rendue, et si aucune
+       n'est renseignée le bloc se retire de lui-même — jamais d'icône morte sur la page. -->
+  <div class="wrap links" data-links></div>
 </footer>
 
-<script src="/assets/js/site.js"></script>
+<!-- `?v=` : le site n'a pas d'étape de build, donc rien ne renomme les fichiers quand ils changent.
+     Sans ce marqueur, un visiteur déjà venu garde l'ancien JS en cache et ne voit pas la mise à
+     jour. À incrémenter quand on touche à site.js ou au calculateur. -->
+<script src="/assets/js/tokenomics.js?v=3"></script>
+<script src="/assets/js/site.js?v=3"></script>
 </body>
 </html>

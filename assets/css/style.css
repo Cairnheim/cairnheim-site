@@ -313,6 +313,27 @@ td img { width: 22px; height: 22px; object-fit: contain; display: inline-block; 
   .hero { padding-top: 48px; }
 }
 
+
+/* ---- Calculateur de Pioche + liens communauté (08/08) ---- */
+.calc { border: 1px solid var(--line-strong); border-radius: 14px; padding: 22px; background: var(--paper-hi); }
+.calc-in { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 16px; margin-bottom: 20px; }
+.calc-in label { display: flex; flex-direction: column; gap: 6px; font-size: 15px; font-weight: 600; }
+.calc-in label small { font-weight: 700; color: var(--accent); }
+.calc-in select, .calc-in input[type=number] {
+  padding: 9px 10px; border-radius: 8px; border: 1px solid var(--line-strong);
+  background: var(--paper); color: inherit; font: 600 16px inherit;
+}
+.calc-in input[type=range] { width: 100%; accent-color: var(--accent); height: 26px; }
+.calc-out { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 14px; margin-bottom: 16px; }
+.calc-out .co { display: flex; flex-direction: column; gap: 2px; padding: 12px 14px;
+  border: 1px solid var(--line); border-radius: 10px; background: var(--paper); }
+.calc-out .co b { font-size: 22px; font-variant-numeric: tabular-nums; line-height: 1.15; }
+.calc-out .co span { font-size: 13.5px; color: var(--mut); }
+.links { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; padding-top: 14px; }
+.links .lnk { display: inline-flex; align-items: center; gap: 7px; padding: 7px 14px;
+  border: 1px solid var(--line-strong); border-radius: 999px; font-size: 14.5px; font-weight: 600; text-decoration: none; }
+.links .lnk:hover { border-color: var(--accent); }
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .btn:hover { transform: none; }
