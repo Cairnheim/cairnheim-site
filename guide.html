@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cairnheim — Player's guide</title>
+<meta name="description" content="The full progression of Cairnheim, act by act: what each objective asks, how to do it, and what it pays. Plus the expedition loop and the numbers behind it. Generated from the game's own files.">
+<meta name="theme-color" content="#f2e6cf">
+<link rel="icon" href="/assets/img/cairn.webp">
+<link rel="stylesheet" href="/assets/css/style.css">
+<style>
+  /* Le guide a sa propre grille : une colonne de lecture, pas la mise en page marketing de l'accueil. */
+  .gd-act { margin: 2.6rem 0 0; }
+  .gd-act > h2 { margin-bottom: .15rem; }
+  .gd-act > .gd-sub { margin: 0 0 1.1rem; color: var(--mut, #6d6152); font-size: 1.02rem; }
+  .gd-q { border: 1px solid var(--line, #d9cbb0); border-radius: 12px; padding: 1rem 1.15rem;
+    margin-bottom: .8rem; background: var(--surf, #fbf5e9); }
+  .gd-q-head { display: flex; align-items: baseline; gap: .6rem; flex-wrap: wrap; margin-bottom: .45rem; }
+  .gd-n { flex: none; width: 1.9rem; height: 1.9rem; border-radius: 50%; display: grid; place-items: center;
+    background: #c9a26b; color: #2a1e0c; font-weight: 700; font-size: .92rem; }
+  .gd-q-head h3 { margin: 0; font-size: 1.12rem; flex: 1; min-width: 12rem; }
+  .gd-reward { font-size: .92rem; color: var(--mut, #6d6152); white-space: nowrap; }
+  .gd-q p { margin: 0; line-height: 1.65; }
+  .gd-facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: .8rem; margin: 1.4rem 0; }
+  .gd-fact { border: 1px solid var(--line, #d9cbb0); border-radius: 10px; padding: .8rem .9rem; background: var(--surf, #fbf5e9); }
+  .gd-fact b { display: block; font-size: 1.5rem; line-height: 1.2; }
+  .gd-fact span { font-size: .9rem; color: var(--mut, #6d6152); }
+  .gd-formula { font-family: ui-monospace, Menlo, monospace; background: #2a2119; color: #f0e4cd;
+    padding: .85rem 1rem; border-radius: 9px; overflow-x: auto; font-size: .98rem; }
+  @media (prefers-color-scheme: dark) { .gd-formula { background: #1a1410; } }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="/"><span class="mark" aria-hidden="true"></span> Cairnheim</a>
+    <button class="nav-toggle" aria-expanded="false" aria-label="Menu">☰</button>
+    <nav class="nav-links">
+      <a href="/">Home</a>
+      <a href="/guide.html" aria-current="page">Guide</a>
+      <a href="/docs.html">Docs</a>
+      <a class="btn btn-primary" data-play="short" href="/#roadmap" aria-disabled="true" title="The playable build is not online yet."><span data-play-label>Coming soon</span></a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap wrap--narrow" style="padding-top:2.5rem;padding-bottom:4rem">
+
+  <div class="section-head" style="text-align:left">
+    <p class="eyebrow">Player's guide</p>
+    <h1 style="margin-bottom:.4rem">From an axe to the awakening</h1>
+    <p class="lede">
+      Cairnheim teaches itself through a chain of objectives. This page is that chain, laid flat —
+      what each one asks, <strong>how you actually do it</strong>, and what it pays. Every word below
+      is read straight out of the game's own balance file, so it cannot drift from what you see in
+      play.
+    </p>
+  </div>
+
+  <div id="gd-guide"><p class="muted">Loading the chain…</p></div>
+
+  <!-- ============================ EXPÉDITION ============================ -->
+  <section id="expedition" style="margin-top:3.5rem">
+    <div class="section-head" style="text-align:left">
+      <p class="eyebrow">The part no objective can explain</p>
+      <h2>Expeditions</h2>
+      <p class="lede">
+        Halfway through, the game hands you a chart and sends you somewhere else entirely — another
+        island, with its own rules, its own toolbar, and none of your colony. Here is the whole loop
+        before you sail into it.
+      </p>
+    </div>
+    <div id="gd-exp"></div>
+  </section>
+
+  <p class="muted small" id="gd-stamp" style="margin-top:3rem"></p>
+</div>
+
+<footer class="foot">
+  <div class="wrap">
+    <p class="muted small">Cairnheim — an isometric logistics colony builder. <a href="/docs.html">Full documentation</a>.</p>
+  </div>
+</footer>
+
+<script src="/assets/js/guide.js?v=1"></script>
+<script src="/assets/js/site.js?v=4"></script>
+<script>
+/* Rendu du guide. Aucune donnée en dur ici : tout vient de guide.js, généré depuis config.ts. */
+(function () {
+  const G = window.CAIRN_GUIDE;
+  const root = document.getElementById('gd-guide');
+  if (!G) { root.innerHTML = '<p class="muted">Guide unavailable.</p>'; return; }
+
+  const nom = (g) => g.replace(/_/g, ' ');
+  const recompense = (r) => {
+    const mats = r.materiaux ? Object.entries(r.materiaux).map(([g, n]) => `${n} ${nom(g)}`).join(', ') : null;
+    return mats ? `${mats} &nbsp;or&nbsp; ${r.pieces} coins` : `${r.pieces} coins`;
+  };
+
+  let n = 0;
+  root.innerHTML = G.actes.map((a) => `
+    <section class="gd-act">
+      <h2>${a.titre}</h2>
+      <p class="gd-sub">${a.sous}</p>
+      ${a.quetes.map((q) => {
+        n++;
+        return `<article class="gd-q" id="q-${q.id}">
+          <div class="gd-q-head">
+            <span class="gd-n">${n}</span>
+            <h3>${q.titre}</h3>
+            <span class="gd-reward">🏆 ${recompense(q.recompense)}</span>
+          </div>
+          <p>${q.aide}</p>
+        </article>`;
+      }).join('')}
+    </section>`).join('');
+
+  const e = G.expedition;
+  const nf = (x) => x.toLocaleString('en-US');
+  const eveil = Object.entries(e.eveilCout).map(([g, q]) => `${q} ${nom(g)}`).join(' + ');
+  document.getElementById('gd-exp').innerHTML = `
+    <div class="gd-facts">
+      <div class="gd-fact"><b>${e.campsIle}</b><span>camps hold each isle. Nothing is mined until the last one falls.</span></div>
+      <div class="gd-fact"><b>${e.veines}</b><span>veins per isle — one mine each, so a fifth kit stays in the hold.</span></div>
+      <div class="gd-fact"><b>${nf(e.minerParIle)}</b><span>ore on an isle, in total. It runs out; the isle is not a rent.</span></div>
+      <div class="gd-fact"><b>${e.secondesParUnite}s</b><span>per unit, per mine. It keeps running with the tab closed.</span></div>
+      <div class="gd-fact"><b>${e.minutesParRation} min</b><span>bought by one ration — your clock on the isle.</span></div>
+      <div class="gd-fact"><b>${e.renfortsParRation}</b><span>reinforcements per ration, if the fighting goes badly.</span></div>
+    </div>
+
+    <h3>The loop, in order</h3>
+    <ol>
+      <li><strong>Build the Explorer hut</strong>, then hire a scout — he costs
+        ${e.explorateurCout.longuesVues} spyglasses and ${e.explorateurCout.pieces} coins.</li>
+      <li><strong>Send him scouting.</strong> ${e.rationsRecherche} rations, ${e.minutesRecherche} real
+        minutes. It finishes with the tab closed, so send him and go do something else. He returns with
+        a chart to one of the two isles — and your <em>second</em> chart is always the other one, so
+        you can never be stranded on the same island twice.</li>
+      <li><strong>Load the expedition.</strong> A general with troops, plus the hold: mine kits and
+        rations. The dispatch panel tells you what that load will bring home <em>before</em> you sail.</li>
+      <li><strong>Land, camp, clear.</strong> Place your breachhead on open ground, then take the
+        ${e.campsIle} camps. Rations do not burn while you fight — the countdown starts when the isle
+        is secured.</li>
+      <li><strong>Raise mines and fill the hold</strong>, then recall. What is in the hold sails home;
+        what is not, does not.</li>
+    </ol>
+
+    <h3>What a load actually brings home</h3>
+    <p>The panel shows this figure live while you set your load. It is not an estimate — it is the
+      formula the game runs:</p>
+    <div class="gd-formula">haul = ${e.formuleRecolte}</div>
+    <p>So one kit and one ration bring back ${nf(e.minutesParRation * 60 / e.secondesParUnite)} ore;
+      four kits and two rations bring the isle's whole ${nf(e.minerParIle)}. Kits multiply the rate,
+      rations multiply the time — and the awakening needs <strong>${eveil}</strong>, which is why the
+      voyage is made twice.</p>
+
+    <p class="muted small">Reference: gold buys you ${G.reperes.generauxOr} generals and no more; a
+      colonist is recruited for ${G.reperes.colonPieces} coins.</p>`;
+
+  document.getElementById('gd-stamp').textContent =
+    `Generated from the game's own balance file on ${G.genere}. ${n} objectives.`;
+})();
+</script>
+</body>
+</html>
