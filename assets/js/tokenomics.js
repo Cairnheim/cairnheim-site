@@ -4,7 +4,7 @@
  * Régénérer après tout changement d'émission ou du rig.
  */
 window.CAIRN_TOKENOMICS = {
-  "genere": "2026-08-08",
+  "genere": "2026-08-09",
   "paliers": [
     {
       "label": "Ruin",
@@ -43,11 +43,50 @@ window.CAIRN_TOKENOMICS = {
     "decay": 0.92
   },
   "reseau": 7500,
+  "plancher": 7500,
   "emission": {
     "reserve": 200000000,
     "tauxMensuel": 0.02
   },
   "tribut": {
     "bonus": 0.2
-  }
+  },
+  "entretien": [
+    {
+      "good": "emberwood",
+      "rate": 40,
+      "fromStrike": 0,
+      "why": "the fire that drives the shaft"
+    },
+    {
+      "good": "stone",
+      "rate": 70,
+      "fromStrike": 150,
+      "why": "roads chewed up by the hauling"
+    },
+    {
+      "good": "plank",
+      "rate": 14,
+      "fromStrike": 150,
+      "why": "shoring, as the shaft goes deeper"
+    },
+    {
+      "good": "iron_ingot",
+      "rate": 8,
+      "fromStrike": 400,
+      "why": "tools worn out at the face"
+    },
+    {
+      "good": "copper_ingot",
+      "rate": 6,
+      "fromStrike": 400,
+      "why": "pipes for the pumps — the shaft floods"
+    },
+    {
+      "good": "coin",
+      "rate": 5,
+      "fromStrike": 800,
+      "why": "wages for the crew"
+    }
+  ]
 };

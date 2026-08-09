@@ -74,6 +74,15 @@ const LINK_META = {
   const nf = (n, d = 0) => n.toLocaleString('en-US', { minimumFractionDigits: d, maximumFractionDigits: d });
   const paliers = T.paliers.map((p, i) => `<option value="${i}"${i === T.paliers.length - 1 ? ' selected' : ''}>${p.label} — Strike ${p.strike}</option>`).join('');
 
+  // Bornes de l'échelle logarithmique du réseau : d'une poignée de mineurs à ~127 000 joueurs
+  // équipés du rig de référence. Le haut de la plage est le seul endroit où l'on VOIT le rendement
+  // individuel s'effondrer — c'est le fait central du modèle, il ne doit pas rester hors du curseur.
+  const NET_MIN = 500, NET_MAX = 20000000;
+  // Arrondi à deux chiffres significatifs : un curseur qui affiche « 7 483 » se lit comme une
+  // précision qu'il n'a pas, et rend le repère du jeu (7 500) impossible à retrouver à l'œil.
+  const deuxSignif = (n) => { const p = Math.pow(10, Math.floor(Math.log10(n)) - 1); return Math.round(n / p) * p; };
+  const netDepuisCurseur = (v) => deuxSignif(NET_MIN * Math.pow(NET_MAX / NET_MIN, v / 1000));
+
   el.innerHTML = `
     <div class="calc-in">
       <label>Your shaft
@@ -81,10 +90,12 @@ const LINK_META = {
       <label>Picks set
         <input id="c-picks" type="number" min="0" max="10000" step="1" value="100"></label>
       <label>Network Strike <small id="c-netv"></small>
-        <!-- pas de 500 et non 1000 : un curseur cale ses valeurs sur min + n×pas, et avec un pas de
-             1000 depuis 1000 la valeur du jeu (7 500) était silencieusement arrondie à 8 000 —
-             la page affichait alors une part fausse dès son ouverture. -->
-        <input id="c-net" type="range" min="500" max="200000" step="500" value="${T.reseau}"></label>
+        <!-- ÉCHELLE LOGARITHMIQUE. En linéaire il fallait choisir entre atteindre un vrai réseau
+             et pouvoir viser 7 500 : à pas constant, un maximum de 200 000 plafonnait la page à
+             ~1 270 joueurs — soit précisément en dessous du point où le rendement s'effondre, la
+             chose que ce calculateur existe pour montrer. Le curseur porte donc l'EXPOSANT, ce qui
+             donne de la finesse en bas et de la portée en haut. -->
+        <input id="c-net" type="range" min="0" max="1000" step="1" value="${Math.round(1000 * Math.log(T.reseau / NET_MIN) / Math.log(NET_MAX / NET_MIN))}"></label>
     </div>
     <div class="calc-out">
       <div class="co"><b id="o-strike"></b><span>your Strike</span></div>
@@ -100,31 +111,59 @@ const LINK_META = {
   const maj = () => {
     const palier = T.paliers[+q('#c-stage').value] || T.paliers[0];
     const picks = Math.max(0, Math.floor(+q('#c-picks').value || 0));
-    const reseau = Math.max(1, +q('#c-net').value);
-    q('#c-netv').textContent = nf(reseau);
-
+    const reseau = Math.max(1, netDepuisCurseur(+q('#c-net').value));
     const strike = palier.strike + picks * T.pick.strike;
+    // On affiche AUSSI le réseau en joueurs : personne ne raisonne en points de Frappe, et c'est
+    // le nombre de joueurs qui décide du partage. Base : d'autres mineurs équipés comme celui-ci.
+    const pairs = strike > 0 ? Math.max(1, Math.round(reseau / strike)) : 0;
+    q('#c-netv').textContent = `${nf(reseau)}${strike > 0 ? ` — about ${nf(pairs)} miner${pairs > 1 ? 's' : ''} like yours` : ''}`;
+
     // La part se calcule sur le réseau TOTAL, la sienne comprise : grossir dilue aussi sa propre
     // part. C'est la règle du moteur, et l'oublier surestimerait le rendement des gros rigs.
-    const part = strike > 0 ? strike / (reseau + strike) : 0;
+    // Le PLANCHER borne ce dénominateur, exactement comme `Game.networkStrike()` : sans lui, un
+    // curseur descendu à 500 afficherait une part que le jeu ne verse jamais.
+    const denom = Math.max(reseau + strike, T.plancher || 0);
+    const plancherActif = denom > reseau + strike;
+    const part = strike > 0 ? strike / denom : 0;
     const mois = T.emission.reserve * T.emission.tauxMensuel; // 2 % de la réserve restante
     const parMois = part * mois;
     const parJour = parMois / 30;
     const cout = picks * T.pick.cost;
+    // LA FACTURE EN BIENS. Les seuils portent sur la Frappe AJOUTÉE (au-dessus du socle gratuit),
+    // comme dans `Game.upkeepBasket()` — le socle, lui, ne consomme rien.
+    const extra = Math.max(0, strike - (T.paliers[T.paliers.length - 1] || {}).strike);
+    const panier = (T.entretien || [])
+      .filter((u) => extra >= u.fromStrike)
+      .map((u) => `${nf((extra / 100) * u.rate)} ${u.good.replace(/_/g, ' ')}`);
 
     q('#o-strike').textContent = nf(strike);
     q('#o-share').textContent = (100 * part).toFixed(3) + ' %';
     q('#o-day').textContent = nf(parJour, parJour < 10 ? 2 : 0);
     q('#o-month').textContent = nf(parMois, 0);
     q('#o-cost').textContent = nf(cout);
-    q('#o-back').textContent = cout === 0 ? '—' : (parJour > 0 ? nf(cout / parJour, 1) + ' days' : 'never');
+    // REMBOURSEMENT : seul le rendement IMPUTABLE AUX PIOCHES compte. Le socle gratuit rapporte de
+    // toute façon, qu'on achète ou non — le porter au crédit de l'achat surestimait le retour d'un
+    // facteur 1,57 au rig de référence (0,9 jour annoncé pour 1,4 réel).
+    const partPioches = strike > 0 ? (picks * T.pick.strike) / strike : 0;
+    const jourPioches = parJour * partPioches;
+    q('#o-back').textContent = cout === 0 ? '—' : (jourPioches > 0 ? nf(cout / jourPioches, 1) + ' days' : 'never');
 
     q('#c-note').innerHTML = `Emission is <b>${(100 * T.emission.tauxMensuel).toFixed(0)} %</b> of the remaining `
       + `reserve each month — ${nf(T.emission.reserve)} CAIRN at launch, so <b>${nf(mois)}</b> shared `
       + `between every miner this month. It shrinks as the reserve is drawn down, and it never depends on how `
       + `many players there are: more Strike on the network simply means thinner slices. A pick costs `
-      + `<b>${T.pick.cost}</b> CAIRN and adds <b>${T.pick.strike}</b> Strike. Running picks burns coal — `
-      + `<b>${T.thrift.start}</b> per hundred strikes at first, down to a floor of <b>${T.thrift.floor}</b>. `
+      + `<b>${T.pick.cost}</b> CAIRN and adds <b>${T.pick.strike}</b> Strike.`
+      + (plancherActif
+        ? ` <b>The network floor applies here.</b> Shares are divided by at least <b>${nf(T.plancher)}</b> Strike, `
+          + `however empty the network is — what nobody claims stays in the reserve for the players who come later. `
+          + `That is why your share stops climbing below this point.`
+        : '')
+      + (panier.length
+        ? ` <b>A pick is not paid once.</b> At this rig the shaft consumes <b>${panier.join(', ')}</b> every hour, `
+          + `for as long as you run it — coal first, then stone and planks past 150 added Strike, ingots past 400, `
+          + `wages past 800. That bill, not the price, is what limits a rig.`
+        : '')
+      + ` Thrift starts at <b>${T.thrift.start}</b> coal per hundred strikes and floors at <b>${T.thrift.floor}</b>. `
       + `Figures generated from the game's own balance file on ${T.genere}.`;
   };
   el.addEventListener('input', maj);

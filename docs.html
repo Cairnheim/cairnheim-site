@@ -328,6 +328,14 @@
         the whole network's, yours included. The pot does not grow when players arrive — the slices
         get thinner. Emission is bounded by construction, not by attendance.
       </p>
+      <p>
+        That divisor has a <strong>floor</strong>. Pro-rata splitting has a blind spot: on an empty
+        network the divisor collapses and a handful of players would take the entire pot. So shares
+        are divided by at least the floor, however few miners are actually online — and whatever
+        nobody claims is not redistributed, it <strong>stays in the reserve</strong> for the players
+        who arrive later. It costs a regular player nothing; it stops the first fifty accounts from
+        quietly accumulating several percent of the supply while the token is still worth nothing.
+      </p>
       <h3>Thrift — the coal sink</h3>
       <p>
         The base shaft burns nothing and never stops. Every pick you set beyond it eats fuel:
@@ -345,6 +353,27 @@
       <p class="muted small">
         One of each per colony, all three locked until the shaft is Awakened. They are the reason the
         copper and gold chains keep going past the toolmaker.
+      </p>
+      <h3>Upkeep — what a pick actually costs</h3>
+      <p>
+        A pick is not paid once. It raises Strike, and Strike is billed to the colony <em>every hour,
+        for as long as you run it</em>. Coal alone at first; then the bill widens as the shaft goes
+        deeper. Thresholds are on <strong>added</strong> Strike — the free base shaft is never
+        charged, so a colony that runs dry loses the yield its rig was buying, never its monument.
+      </p>
+      <div class="tablewrap"><table>
+        <thead><tr><th>Added Strike</th><th>Per hour, per 100 Strike</th><th>Why</th></tr></thead>
+        <tbody>
+          <tr><td>from the first</td><td>40 coal, down to 12 with Thrift</td><td>the fire that drives the shaft</td></tr>
+          <tr><td>≥ 150</td><td>+ 70 stone, 14 planks</td><td>roads chewed up by the hauling; shoring as it descends</td></tr>
+          <tr><td>≥ 400</td><td>+ 8 iron ingots, 6 copper ingots</td><td>tools worn out at the face; pipes for the pumps</td></tr>
+          <tr><td>≥ 800</td><td>+ 5 coins</td><td>wages for the crew</td></tr>
+        </tbody>
+      </table></div>
+      <p class="muted small">
+        This is the ASIC-to-electricity relationship: mining more pays more <em>and</em> costs more.
+        It is also the real ceiling on a rig — 100,000 Strike would demand 40,000 coal an hour, some
+        460 charcoal burners. No colony can feed that, which is why capital cannot simply buy the pot.
       </p>
     </section>
 
@@ -631,6 +660,6 @@
   </div>
 </footer>
 
-<script src="/assets/js/site.js?v=3"></script>
+<script src="/assets/js/site.js?v=4"></script>
 </body>
 </html>

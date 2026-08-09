@@ -299,7 +299,9 @@
         <p>
           The network mints a fixed amount per day and splits it by Strike. Your share is your
           Strike over the whole network's — so the pot never grows when players arrive, the slices
-          just get thinner. Emission is bounded by construction, not by attendance.
+          just get thinner. Emission is bounded by construction, not by attendance. And the divisor
+          has a <strong>floor</strong>: on an empty network what nobody claims is not handed to the
+          few who are there, it stays in the reserve for the players who come later.
         </p>
       </article>
       <article class="card">
@@ -307,7 +309,9 @@
         <p>
           The base shaft burns nothing and never stops. Every pick you set beyond it eats coal:
           <strong>40</strong> per hundred strikes at first, down to a hard floor of <strong>12</strong>.
-          You buy that efficiency with diamonds — and with comfort.
+          You buy that efficiency with diamonds — and with comfort. Push the rig further and the bill
+          widens: <strong>stone and planks</strong> past 150 added Strike, <strong>iron and copper</strong>
+          past 400, <strong>wages</strong> past 800. A big rig is an industrial estate, not a purchase.
         </p>
       </article>
     </div>
@@ -582,7 +586,7 @@
 <!-- `?v=` : le site n'a pas d'étape de build, donc rien ne renomme les fichiers quand ils changent.
      Sans ce marqueur, un visiteur déjà venu garde l'ancien JS en cache et ne voit pas la mise à
      jour. À incrémenter quand on touche à site.js ou au calculateur. -->
-<script src="/assets/js/tokenomics.js?v=3"></script>
-<script src="/assets/js/site.js?v=3"></script>
+<script src="/assets/js/tokenomics.js?v=4"></script>
+<script src="/assets/js/site.js?v=4"></script>
 </body>
 </html>
