@@ -279,6 +279,111 @@ window.CAIRN_GUIDE = {
     },
     "formuleRecolte": "min(kits × rations × 60, 300)"
   },
+  "militaire": {
+    "troupes": [
+      {
+        "nom": "swordsman",
+        "att": 2,
+        "pv": 2,
+        "couleur": "red",
+        "puissance": 2
+      },
+      {
+        "nom": "spearman",
+        "att": 1,
+        "pv": 2,
+        "couleur": "green",
+        "puissance": 1.4142135623730951
+      },
+      {
+        "nom": "archer",
+        "att": 1,
+        "pv": 1,
+        "couleur": "blue",
+        "puissance": 1
+      }
+    ],
+    "ennemis": [
+      {
+        "couleur": "red",
+        "pastille": "🔴",
+        "att": 1.3,
+        "pv": 1,
+        "contre": "🟢 Spearmen",
+        "noms": {
+          "mainland": "Brutes",
+          "marble": "Stoneguards",
+          "platinum": "Slagbacks"
+        }
+      },
+      {
+        "couleur": "green",
+        "pastille": "🟢",
+        "att": 1,
+        "pv": 1,
+        "contre": "🔵 Archers",
+        "noms": {
+          "mainland": "Raiders",
+          "marble": "Quarrymen",
+          "platinum": "Deepwardens"
+        }
+      },
+      {
+        "couleur": "blue",
+        "pastille": "🔵",
+        "att": 0.8,
+        "pv": 1,
+        "contre": "🗡️ Swordsmen",
+        "noms": {
+          "mainland": "Skirmishers",
+          "marble": "Slingers",
+          "platinum": "Ashrunners"
+        }
+      },
+      {
+        "couleur": "neutral",
+        "pastille": "⚪",
+        "att": 1.15,
+        "pv": 1,
+        "contre": "sheer numbers (no counter)",
+        "noms": {
+          "mainland": "Marauders",
+          "marble": "Idolaters",
+          "platinum": "Coinsworn"
+        }
+      }
+    ],
+    "factions": {
+      "mainland": "Bandits",
+      "marble": "Pale Host",
+      "platinum": "Slag Kin"
+    },
+    "avantage": 1.5,
+    "desavantage": 0.66,
+    "front": 0.3,
+    "plafondGeneral": {
+      "basique": 24,
+      "premium": 48
+    },
+    "garnisons": {
+      "carteMere": {
+        "min": 6,
+        "max": 10
+      },
+      "ile1": {
+        "min": 20,
+        "max": 26
+      },
+      "ile2": {
+        "min": 34,
+        "max": 44
+      },
+      "ile3": {
+        "min": 52,
+        "max": 64
+      }
+    }
+  },
   "reperes": {
     "generauxOr": 2,
     "colonPieces": 8

@@ -28,6 +28,20 @@
   .gd-formula { font-family: ui-monospace, Menlo, monospace; background: #2a2119; color: #f0e4cd;
     padding: .85rem 1rem; border-radius: 9px; overflow-x: auto; font-size: .98rem; }
   @media (prefers-color-scheme: dark) { .gd-formula { background: #1a1410; } }
+  /* Tableaux de stats. Volontairement plus grands que le `table` global du site (.92rem) : ce sont
+     des chiffres qu'on compare ligne à ligne, pas de la prose — ils doivent se lire d'un coup. */
+  .gd-table-wrap { overflow-x: auto; border: 1px solid var(--line, #d9cbb0); border-radius: 12px;
+    margin: 1.2rem 0 1.6rem; background: var(--surf, #fbf5e9); }
+  .gd-table { border-collapse: collapse; width: 100%; min-width: 34rem; font-size: 1.02rem; }
+  .gd-table th, .gd-table td { text-align: left; padding: .8rem 1rem;
+    border-bottom: 1px solid var(--line, #d9cbb0); vertical-align: top; }
+  .gd-table th { background: rgba(201, 162, 107, .22); font-size: .82rem; letter-spacing: .07em;
+    text-transform: uppercase; font-weight: 700; color: var(--mut, #6d6152); white-space: nowrap; }
+  .gd-table td.num, .gd-table th.num { text-align: right; font-variant-numeric: tabular-nums;
+    white-space: nowrap; }
+  .gd-table tbody tr:last-child td { border-bottom: 0; }
+  .gd-table .muted { color: var(--mut, #6d6152); }
+  .gd-table .small { font-size: .86rem; line-height: 1.45; }
 </style>
 </head>
 <body>
@@ -72,6 +86,20 @@
       </p>
     </div>
     <div id="gd-exp"></div>
+  </section>
+
+  <!-- ============================ GUERRE ============================ -->
+  <section id="war" style="margin-top:3.5rem">
+    <div class="section-head" style="text-align:left">
+      <p class="eyebrow">Numbers the game never showed you</p>
+      <h2>Troops, enemies, garrisons</h2>
+      <p class="lede">
+        Every camp you scout shows a garrison count. That number alone never told you what the fight
+        would cost — a camp of twenty-six can bleed you twice as hard as another camp of twenty-six.
+        Here are the actual stats, straight out of the game's own tables.
+      </p>
+    </div>
+    <div id="gd-war"></div>
   </section>
 
   <p class="muted small" id="gd-stamp" style="margin-top:3rem"></p>
@@ -157,6 +185,61 @@
 
     <p class="muted small">Reference: gold buys you ${G.reperes.generauxOr} generals and no more; a
       colonist is recruited for ${G.reperes.colonPieces} coins.</p>`;
+
+  /* ---- La guerre. Aucun chiffre en dur : G.militaire vient de config.ts. ---- */
+  const m = G.militaire;
+  const cap = (s) => s.charAt(0).toUpperCase() + s.slice(1);
+  const REALMS = Object.keys(m.factions);
+  const ligneEnnemi = (e) => `
+    <tr>
+      <td>${e.pastille} <b>${e.noms.mainland}</b><br>
+        <span class="muted small">${REALMS.filter((r) => r !== 'mainland')
+          .map((r) => `${cap(r)} isle: ${e.noms[r]}`).join(' · ')}</span></td>
+      <td class="num">${e.att.toFixed(2)}</td>
+      <td class="num">${e.pv}</td>
+      <td>${e.contre}</td>
+    </tr>`;
+  const g = m.garnisons;
+  document.getElementById('gd-war').innerHTML = `
+    <h3>Your three troops</h3>
+    <p>Weight is attack × hit points, but an army's real strength is
+      <strong>N × √(attack × hit points)</strong> — volleys land simultaneously, so numbers count for
+      more than quality. That is why a cheap archer line is not a mistake.</p>
+    <div class="gd-table-wrap"><table class="gd-table">
+      <thead><tr><th>Troop</th><th class="num">Atk</th><th class="num">HP</th>
+        <th class="num">Power</th><th>Colour</th></tr></thead>
+      <tbody>${m.troupes.map((t) => `<tr><td><b>${cap(t.nom)}</b></td>
+        <td class="num">${t.att}</td><td class="num">${t.pv}</td>
+        <td class="num">${t.puissance.toFixed(2)}</td><td>${t.couleur}</td></tr>`).join('')}</tbody>
+    </table></div>
+    <p class="muted small">A general leads up to ${m.plafondGeneral.basique} troops, or
+      ${m.plafondGeneral.premium} once promoted.</p>
+
+    <h3>The four enemies</h3>
+    <p>All of them have <strong>1 hit point</strong> — that is deliberate, so "garrison 26" always
+      means twenty-six blows to land and you can size up a fight at a glance. What differs is how
+      hard they hit back. The same four archetypes guard every place in the game; only their name
+      changes with the ground they hold.</p>
+    <div class="gd-table-wrap"><table class="gd-table">
+      <thead><tr><th>Enemy</th><th class="num">Atk</th><th class="num">HP</th><th>Weak to</th></tr></thead>
+      <tbody>${m.ennemis.map(ligneEnnemi).join('')}</tbody>
+    </table></div>
+    <p>Colour beats colour in a triangle: a favourable match-up hits for
+      <strong>×${m.avantage}</strong>, an unfavourable one for <strong>×${m.desavantage}</strong>.
+      Marauders sit outside the triangle entirely — no weakness, no advantage, and they hit above
+      the average. Each round, ${Math.round(m.front * 100)}% of both sides' power lands.</p>
+
+    <h3>How big the garrisons get</h3>
+    <p>Camps on the mainland are a school. The isles are not: each tier is sized to refuse the army
+      that cleared the tier below it, so a voyage is never a formality and never a wall.</p>
+    <div class="gd-facts">
+      <div class="gd-fact"><b>${g.carteMere.min}–${g.carteMere.max}</b><span>mainland camp — where you learn the colour triangle.</span></div>
+      <div class="gd-fact"><b>${g.ile1.min}–${g.ile1.max}</b><span>tier 1 isle. A full basic general, and it still costs you.</span></div>
+      <div class="gd-fact"><b>${g.ile2.min}–${g.ile2.max}</b><span>tier 2 isle. The army that took tier 1 does not pass.</span></div>
+      <div class="gd-fact"><b>${g.ile3.min}–${g.ile3.max}</b><span>tier 3 isle. A promoted general, at full strength.</span></div>
+    </div>
+    <p class="muted small">Three camps hold each isle, so the cost above is paid three times over
+      before a single unit of ore is mined.</p>`;
 
   document.getElementById('gd-stamp').textContent =
     `Generated from the game's own balance file on ${G.genere}. ${n} objectives.`;
