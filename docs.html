@@ -132,9 +132,13 @@
       <h3>Congestion</h3>
       <p>
         A cairn holds <strong>8 goods</strong>. Once it is full, nothing more can be dropped there
-        and the queue backs up along the road. That is the signal to act, and you have three answers:
+        and the queue backs up along the road. That is the signal to act, and you have four answers:
       </p>
       <ul>
+        <li><strong>Build a warehouse beside the cluster</strong> — surplus flows to the
+          <em>nearest</em> storage by network distance, so a local warehouse absorbs it on the spot
+          instead of pushing everything down one trunk to the castle. This is the answer that fixes
+          the cause; the next three fix the road.</li>
         <li><strong>Split the road</strong> with an extra cairn — shorter legs, and one more carrier
           on that stretch.</li>
         <li><strong>Build a parallel route</strong> so the router has somewhere else to send goods.</li>
@@ -146,6 +150,12 @@
           no customer ships its surplus to storage instead of jamming; a consumer with no supplier
           draws from it. Both the castle and a warehouse hold 9 999 of <em>each</em> good — a warehouse
           is not there to give you room, it is there to shorten the walk.
+        </p>
+        <p class="muted small">
+          Measured on the engine (a quarry-and-sawmill cluster 50 tiles from the castle, ten
+          simulated minutes): without a local warehouse the trunk cairns sit at 8/8 and only
+          3 goods reach the castle — the rest is queuing. With one warehouse at the cluster:
+          zero saturated cairns, 48 goods stored locally. Same colony, one building.
         </p>
       </div>
     </section>

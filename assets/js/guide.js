@@ -4,7 +4,7 @@
  * Régénérer après tout changement de la chaîne de quêtes ou de la boucle d'expédition.
  */
 window.CAIRN_GUIDE = {
-  "genere": "2026-08-09",
+  "genere": "2026-08-10",
   "actes": [
     {
       "titre": "Act I — Take root",
@@ -100,7 +100,7 @@ window.CAIRN_GUIDE = {
           "id": "coins",
           "titre": "Mint 20 coins",
           "cible": 20,
-          "aide": "The longest chain in the game: Gold mine → Gold smelter → Mint (Processing). It is slow on purpose — the Mint alone takes 41 ticks per coin. Coins recruit colonists and generals, raise comfort buildings, and go into every travel ration. Start it early; it will never feel fast.",
+          "aide": "The longest chain in the game: Gold mine → Gold smelter → Mint (Processing). It is slow on purpose — the Mint alone takes 41 ticks per coin. Coins recruit colonists and generals, raise comfort buildings, and go into every travel ration. And as your colony spreads out, watch the roads: goods flow to the NEAREST storage, so a Warehouse (Logistics) beside a distant cluster keeps its surplus local instead of queuing across the whole map. Cairns backing up is the sign you need one.",
           "recompense": {
             "pieces": 60,
             "materiaux": null
