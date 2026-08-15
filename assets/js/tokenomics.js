@@ -4,7 +4,7 @@
  * Régénérer après tout changement d'émission ou du rig.
  */
 window.CAIRN_TOKENOMICS = {
-  "genere": "2026-08-09",
+  "genere": "2026-08-15",
   "paliers": [
     {
       "label": "Ruin",
