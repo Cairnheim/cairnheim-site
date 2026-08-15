@@ -18,7 +18,7 @@ const LINKS = {
   discord: '',    // ex. 'https://discord.gg/xxxx'
   telegram: '',   // ex. 'https://t.me/cairnheim'
   github: '',     // dépôt public du site, si tu veux le montrer
-  whitepaper: '', // ⚠ voir docs : le §6.1 décrit encore l'ancien modèle de pioches
+  whitepaper: '', // le §6.1 est à jour depuis le 15/08 (pioche fongible, emberwood) — reste à héberger le PDF
 };
 
 const LINK_META = {
