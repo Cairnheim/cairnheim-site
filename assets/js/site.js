@@ -5,7 +5,10 @@
 // Tant qu'elle est vide, tous les boutons « Play » passent en « bientôt » et
 // deviennent inertes : jamais de lien mort sur la page.
 // ---------------------------------------------------------------------------
-const PLAY_URL = 'https://cairnheim.vercel.app';
+// Domaine propre depuis le 16/08. On garde `cairnheim.vercel.app` en service — Vercel le sert
+// toujours — mais un lien qu'on donne doit porter le nom du projet, pas celui de l'hébergeur :
+// c'est ce nom-là que les gens recopient, épinglent et reconnaissent.
+const PLAY_URL = 'https://play.cairnheim.com';
 
 // ---------------------------------------------------------------------------
 // LIENS COMMUNAUTÉ — même règle que PLAY_URL : une entrée VIDE n'est pas rendue.
