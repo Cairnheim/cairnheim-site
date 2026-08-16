@@ -17,7 +17,7 @@ const PLAY_URL = 'https://play.cairnheim.com';
 // URL à ma place. Remplis ce que tu as, laisse le reste vide.
 // ---------------------------------------------------------------------------
 const LINKS = {
-  x: '',          // ex. 'https://x.com/cairnheim'
+  x: 'https://x.com/Cairnheim',   // ouvert le 16/08 — premier canal officiel du projet
   discord: '',    // ex. 'https://discord.gg/xxxx'
   telegram: '',   // ex. 'https://t.me/cairnheim'
   github: '',     // dépôt public du site, si tu veux le montrer
