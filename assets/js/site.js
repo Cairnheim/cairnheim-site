@@ -66,6 +66,79 @@ const LINK_META = {
 })();
 
 // ---------------------------------------------------------------------------
+// RÉPARTITION DU SUPPLY. Même règle que le calculateur : rien n'est écrit dans
+// la page. Les parts viennent de tokenomics.js, qui les lit dans la config de
+// LANCEMENT (devnet/dbc-config.mjs) — pas dans le config du jeu, qui n'a aucune
+// raison de connaître le partage du milliard.
+//
+// Les pourcentages sont CALCULÉS ici, jamais saisis : un « 60 % » écrit à la
+// main survivrait à un changement de répartition sans que personne le voie, et
+// c'est exactement le genre de chiffre qu'un acheteur vérifie.
+// ---------------------------------------------------------------------------
+(function supply() {
+  const el = document.querySelector('#tok-supply');
+  const T = window.CAIRN_TOKENOMICS;
+  if (!el) return;
+  if (!T || !T.supply) { el.innerHTML = '<p class="muted small">Figures unavailable.</p>'; return; }
+
+  const S = T.supply;
+  const nf = (n) => n.toLocaleString('en-US');
+  const pct = (n) => (n / S.total) * 100;
+  // Un chiffre par part, arrondi à une décimale seulement s'il en a besoin : « 15.0 % » suggère une
+  // précision que le partage n'a pas, et 5 % doit se lire 5 %.
+  const pctTxt = (n) => { const p = pct(n); return (Math.round(p * 10) % 10 === 0 ? p.toFixed(0) : p.toFixed(1)) + '%'; };
+
+  const segments = S.parts.map((p, i) => `<span class="tok-seg tok-seg-${i}" style="width:${pct(p.amount)}%"
+      title="${p.label} — ${nf(p.amount)} CAIRN"></span>`).join('');
+
+  const lignes = S.parts.map((p, i) => `<tr>
+      <td><span class="tok-key tok-seg-${i}" aria-hidden="true"></span> ${p.label}</td>
+      <td><strong>${nf(p.amount)}</strong></td>
+      <td>${pctTxt(p.amount)}</td>
+      <td>${p.locked ? 'Locked' : '—'}</td>
+    </tr>`).join('');
+
+  // La part NON circulante déclarée aux agrégateurs : réserve d'émission + part équipe. La liquidité
+  // de migration est verrouillée elle aussi, mais elle vit dans le pool et non dans un portefeuille,
+  // donc elle ne se déclare pas de la même façon. On additionne plutôt que d'écrire « 25 % ».
+  const horsCirculation = S.parts
+    .filter((p) => /reserve|team/i.test(p.label))
+    .reduce((n, p) => n + p.amount, 0);
+
+  const tauxAnnuel = 1 - Math.pow(1 - T.emission.tauxMensuel, 12);
+  const demiVie = Math.log(0.5) / Math.log(1 - T.emission.tauxMensuel);
+
+  el.innerHTML = `
+    <div class="tok-bar" role="img" aria-label="Supply distribution of ${nf(S.total)} CAIRN">${segments}</div>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Allocation</th><th>Amount</th><th>Share</th><th></th></tr></thead>
+      <tbody>${lignes}</tbody>
+    </table></div>
+    <div class="grid grid-3">
+      <article class="card">
+        <h3>${nf(S.total)}</h3>
+        <p>Total supply, fixed. Mint <em>and</em> freeze authorities are revoked at creation — there
+          is never a moment when anyone, us included, could print more.</p>
+      </article>
+      <article class="card">
+        <h3>${(T.emission.tauxMensuel * 100).toFixed(0)}% / month</h3>
+        <p>Emission pays that share of what <em>remains</em> in the reserve — about
+          ${(tauxAnnuel * 100).toFixed(1)}% a year, half-life ${demiVie.toFixed(0)} months. It decays
+          smoothly, with no halving cliff, and can never empty.</p>
+      </article>
+      <article class="card">
+        <h3>${pctTxt(horsCirculation)}</h3>
+        <p>Held out of circulation in declared wallets — the emission reserve and the team share —
+          so the market cap shown on aggregators reflects the supply actually circulating.</p>
+      </article>
+    </div>
+    <p class="muted small">
+      Generated from the launch configuration on ${T.genere}, never retyped.
+      <a href="/whitepaper#supply">Full detail in the whitepaper →</a>
+    </p>`;
+})();
+
+// ---------------------------------------------------------------------------
 // CALCULATEUR DE PIOCHE. Les constantes viennent de tokenomics.js, lui-même
 // GÉNÉRÉ depuis le config.ts du jeu : ce que la page affiche est ce que le
 // moteur applique, pas une recopie qui se périmerait au premier rééquilibrage.

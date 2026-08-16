@@ -271,6 +271,24 @@ footer {
 .doc-body pre { overflow-x: auto; background: var(--paper-hi); border: 1px solid var(--line); border-radius: var(--radius); padding: 12px 14px; margin: 0 0 1.6em; }
 .doc-body pre code { background: none; border: 0; padding: 0; font-size: .86em; }
 
+/* ---------------------------------------------------------------------------
+   RÉPARTITION DU SUPPLY — la barre proportionnelle de #tokenomics.
+   Les largeurs sont posées en style inline par site.js depuis les données
+   générées ; ici on ne fait que la forme et les couleurs. Quatre teintes du
+   même parchemin plutôt qu'une palette : c'est un partage d'un même tout, pas
+   quatre catégories sans rapport.
+   --------------------------------------------------------------------------- */
+.tok-bar { display: flex; height: 34px; border-radius: var(--radius); overflow: hidden;
+  border: 1px solid var(--line-strong); box-shadow: var(--shadow-s); margin: 0 0 1.2em; }
+.tok-seg { display: block; height: 100%; }
+.tok-key { display: inline-block; width: 12px; height: 12px; border-radius: 3px; margin-right: 8px;
+  border: 1px solid rgba(74, 54, 28, .25); vertical-align: baseline; }
+.tok-seg-0 { background: #b8862b; }   /* vente publique — l'or franc, la part qui circule */
+.tok-seg-1 { background: #8c6a2c; }
+.tok-seg-2 { background: #6b5a44; }
+.tok-seg-3 { background: #c9b28a; }
+#tokenomics .card h3 { font-size: 1.5rem; color: var(--gold-text); }
+
 .tablewrap { overflow-x: auto; border: 1px solid var(--line); border-radius: var(--radius); margin: 0 0 1.6em; background: var(--paper-card); box-shadow: var(--shadow-s); }
 table { border-collapse: collapse; width: 100%; font-size: .92rem; min-width: 520px; }
 th, td { text-align: left; padding: 10px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }

@@ -11,7 +11,7 @@
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#f2e6cf">
 <link rel="icon" href="/assets/img/cairn.webp">
-<link rel="stylesheet" href="/assets/css/style.css">
+<link rel="stylesheet" href="/assets/css/style.css?v=5">
 </head>
 <body>
 
@@ -26,6 +26,7 @@
       <a href="#calc">Calculator</a>
       <a href="#world">World</a>
       <a href="#ownership">Ownership</a>
+      <a href="#tokenomics">Tokenomics</a>
       <a href="#roadmap">Roadmap</a>
       <a href="/guide.html">Guide</a>
       <a href="/docs.html">Docs</a>
@@ -439,6 +440,21 @@
   </div>
 </section>
 
+<!-- ============================ TOKENOMICS ============================ -->
+<section id="tokenomics">
+  <div class="wrap wrap--narrow">
+    <div class="section-head">
+      <p class="eyebrow">Tokenomics</p>
+      <h2>Where the billion goes</h2>
+      <p class="lede">
+        Fixed supply, no private sale, and every share fixed at creation — verifiable on-chain from
+        the first block. The figures below are generated from the launch configuration itself.
+      </p>
+    </div>
+    <div id="tok-supply"></div>
+  </div>
+</section>
+
 <!-- ============================ ROADMAP ============================ -->
 <section id="roadmap">
   <div class="wrap">
@@ -468,7 +484,9 @@
         <p class="muted">
           Instanced expedition islands with bandit camps to take, explorers and geologists with
           their own skill tree, a player-to-player market, and the Cairn Mine with its three stages
-          and its emberwood sink.
+          and its emberwood sink. The two isles are <strong>hand-authored maps</strong>, not
+          generated ones — Marble at 96&nbsp;×&nbsp;96 tiles and Platinum at 48&nbsp;×&nbsp;48, each
+          with its own veins and camps placed by hand.
         </p>
       </div>
       <div class="step now">
@@ -492,14 +510,20 @@
           taken.
         </p>
       </div>
-      <div class="step">
-        <span class="tag">Next</span>
+      <div class="step now">
+        <span class="tag">In progress</span>
         <h3>Ownership on Solana</h3>
         <p class="muted">
-          Sign-in with Phantom is already how you play. Next comes the $CAIRN claim on devnet, land
-          as NFTs, the marketplace and its fees, and Anchor contracts with the economic guardrails
-          written into them from day one — cold authority split before anything is initialised
-          on mainnet.
+          Sign-in with Phantom is already how you play. The reward program is written and its full
+          test suite passes against a real chain — the 48-hour timelock, the two separate
+          authorities, the rate limit, the network floor, the pause and the 75/25 recycling. The
+          <strong>$CAIRN claim works end to end</strong>: clicked in game, signed in Phantom, tokens
+          delivered to the wallet, all against a live chain.
+        </p>
+        <p class="muted">
+          What is left is the part no local test can stand in for — a <em>public</em> network under
+          load. Then the marketplace and its fees, and land as NFTs. Nothing is initialised on
+          mainnet before the cold authority split has been rehearsed end to end.
         </p>
       </div>
     </div>
@@ -599,7 +623,7 @@
 <!-- `?v=` : le site n'a pas d'étape de build, donc rien ne renomme les fichiers quand ils changent.
      Sans ce marqueur, un visiteur déjà venu garde l'ancien JS en cache et ne voit pas la mise à
      jour. À incrémenter quand on touche à site.js ou au calculateur. -->
-<script src="/assets/js/tokenomics.js?v=4"></script>
-<script src="/assets/js/site.js?v=4"></script>
+<script src="/assets/js/tokenomics.js?v=5"></script>
+<script src="/assets/js/site.js?v=5"></script>
 </body>
 </html>

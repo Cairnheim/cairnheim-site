@@ -4,7 +4,32 @@
  * Régénérer après tout changement d'émission ou du rig.
  */
 window.CAIRN_TOKENOMICS = {
-  "genere": "2026-08-15",
+  "genere": "2026-08-16",
+  "supply": {
+    "total": 1000000000,
+    "parts": [
+      {
+        "label": "Public sale (curve)",
+        "amount": 600000000,
+        "locked": false
+      },
+      {
+        "label": "Migration liquidity",
+        "amount": 150000000,
+        "locked": true
+      },
+      {
+        "label": "Emission reserve",
+        "amount": 200000000,
+        "locked": true
+      },
+      {
+        "label": "Team",
+        "amount": 50000000,
+        "locked": true
+      }
+    ]
+  },
   "paliers": [
     {
       "label": "Ruin",
