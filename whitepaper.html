@@ -237,21 +237,29 @@
       <div class="note green">
         <p>
           <strong>Strike is bought ON-CHAIN; it is never merely declared.</strong> Every point above
-          the floor is paid through a program instruction, which takes the CAIRN out of what the pool
-          already owes the player, burns 25% of it, and records the purchase in their account. The
-          program then <strong>refuses</strong> any Strike above <code>floor + purchased Strike</code>.
+          the floor is paid through a program instruction, which burns 25% of it and records the
+          purchase in the player's account. The program then <strong>refuses</strong> any Strike
+          above <code>floor + purchased Strike</code>.
+        </p>
+        <p>
+          <strong>The player signs, and the player pays.</strong> The purchase draws on what the pool
+          already owes them, and tops up from their wallet if that claim is not enough — the way
+          buying hashrate settles against a balance. They also pay the transaction fee and the rent
+          on their own miner account.
         </p>
       </div>
 
-      <p>Three consequences, and this is the model's strongest guarantee:</p>
+      <p>Four consequences, and this is the model's strongest guarantee:</p>
       <ul>
         <li><strong>the server cannot invent power.</strong> It attests, it does not decide — and
           even a compromised server key could only destroy Strike, never create it;</li>
         <li><strong>anyone can recompute any player's Strike</strong> from public history, with no
           access to our servers or our database;</li>
-        <li><strong>the player signs nothing.</strong> The purchase comes out of their claim on the
-          pool, so it works while the player is offline — which a game where you buy picks while
-          playing requires.</li>
+        <li><strong>the project funds nobody's infrastructure.</strong> No on-chain account is opened
+          at the team's expense, however many players arrive;</li>
+        <li><strong>a miner account exists only if someone bought.</strong> That is what makes an
+          account farm pointless: a seat that cost nothing does not exist, and the free base benefits
+          only those who entered by spending at least one point.</li>
       </ul>
 
       <p>
