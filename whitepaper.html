@@ -1,0 +1,816 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cairnheim — CAIRN Whitepaper</title>
+<meta name="description" content="The CAIRN token: fixed supply, fair launch, a mining model calibrated like Bitcoin difficulty, and the guardrails written into the on-chain programs.">
+<meta name="theme-color" content="#f2e6cf">
+<link rel="icon" href="/assets/img/cairn.webp">
+<link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="/"><span class="mark" aria-hidden="true"></span> Cairnheim</a>
+    <button class="nav-toggle" aria-expanded="false" aria-label="Menu">☰</button>
+    <nav class="nav-links">
+      <a href="/">Home</a>
+      <a href="/guide.html">Guide</a>
+      <a href="/docs.html">Docs</a>
+      <a href="/whitepaper.html" aria-current="page">Whitepaper</a>
+      <a class="btn btn-primary" data-play="short" href="/#roadmap" aria-disabled="true" title="The playable build is not online yet."><span data-play-label>Coming soon</span></a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap docs">
+
+  <!-- ============================ TABLE OF CONTENTS ============================ -->
+  <aside class="toc">
+    <strong>The project</strong>
+    <a href="#vision">1. Vision</a>
+    <a href="#game">2. The game</a>
+    <strong>The token</strong>
+    <a href="#token">3. The CAIRN token</a>
+    <a href="#supply">3.1 Supply distribution</a>
+    <a href="#hold">4. Hold to Play</a>
+    <a href="#integrity">5. Network integrity</a>
+    <strong>Emission</strong>
+    <a href="#emission">6. Where CAIRN comes from</a>
+    <a href="#mine">6.1 The mine</a>
+    <a href="#currencies">6.2 Two currencies</a>
+    <a href="#expeditions">6.3 Expeditions</a>
+    <strong>Economy</strong>
+    <a href="#sinks">7. Sinks</a>
+    <a href="#governance">8. Governance</a>
+    <a href="#funding">9. Funding &amp; transparency</a>
+    <a href="#adjustment">10. Adjustments &amp; incidents</a>
+    <a href="#model">11. Economic model</a>
+    <strong>Legal</strong>
+    <a href="#legal">12. Legal considerations</a>
+    <a href="#risks">13. Risks</a>
+    <a href="#revisions">14. Revision history</a>
+  </aside>
+
+  <!-- ============================ BODY ============================ -->
+  <main class="doc-body">
+
+    <p class="eyebrow">Whitepaper</p>
+    <h1 class="doc-h1">CAIRN</h1>
+    <p class="lede">
+      A fixed-supply token on Solana, distributed by a mining model calibrated like Bitcoin
+      difficulty, inside a colony builder where logistics — not capital — sets the ceiling.
+    </p>
+
+    <div class="note">
+      <p>
+        <strong>Pre-launch document — 16 August 2026.</strong> The CAIRN token <strong>does not
+        exist yet</strong> on any network. No mint address, no pool, no wallet address is published
+        here, because none has been created. Everything below describes what will be created and
+        under which rules; the figures come from the game's balance file and from the on-chain
+        programs, never from an estimate.
+      </p>
+      <p>
+        Once the token exists, the mint address will be published and pinned on the official
+        channels. <strong>Until then, any &ldquo;CAIRN&rdquo; token in circulation is a fake.</strong>
+      </p>
+      <p class="muted small">
+        This document is not legal advice and has not yet been reviewed by a qualified professional.
+        See sections 12 and 13.
+      </p>
+    </div>
+
+    <!-- ---------------- 1. VISION ---------------- -->
+    <section>
+      <h2 id="vision">1. Vision</h2>
+      <p>
+        Cairnheim is an isometric colony builder inspired by the transport mechanics of Settlers II —
+        players build, run a logistics chain carried by <strong>cairns</strong> (transport relays)
+        rather than flags, and expand their territory. The game embeds a native Solana token,
+        designed to reward real contribution to the game world rather than speculation.
+      </p>
+    </section>
+
+    <!-- ---------------- 2. THE GAME ---------------- -->
+    <section>
+      <h2 id="game">2. The game</h2>
+      <ul>
+        <li><strong>Genre</strong> — city builder / management, isometric view</li>
+        <li><strong>Core loop</strong> — a cairn-based transport network, carriers, production
+          chains, construction and territorial defence</li>
+        <li><strong>Economic loop</strong> — mines, upkeep, a player-to-player marketplace,
+          expeditions</li>
+      </ul>
+    </section>
+
+    <!-- ---------------- 3. THE TOKEN ---------------- -->
+    <section>
+      <h2 id="token">3. The CAIRN token</h2>
+      <ul>
+        <li><strong>Fixed supply: 1,000,000,000 CAIRN.</strong> No additional issuance is possible
+          beyond that cap — the <strong>mint and freeze authorities are revoked at token
+          creation</strong>, not afterwards. There is never a window during which anyone, the team
+          included, could create new CAIRN or freeze a balance.</li>
+        <li>Launched through a <strong>Meteora bonding curve (DBC)</strong> — open to everyone from
+          the first block, with no prior private sale.</li>
+        <li>Automatic migration to a <strong>DAMM v2</strong> pool once the threshold is reached,
+          with <strong>liquidity locked at 100%</strong>.</li>
+        <li><strong>Fair launch</strong> — no private sale, no allocation reserved for investors or
+          a centralised exchange, no privileged team purchase on the curve. Every buyer enters on
+          the same terms from the first block.</li>
+      </ul>
+
+      <h3 id="supply">3.1 Supply distribution</h3>
+      <p>Everything is fixed at creation and verifiable on-chain from the first block:</p>
+      <div class="tablewrap"><table>
+        <thead><tr><th>Allocation</th><th>Amount</th><th>Share</th><th>Treatment</th></tr></thead>
+        <tbody>
+          <tr><td>Public sale (curve)</td><td>600,000,000</td><td>60%</td><td>No privileged team purchase</td></tr>
+          <tr><td>Migration liquidity</td><td>150,000,000</td><td>15%</td><td><strong>Locked at 100%</strong></td></tr>
+          <tr><td>Emission reserve</td><td>200,000,000</td><td>20%</td><td>Held by a program PDA, <strong>not withdrawable by the team</strong></td></tr>
+          <tr><td>Team</td><td>50,000,000</td><td>5%</td><td>On-chain lock, <strong>6-month cliff then linear over 24 months</strong></td></tr>
+        </tbody>
+      </table></div>
+
+      <p>
+        <strong>On the emission reserve.</strong> This is not an allocation. An allocation can be
+        sold; this one is held by a program, under a frozen emission rule, and can only ever be paid
+        to miners. It is the supply left to mine, made explicit — exactly like Bitcoin's.
+      </p>
+      <p>
+        <strong>On the team share.</strong> It is declared before launch, locked on-chain, and its
+        schedule is public. It exists for a stated reason: revenue made only of transaction fees
+        rewards <em>churn</em>, not <em>value</em>. Holding a share aligns the team durably with
+        every other holder.
+      </p>
+
+      <div class="note">
+        <p>
+          <strong>Beware of fake tokens.</strong> Once Cairnheim is public, fraudulent copies using
+          the same name and logo will almost certainly appear on other launchpads — this is
+          systematic in the crypto ecosystem. The single official mint address will be published and
+          pinned on the official channels at launch. Always verify that address before any
+          transaction.
+        </p>
+      </div>
+
+      <div class="note green">
+        <p>
+          <strong>The mine never creates tokens.</strong> Supply is fixed and the mint is revoked, so
+          the mine described in section 6 <strong>redistributes</strong> existing CAIRN from the
+          emission reserve above — funded once and for all at creation, and deposited into the
+          program's vault at launch. Once deposited, it can only be paid to miners: the team cannot
+          take it back. The word &ldquo;emission&rdquo; below means this redistribution flow, never
+          monetary printing.
+        </p>
+      </div>
+    </section>
+
+    <!-- ---------------- 4. HOLD TO PLAY ---------------- -->
+    <section>
+      <h2 id="hold">4. Access to the game — Hold to Play</h2>
+      <p>
+        Rather than a classic payment converted into tokens, access rests on <strong>holding a fixed
+        amount of 1,000 CAIRN</strong>. The player keeps full ownership of the token — it is not
+        spent to get in.
+      </p>
+      <ul>
+        <li><strong>Deliberately fixed</strong>, not USD-indexed: the threshold's first purpose is
+          the anti-bot filter, not price fairness over time. A fixed, known amount is simpler to
+          operate than a permanent oracle recalculation, and no less effective against automated
+          scripts.</li>
+        <li><strong>Grandfathering</strong> — if the threshold is later revised by hand, already
+          active players keep their access and are never retroactively excluded.</li>
+        <li>Combined with the other anti-bot layers of section 5 (wallet screening, rising marginal
+          cost), not a mechanism standing on its own.</li>
+      </ul>
+    </section>
+
+    <!-- ---------------- 5. INTEGRITY ---------------- -->
+    <section>
+      <h2 id="integrity">5. Network integrity (anti-bot)</h2>
+      <ul>
+        <li>Automated wallet analysis (on-chain history, age, funding) and technical fingerprinting,
+          invisible to a legitimate player.</li>
+        <li>Rising marginal cost for repeated account creation from the same source.</li>
+        <li>Caps on farm-sensitive mechanisms — notably Strike acquired through <strong>tribute,
+          capped at 50 per rolling 24 hours</strong>. Without that bound, reinvesting gains would
+          convert surplus CAIRN into power exponentially and, in time, let someone buy the network.</li>
+        <li><strong>Network Strike floor</strong> (section 6.1): an account farm captures no more
+          than it dilutes, and on an empty network it cannot drain the reserve.</li>
+      </ul>
+    </section>
+
+    <!-- ---------------- 6. EMISSION ---------------- -->
+    <section>
+      <h2 id="emission">6. Emission — where CAIRN comes from</h2>
+
+      <h3 id="mine">6.1 The mine — Strike and Thrift, calibrated like Bitcoin difficulty</h3>
+      <p>
+        The restored Cairn Mine provides a free base <strong>Strike</strong> — the floor: a penniless
+        player always mines, and consumes nothing. The player then builds a <strong>rig</strong> by
+        setting <strong>picks</strong>: a single fungible item where the count <em>is</em> the power.
+      </p>
+      <div class="tablewrap"><table>
+        <thead><tr><th></th><th>Strike (relative weight)</th><th>Cost (CAIRN, one-off)</th></tr></thead>
+        <tbody>
+          <tr><td>Shored mine (cleared, not yet awakened)</td><td>5</td><td>—</td></tr>
+          <tr><td>Awakened mine, bare</td><td>57 (free floor)</td><td>—</td></tr>
+          <tr><td>Pick</td><td>+1 each</td><td>25</td></tr>
+        </tbody>
+      </table></div>
+
+      <p>
+        <strong>No slot limit.</strong> The three pick tiers of an earlier draft existed only because
+        slots were capped at four: you paid a premium for <em>density</em>. Without that limit the
+        hierarchy loses its purpose — and a fungible pick becomes tradeable on the secondary market
+        at a single price.
+      </p>
+      <p>
+        <strong>Price is therefore not the brake</strong> on this economy, and it can stay low and
+        legible. What actually bounds a rig's power is the colony's ability to feed it — see upkeep
+        below.
+      </p>
+
+      <div class="note green">
+        <p>
+          <strong>Strike is bought ON-CHAIN; it is never merely declared.</strong> Every point above
+          the floor is paid through a program instruction, which takes the CAIRN out of what the pool
+          already owes the player, burns 25% of it, and records the purchase in their account. The
+          program then <strong>refuses</strong> any Strike above <code>floor + purchased Strike</code>.
+        </p>
+      </div>
+
+      <p>Three consequences, and this is the model's strongest guarantee:</p>
+      <ul>
+        <li><strong>the server cannot invent power.</strong> It attests, it does not decide — and
+          even a compromised server key could only destroy Strike, never create it;</li>
+        <li><strong>anyone can recompute any player's Strike</strong> from public history, with no
+          access to our servers or our database;</li>
+        <li><strong>the player signs nothing.</strong> The purchase comes out of their claim on the
+          pool, so it works while the player is offline — which a game where you buy picks while
+          playing requires.</li>
+      </ul>
+
+      <p>
+        <strong>Strike is a relative weight</strong>, exactly like hashrate in Bitcoin mining. What
+        is fixed is the <em>total distributed per period</em>, not anyone's share of it.
+      </p>
+
+      <p>
+        <strong>Network Strike floor.</strong> Pro-rata sharing has a blind spot: when the network is
+        still empty, the denominator collapses and a handful of players collect the entire pot. Each
+        share is therefore computed against a <strong>floor</strong>, never against the real network
+        Strike when that is lower:
+      </p>
+      <pre><code>Player share = (their Strike / max(real network Strike, FLOOR)) × total emission for the period</code></pre>
+      <p>
+        What is not distributed <strong>stays in the reserve</strong> and waits for later players: a
+        period's effective emission is <code>min(pool, what the network is entitled to claim)</code>.
+        At the chosen floor, the pot is only fully distributed from roughly <strong>48 equipped
+        mines</strong> onward.
+      </p>
+      <p>
+        What this floor prevents is not excess income — a few dozen players on an empty network would
+        earn pennies anyway while the market cap is small. It prevents an <strong>supply
+        overhang</strong>: without it, a handful of accounts would accumulate several percent of
+        total supply within a year, acquired when the token was worth nothing, and that claim would
+        land on the market the day it was worth something. This is the mechanism that collapsed most
+        token-based game economies.
+      </p>
+
+      <p>
+        <strong>Why this model.</strong> Under a guaranteed-rate model, each mine earns a fixed
+        amount — so the more active players, the larger the total emitted, without limit: real
+        uncontrolled inflation if the game succeeds. Under the difficulty model, the total emitted
+        per period <strong>never</strong> depends on the number of players: more total Strike on the
+        network simply dilutes each individual share, exactly as a Bitcoin miner's share falls as the
+        network grows without the block reward changing.
+      </p>
+
+      <p><strong>Two independent axes of improvement</strong>, as on real mining hardware:</p>
+      <ul>
+        <li><strong>Strike</strong> (setting picks, paid in <strong>CAIRN</strong>) — capital buys
+          power: it raises your relative share, and also your <strong>emberwood</strong>
+          consumption.</li>
+        <li><strong>Thrift</strong> (efficiency, continuous) — the <strong>emberwood burned per 100
+          blows</strong>; lower is better. It starts at 40 and falls towards a <strong>physical floor
+          of 12</strong>, never below: the mine is never free. It improves through <strong>set
+          diamonds</strong> (unlimited in number, brought back by expeditions, but with
+          <em>diminishing returns</em> — each diamond removes a constant fraction of what remains
+          above the floor, so you approach it without ever reaching it and one more diamond is always
+          worth something) and through <strong>colony comfort</strong> (chapel, baths…). Thrift never
+          raises your share; it only lowers your running cost.</li>
+      </ul>
+
+      <div class="note">
+        <p>
+          <strong>Emberwood is not mountain coal.</strong> It is <em>charcoal</em>, produced by the
+          charcoal burner from logs — therefore <strong>renewable</strong>, where a mountain seam
+          never refills. It is also <em>dedicated</em>: nothing else in the game consumes it, and the
+          monument never touches the mining coal the smelters need. That is what makes the second
+          bound credible — feeding a large rig means running an entire timber industry, not draining
+          a seam.
+        </p>
+      </div>
+
+      <p>
+        <strong>Upkeep is paid in colony resources, never in CAIRN.</strong> It starts with emberwood
+        alone and broadens as the rig grows: each material only enters above its own threshold, so a
+        player who cannot yet smelt copper is never asked for any.
+      </p>
+      <div class="tablewrap"><table>
+        <thead><tr><th>Strike <strong>added</strong> (above the free floor)</th><th>Consumption, per hour and per 100 Strike</th></tr></thead>
+        <tbody>
+          <tr><td>from the first point</td><td><strong>emberwood</strong> — 40, down to a floor of 12 depending on Thrift</td></tr>
+          <tr><td>≥ 150</td><td>+ stone (70) and planks (14) — roads wrecked by haulage, shoring the deepening shaft</td></tr>
+          <tr><td>≥ 400</td><td>+ iron (8) and copper (6) ingots — tools worn down at the face, pump piping against flooding</td></tr>
+          <tr><td>≥ 800</td><td>+ gold coins (5) — the crew's wages</td></tr>
+        </tbody>
+      </table></div>
+      <p>
+        The free floor itself consumes <strong>nothing</strong>: a colony run dry loses the share its
+        rig contributed, never its monument.
+      </p>
+
+      <div class="note green">
+        <p>
+          <strong>Logistics is the ceiling, not price.</strong> This is a production-chain problem,
+          not a tax: CAIRN buys only <em>capital</em> (picks, Thrift tempering), never running costs.
+        </p>
+        <p>
+          It is worth following the arithmetic, because it answers the question that matters — can a
+          large wallet simply buy the mine?
+        </p>
+        <ol>
+          <li><strong>Picks are cheap and unlimited</strong> — 25 CAIRN each, no slot cap. Money is
+            not the obstacle, and it is not meant to be.</li>
+          <li><strong>But each pick makes the mine eat.</strong> 40 emberwood per hour per 100
+            Strike. And emberwood cannot be bought: it is <em>manufactured</em>, by charcoal burners,
+            out of logs.</li>
+          <li><strong>So a Strike of 100,000 demands 40,000 emberwood per hour.</strong> A burner
+            produces one every 46.8 seconds — 77 an hour. That is <strong>520 burners running
+            permanently</strong>, fed by roughly <strong>260 woodcutters</strong> (one woodcutter
+            supplies two burners), plus the foresters replanting behind them.</li>
+        </ol>
+        <p>
+          More than <strong>800 buildings devoted to nothing but the mine's fuel</strong> — several
+          times what a developed colony runs in total, on a map that does not have the room. And
+          that is the optimistic count: in practice a burner never reaches its theoretical rate,
+          because a single carrier moves a single good at a time.
+        </p>
+        <p>
+          <strong>Capital buys the power, but not the means to run it.</strong> The real ceiling is
+          not financial, it is logistical.
+        </p>
+      </div>
+
+      <h4>The reward pool — how redistribution actually works</h4>
+      <p>
+        A separate program (distinct from the marketplace) holds the emission reserve in a PDA the
+        team cannot drain. It reads the network's total power and each active mine's share, then
+        distributes according to the formula above.
+      </p>
+      <ul>
+        <li><strong>A period's emission is a percentage of the REMAINING reserve balance</strong>
+          (starting point: 2% per month). This rule <em>replaces stepped halvings</em>: it decays
+          smoothly (≈ −21.5% per year, the equivalent of a halving every ~35 months, with no cliff)
+          and, above all, <strong>it can never exhaust the reserve</strong> — a constant-amount
+          emission stops dead the day the balance hits zero.</li>
+        <li><strong>Recycling</strong> — CAIRN spent in game (picks, Thrift tempering, tribute) does
+          not vanish entirely: <strong>75% returns to the reserve, 25% is burned permanently</strong>.
+          The reserve therefore refills with activity, and the system self-stabilises around
+          <code>reserve = recycling / emission rate</code>.</li>
+        <li><strong>Consequence for players</strong> — more miners means more upgrades bought, more
+          reserve refilled, and a larger total distributed, which offsets the dilution their arrival
+          caused, <strong>without ever creating a single token</strong>.</li>
+        <li><strong>Anti-deficit guardrail</strong> — the distributable amount can never exceed the
+          reserve balance: distribution slows automatically rather than creating a deficit or new
+          tokens.</li>
+        <li><strong>No vote on emission.</strong> The emission schedule is subject to no governance.
+          Voting power held by locked tokens would let holders decide to cut the pay of active
+          players — an institutionalised conflict of interest, and one that can be bought. A frozen
+          rule draws its value from the <em>impossibility</em> of changing it.</li>
+      </ul>
+
+      <h3 id="currencies">6.2 Two currencies, two roles</h3>
+      <div class="tablewrap"><table>
+        <thead><tr><th></th><th>Role</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Gold</strong></td><td>Everyday currency — earned through normal gameplay. Mine upkeep is paid in <strong>resources the colony produces</strong>: emberwood first, then materials and wages above certain Strike thresholds (section 6.1).</td></tr>
+          <tr><td><strong>CAIRN</strong></td><td>Progression currency — reserved for major unlocks (picks, Thrift tempering, tribute), never consumed continuously.</td></tr>
+        </tbody>
+      </table></div>
+      <p>
+        This split limits constant pressure on CAIRN: the token is spent in meaningful steps, not
+        nibbled away by daily micro-transactions.
+      </p>
+      <p>
+        <strong>Gold ↔ CAIRN bridge</strong> — no fixed conversion rate. The exchange goes through
+        the in-game marketplace (section 7), a gold-rich player selling surplus to another for CAIRN.
+        It reuses existing infrastructure instead of inventing a separate mechanism.
+      </p>
+
+      <h3 id="expeditions">6.3 Bandit camps, marble and the Explorer</h3>
+      <ul>
+        <li><strong>Bandit camps</strong> (1 to 2 per map) — cleared by the player to unlock access
+          to an exploration zone. A gameplay challenge, with no financial stake.</li>
+        <li><strong>Marble</strong> — the resource gathered after clearing, used to build the
+          Explorer.</li>
+        <li><strong>Explorer</strong> — sent on missions (costing marble and time, no CAIRN to
+          dispatch); <strong>never a total failure</strong>, always returning loot in variable
+          quantity.</li>
+        <li><strong>Loot</strong> — exclusively <strong>rare, non-monetisable resources</strong>,
+          never CAIRN directly, used to improve mine efficiency (section 6.1) or to build and
+          upgrade.</li>
+        <li><strong>Several Explorer levels</strong>, unlocked through the CAIRN skill tree: access
+          to higher-tier missions with larger and rarer loot.</li>
+      </ul>
+      <p>
+        Randomness applies only to intermediate <em>crafting ingredients</em>; CAIRN itself is never
+        subject to a draw — see section 12.
+      </p>
+
+      <h3>6.4 Other sources</h3>
+      <div class="tablewrap"><table>
+        <thead><tr><th>Source</th><th>Mechanism</th></tr></thead>
+        <tbody>
+          <tr><td>Active presence</td><td>A small generation bonus conditioned on a real player action within the period, to limit idle accounts generating passively.</td></tr>
+        </tbody>
+      </table></div>
+    </section>
+
+    <!-- ---------------- 7. SINKS ---------------- -->
+    <section>
+      <h2 id="sinks">7. Economic sinks</h2>
+      <div class="tablewrap"><table>
+        <thead><tr><th>Sink</th><th>Mechanism</th></tr></thead>
+        <tbody>
+          <tr><td>Mine upkeep</td><td><strong>In colony-produced resources</strong> (emberwood, then stone, planks, ingots and wages depending on Strike), never in CAIRN — proportional to <strong>added</strong> Strike, reduced by Thrift (diamonds, comfort), never below the physical floor.</td></tr>
+          <tr><td>Mining capital purchases</td><td><strong>In CAIRN</strong> — picks, Thrift tempering, tribute; fixed and known cost (section 6.1), recycled 75% to the reserve and 25% burned.</td></tr>
+          <tr><td>Marketplace fees</td><td>5% on player-to-player trades (items, gold ↔ CAIRN), half burned permanently, half to treasury.</td></tr>
+          <tr><td>Prestige sink</td><td>Rare cosmetics and high-end territorial works, to absorb the accumulated wealth of the most advanced players.</td></tr>
+        </tbody>
+      </table></div>
+    </section>
+
+    <!-- ---------------- 8. GOVERNANCE ---------------- -->
+    <section>
+      <h2 id="governance">8. Governance — veCAIRN (roadmap)</h2>
+      <ul>
+        <li><strong>Phase 1 (launch)</strong> — simple staking: lock and yield, no governance vote,
+          capped in total volume to limit exposure during the running-in period.</li>
+        <li><strong>Phase 2</strong> — full veCAIRN: chosen lock duration (3 to 24 months), governance
+          power <strong>decaying linearly</strong> to expiry (unlike models where power is acquired
+          for life, which would unfairly favour the earliest stakers over newcomers), early-exit
+          penalty.</li>
+        <li><strong>What governance will NEVER cover</strong> — the emission schedule (section 6.1).
+          Letting locked tokens vote on the pay of active players would institutionalise a conflict
+          of interest, and it could be bought. Governance covers fees, seasons, new resources and
+          content — not what miners receive.</li>
+        <li>Yield comes from <strong>real fees generated by game activity</strong> (marketplace,
+          territory), never from emission created for the occasion.</li>
+        <li><strong>Claim window</strong> — staking rewards must be claimed within a set period (e.g.
+          4 weeks) after they are made available. Past that, unclaimed amounts are
+          <strong>burned</strong>, which avoids an indefinite build-up of outstanding claims and adds
+          a further sink.</li>
+      </ul>
+    </section>
+
+    <!-- ---------------- 9. FUNDING ---------------- -->
+    <section>
+      <h2 id="funding">9. Funding and transparency</h2>
+      <ul>
+        <li>The project raises no initial liquidity: it is formed organically by the first buyers
+          through the bonding curve — <strong>no privileged team purchase on the curve</strong>,
+          entirely organic growth. The team share is the one in section 3.1: <strong>5%, declared
+          before launch and locked on-chain</strong>, never acquired at buyers' expense.</li>
+        <li>Revenue comes from transaction fees generated by the token's trading activity, claimed at
+          regular intervals (every 15 days), plus the fees of the locked liquidity pool.</li>
+        <li><strong>Spending principle: the project spends only what it has produced.</strong> No
+          expense is committed from personal funds or in anticipation of future revenue — every line
+          item is funded by fees already collected.</li>
+        <li>Each fee claim is a public, verifiable transaction on Solana, announced on the official
+          channels.</li>
+        <li><strong>Public burn tracking</strong> — a monthly summary (amount burned, cumulative,
+          percentage of total supply) is published on the official channels. The data is already
+          continuously verifiable on-chain; this summary simply makes it readable without consulting
+          an explorer yourself.</li>
+      </ul>
+
+      <h3>9.0 Sliding split of creator fees</h3>
+      <p>
+        The team's share automatically decreases as monthly revenue grows — the more the project
+        succeeds, the larger the share reinvested into it:
+      </p>
+      <div class="tablewrap"><table>
+        <thead><tr><th>Monthly revenue (total creator fees)</th><th>Team</th><th>Infrastructure</th><th>Treasury</th></tr></thead>
+        <tbody>
+          <tr><td>&lt; $500/month</td><td>50%</td><td>25%</td><td>25%</td></tr>
+          <tr><td>$500 – $2,000/month</td><td>40%</td><td>25%</td><td>35%</td></tr>
+          <tr><td>&gt; $2,000/month</td><td>30%</td><td>20%</td><td>50%</td></tr>
+        </tbody>
+      </table></div>
+      <p>
+        <strong>Rationale.</strong> Early on, when the project is fragile and the risk rests entirely
+        on one person, the team share stays high — a few dozen dollars a month does not justify
+        giving half of it to treasury. Once the project is established and profitable, priority
+        shifts to reinvestment (audit, development, marketing) rather than personal pay.
+      </p>
+
+      <h3>9.0.1 First Infrastructure spend — the public token listing</h3>
+      <p>
+        A correctly indexed token with <strong>no logo, no description and no link to the site</strong>
+        is indistinguishable, on aggregators, from the thousands of launches with no project behind
+        them. Pool indexing is automatic and free; displaying the project's information is not always.
+      </p>
+      <p>
+        <strong>Rule:</strong> as soon as the cumulative <strong>Infrastructure</strong> share reaches
+        the required amount, it funds <strong>first</strong> the update of the public token listing —
+        logo, description, official site, socials, <strong>and the declaration of locked-supply
+        wallets</strong> (emission reserve and team share), so that the displayed market cap reflects
+        the supply actually in circulation.
+      </p>
+      <p><strong>The order is always the same: free first, paid only if a gap remains.</strong></p>
+      <ol>
+        <li><strong>Free route, engaged from launch</strong> — several aggregators accept a project
+          information update <strong>at no cost</strong>, within a few days, provided the official
+          site is online and the information is publicly verifiable. This is the default route, and
+          it is always taken.</li>
+        <li><strong>Paid route, conditional</strong> — engaged <strong>only</strong> on platforms
+          where, after the free route, the listing would remain empty. Never for convenience, never
+          for speed.</li>
+      </ol>
+      <ul>
+        <li><strong>Never in anticipation</strong> — per the principle in section 9, the expense is
+          committed only once the corresponding fees have actually been collected.</li>
+        <li><strong>One-off spend</strong>, published like any treasury operation.</li>
+      </ul>
+      <p>
+        Prerequisite before any submission, free or paid: <strong>the official site must be online,
+        the official channels reachable, and the information publicly verifiable.</strong> A
+        submission whose links do not respond is rejected.
+      </p>
+      <p>
+        <strong>Why this comes first.</strong> Without it, the locks described in section 3.1 — 25% of
+        supply immobilised — would remain <strong>invisible</strong> on the page most people actually
+        look at, and the displayed market cap would be overstated by that much. A commitment nobody
+        can see is worth nothing.
+      </p>
+      <p>
+        <strong>What this does not cover:</strong> aggregators' paid promotional slots. They buy
+        attention, not credibility, and observation of comparable projects shows they retain nobody.
+        The project's visibility budget remains the quality of the game.
+      </p>
+
+      <h3>9.1 Wallet architecture</h3>
+      <div class="tablewrap"><table>
+        <thead><tr><th>Wallet</th><th>Role</th><th>Type</th></tr></thead>
+        <tbody>
+          <tr><td>Launch creator</td><td>Token creation, claiming trading fees and locked-pool fees</td><td>Hot (operational)</td></tr>
+          <tr><td>Team</td><td>Compensation (sliding share, 9.0); <strong>also receives the locked allocation of 3.1 as it unlocks</strong></td><td>Cold wallet</td></tr>
+          <tr><td>Infrastructure</td><td>Hosting, servers, and the public token listing (9.0.1)</td><td>Hot (regular spending)</td></tr>
+          <tr><td>Project treasury</td><td>Reserve, future development; also receives the non-burned share of marketplace fees</td><td>Cold wallet or multisig</td></tr>
+          <tr><td>Marketplace program deploy authority</td><td>Deployment and upgrades of the smart contract</td><td>Separate cold wallet, the most protected</td></tr>
+        </tbody>
+      </table></div>
+      <p>
+        All addresses are published and pinned on the official channels at launch, so that every
+        movement of funds stays publicly verifiable.
+      </p>
+
+      <h3>9.2 Marketplace program authority</h3>
+      <p>
+        The program's upgrade authority and its internal configuration authority
+        (<code>config.authority</code>) remain permanently active — the game and its mechanics evolve
+        over time (content, fixes), and a permanently frozen contract would prevent any future
+        correction.
+      </p>
+      <ul>
+        <li>Held on a <strong>cold wallet (Nano)</strong>, never on the day-to-day development
+          wallet.</li>
+        <li>Solo-run project: no multisig planned at this stage.</li>
+        <li>Two instructions allow economic parameters to be adjusted without a full redeploy — see
+          section 10 for the detail and the associated guardrails.</li>
+      </ul>
+    </section>
+
+    <!-- ---------------- 10. ADJUSTMENT ---------------- -->
+    <section>
+      <h2 id="adjustment">10. Adjustment and incident response</h2>
+      <p>
+        A living project must be able to correct an observed imbalance — whether spotted by the team
+        or reported by the community. The question is not <em>whether</em> an adjustment will be
+        needed, but <em>how</em> it is framed so it never opens the door to arbitrary rule changes.
+      </p>
+      <div class="tablewrap"><table>
+        <thead><tr><th>Type of problem</th><th>Mechanism</th><th>Delay</th></tr></thead>
+        <tbody>
+          <tr><td>Gameplay imbalance (tier cost, reward step, difficulty)</td><td>Ordinary game patch, no on-chain contract involved</td><td>Immediate</td></tr>
+          <tr><td>On-chain economic parameter (marketplace fee rate, burn/treasury split)</td><td><code>update_config</code></td><td>Publicly announced, applied after a <strong>48-hour timelock</strong> — anyone may trigger the application once the delay has elapsed; the authority can neither accelerate it nor cancel it silently</td></tr>
+          <tr><td>Emergency (active exploit, abnormal behaviour)</td><td><code>pause</code> / <code>unpause</code></td><td>Immediate, no delay — temporarily blocks marketplace purchases while the issue is fixed</td></tr>
+          <tr><td>Economy running too hot (general emission)</td><td><strong>No mechanism — deliberately.</strong> Emission decays on its own (2% of the remaining balance) and never depends on player count: it cannot run away</td><td>—</td></tr>
+        </tbody>
+      </table></div>
+
+      <p><strong>Guardrails in place:</strong></p>
+      <ul>
+        <li>The strict bounds set at initialisation (fees capped at 20% maximum) apply to
+          <code>update_config</code> as well.</li>
+        <li>The 48-hour timelock makes every parameter change publicly visible before it takes effect
+          — no surprise changes.</li>
+        <li><code>pause</code> affects only purchases (<code>buy_item</code>); existing listings stay
+          visible and nothing is destroyed.</li>
+        <li>Every change proposed, change applied, or pause triggered emits a public on-chain event,
+          verifiable by anyone.</li>
+      </ul>
+
+      <div class="note">
+        <p>
+          <strong>What this process does not eliminate.</strong> These instructions give real power to
+          the program authority. This is not a fully immutable contract — it is a stated trade-off
+          between operational safety (being able to react to a bug or an imbalance) and decentralised
+          trust (no instant or hidden change). Being transparent about the existence and the limits of
+          that power is part of the trust principle, not a mitigation of it.
+        </p>
+      </div>
+    </section>
+
+    <!-- ---------------- 11. MODEL ---------------- -->
+    <section>
+      <h2 id="model">11. Economic model</h2>
+      <p>
+        Emission pays out <strong>2% of what remains</strong> in the reserve each month. This single
+        rule needs no simulation to be understood: it is geometric decay, and its properties read
+        straight off.
+      </p>
+      <div class="tablewrap"><table>
+        <thead><tr><th>Horizon</th><th>Reserve remaining</th><th>Emitted that month</th></tr></thead>
+        <tbody>
+          <tr><td>Launch</td><td>200,000,000</td><td>4,000,000</td></tr>
+          <tr><td>1 year</td><td>156,900,000 (78%)</td><td>3,200,000</td></tr>
+          <tr><td>2 years</td><td>123,200,000 (62%)</td><td>2,500,000</td></tr>
+          <tr><td>5 years</td><td>59,500,000 (30%)</td><td>1,200,000</td></tr>
+          <tr><td>10 years</td><td>17,700,000 (9%)</td><td>361,000</td></tr>
+        </tbody>
+      </table></div>
+      <p>Three consequences, and they hold by construction rather than by forecast:</p>
+      <ul>
+        <li><strong>No cliff.</strong> The rate falls 2% per month, continuously. A stepped scheme
+          (halving) cuts yield in half overnight; here the monthly fall is imperceptible over a play
+          session.</li>
+        <li><strong>The reserve never runs out.</strong> 0.98<sup>n</sup> stays strictly positive:
+          there is no date on which the game stops paying. Its half-life is <strong>34 months</strong>.</li>
+        <li><strong>Total emitted is bounded in advance</strong> by the reserve's 200,000,000 — 20% of
+          supply — and that cap is the one in section 3.1, verifiable on-chain from the first block.</li>
+      </ul>
+      <p>
+        What the rate does <em>not</em> do: it depends neither on player count nor on their activity.
+        Twice as many miners do not produce twice as much CAIRN — they share the same pot, more
+        thinly. Difficulty therefore rises on its own, as in Bitcoin mining, and no crowd can
+        accelerate token release.
+      </p>
+      <p class="muted small">
+        These figures are reproducible with the repository's own tools, which read the same constants
+        as the game and the on-chain program — never a copy.
+      </p>
+    </section>
+
+    <!-- ---------------- 12. LEGAL ---------------- -->
+    <section>
+      <h2 id="legal">12. Legal considerations</h2>
+      <p>
+        The game's design deliberately excludes any mechanism combining, at once, a financial stake, a
+        random outcome and a monetisable gain — a combination which, in several jurisdictions
+        (including France), would qualify the activity as gambling subject to a specific licensing
+        regime.
+      </p>
+      <ul>
+        <li>Expedition and Explorer rewards are structured so that <strong>randomness applies only to
+          non-monetisable resources</strong> (crafting materials with no direct exchange value) —
+          never to CAIRN itself.</li>
+        <li>Everything touching CAIRN (unlocks, upkeep, emission) stays <strong>deterministic</strong>,
+          at a cost and amount known in advance.</li>
+      </ul>
+      <p class="muted small">
+        This document does not constitute legal advice. Verification by a qualified professional, in
+        each targeted jurisdiction, remains necessary before any public launch.
+      </p>
+    </section>
+
+    <!-- ---------------- 13. RISKS ---------------- -->
+    <section>
+      <h2 id="risks">13. Disclaimer and risks</h2>
+      <p>
+        Crypto-assets are risk instruments subject to high volatility. Nothing in this document
+        constitutes investment, legal or tax advice. CAIRN is designed as a utility token for use
+        inside the game's ecosystem — it is neither designed nor intended to function as a security
+        or an investment. Participation should be motivated by interest in the game and its world,
+        not by an expectation of guaranteed gain.
+      </p>
+      <p>By holding or using CAIRN, everyone acknowledges in particular the following risks:</p>
+      <ul>
+        <li><strong>Technical risk</strong> — the game, the on-chain programs and all associated
+          systems may contain bugs or vulnerabilities capable of causing partial or total loss of
+          tokens or items, sometimes irreversibly.</li>
+        <li><strong>Network risk</strong> — the project depends on Solana functioning correctly and on
+          third-party providers (RPC, launchpad, wallets) over which it has no direct control.</li>
+        <li><strong>Economic risk</strong> — emission, sink and marketplace mechanisms may evolve or
+          fail to behave exactly as modelled; no guarantee is given as to the token's future value,
+          utility or liquidity.</li>
+        <li><strong>Personal security risk</strong> — custody of private keys and recovery phrases is
+          each user's sole responsibility; their loss or theft causes definitive and unrecoverable
+          loss of the assets concerned.</li>
+        <li><strong>Regulatory risk</strong> — the legal status of crypto-assets keeps evolving and
+          varies by jurisdiction; future regulatory action could affect access to, use of, or the
+          legal status of the token.</li>
+        <li><strong>Tax risk</strong> — each user is solely responsible for determining and meeting
+          their own tax obligations related to acquiring, holding or disposing of the token.</li>
+        <li><strong>No listing guarantee</strong> — nothing guarantees that the token will remain
+          listed or tradeable on any platform over time.</li>
+      </ul>
+      <p>
+        This document may be revised to reflect the project's evolution (clarifications, corrections,
+        new features). Any revision touching an on-chain economic parameter remains subject to the
+        process described in section 10 (public announcement, 48-hour delay before application) — this
+        document can never be used to bypass that process. Revisions are published on the official
+        channels with a change history.
+      </p>
+    </section>
+
+    <!-- ---------------- 14. REVISIONS ---------------- -->
+    <section>
+      <h2 id="revisions">14. Revision history</h2>
+      <div class="tablewrap"><table>
+        <thead><tr><th>Date</th><th>Section</th><th>Change</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>16/08/2026</td><td>3, 6.1</td>
+            <td><strong>Mint authority</strong> — the document said &ldquo;revoked after launch&rdquo;;
+              the launch configuration revokes mint <em>and</em> freeze <strong>at creation</strong>.
+              Reality was stronger than the promise.<br>
+              <strong>Charcoal burners</strong> — &ldquo;nearly 460&rdquo; corrected to &ldquo;more
+              than 520&rdquo;. The burner recipe went from 24 to 36 ticks on 11/08 (2 logs → 1
+              emberwood, recalibrated against what a road actually delivers); the published figure
+              still followed the old rate. The 15/08 revision re-checked the section's
+              <em>constants</em> one by one, but this is a <em>derived</em> figure and slipped
+              through. It works in the argument's favour: more are needed, not fewer.</td>
+          </tr>
+          <tr>
+            <td>15/08/2026</td><td>6.1, 6.2, 7</td>
+            <td><strong>Fuel</strong> — the document said &ldquo;coal&rdquo; where the game burns
+              <strong>emberwood</strong> (charcoal, produced by the charcoal burner, dedicated to the
+              monument and renewable). Mountain coal stays with the smelters. Corrected in five
+              places, and the distinction is now explained rather than implied. The rest of section
+              6.1 was re-verified line by line against the game's balance file: the fourteen published
+              values are exact.</td>
+          </tr>
+          <tr>
+            <td>09/08/2026</td><td>6.1</td>
+            <td><strong>Picks</strong> — the three tiers and the four-slot limit are replaced by a
+              <strong>single fungible pick</strong>: +1 Strike for 25 CAIRN, unlimited in number. The
+              awakened floor moves from 40 to <strong>57</strong>, set so that awakening the mine never
+              lowers a player's income.</td>
+          </tr>
+          <tr>
+            <td>09/08/2026</td><td>6.1, 5</td>
+            <td><strong>Individual collection cap → network Strike floor.</strong> Same goal — stop an
+              empty network from draining the reserve — reached through the denominator rather than
+              through the player. A cap bites on the diligent player; a floor takes nothing from
+              anyone and needs no period tracking.</td>
+          </tr>
+          <tr>
+            <td>09/08/2026</td><td>6.1, 6.2, 7</td>
+            <td><strong>Upkeep</strong> — the document said &ldquo;in coal, never in gold&rdquo;.
+              Inaccurate: above 800 added Strike, <strong>crew wages are paid in coins</strong>. The
+              full basket and its thresholds are now published.</td>
+          </tr>
+          <tr>
+            <td>09/08/2026</td><td>6.1</td>
+            <td><strong>Diamonds</strong> — &ldquo;3 gem slots&rdquo; replaced by an
+              <strong>unlimited number with diminishing returns</strong>, which is what the game
+              applies.</td>
+          </tr>
+        </tbody>
+      </table></div>
+      <p class="muted small">
+        All these corrections align the document with the game's balance file, which is authoritative.
+        The figures published on this site are generated from that same file, never retyped.
+      </p>
+    </section>
+
+  </main>
+</div>
+
+<footer>
+  <div class="wrap foot">
+    <span>Cairnheim — CAIRN whitepaper, pre-launch document.</span>
+    <span><a href="/">Home</a> · <a href="#vision">Back to top</a></span>
+  </div>
+</footer>
+
+<script src="/assets/js/site.js?v=4"></script>
+</body>
+</html>

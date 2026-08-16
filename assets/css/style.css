@@ -264,6 +264,12 @@ footer {
 .doc-body li { margin-bottom: .45em; }
 .doc-body li::marker { color: var(--gold); }
 .doc-body code { font-family: var(--mono); font-size: .88em; background: var(--paper-hi); border: 1px solid var(--line); border-radius: 5px; padding: 1px 6px; }
+/* Bloc de code (formules du whitepaper). `overflow-x` est OBLIGATOIRE : une ligne monospace ne se
+   coupe pas, et sans conteneur qui defile elle elargit la PAGE ENTIERE — mesure sur mobile, 798 px
+   pour un ecran de 375. Le double `code` neutralise le fond et la bordure de la regle ci-dessus,
+   qui est faite pour du code INLINE et ferait un cadre dans un cadre. */
+.doc-body pre { overflow-x: auto; background: var(--paper-hi); border: 1px solid var(--line); border-radius: var(--radius); padding: 12px 14px; margin: 0 0 1.6em; }
+.doc-body pre code { background: none; border: 0; padding: 0; font-size: .86em; }
 
 .tablewrap { overflow-x: auto; border: 1px solid var(--line); border-radius: var(--radius); margin: 0 0 1.6em; background: var(--paper-card); box-shadow: var(--shadow-s); }
 table { border-collapse: collapse; width: 100%; font-size: .92rem; min-width: 520px; }

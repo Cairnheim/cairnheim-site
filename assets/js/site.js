@@ -21,7 +21,9 @@ const LINKS = {
   discord: '',    // ex. 'https://discord.gg/xxxx'
   telegram: '',   // ex. 'https://t.me/cairnheim'
   github: '',     // dépôt public du site, si tu veux le montrer
-  whitepaper: '', // le §6.1 est à jour depuis le 15/08 (pioche fongible, emberwood) — reste à héberger le PDF
+  whitepaper: 'https://cairnheim.com/whitepaper', // page du site, pas un PDF : un PDF se telecharge
+  //            et circule ensuite dans une version perimee, alors qu'une page se corrige. `cleanUrls`
+  //            sert /whitepaper sans l'extension.
 };
 
 const LINK_META = {
