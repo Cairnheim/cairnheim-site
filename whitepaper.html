@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Cairnheim — CAIRN Whitepaper</title>
-<meta name="description" content="The CAIRN token: fixed supply, fair launch, a mining model calibrated like Bitcoin difficulty, and the guardrails written into the on-chain programs.">
+<meta name="description" content="The CAIRN token: fixed supply, no private sale, a mining model calibrated like Bitcoin difficulty, and the guardrails written into the on-chain programs.">
 <meta name="theme-color" content="#f2e6cf">
 <link rel="icon" href="/assets/img/cairn.webp">
 <link rel="stylesheet" href="/assets/css/style.css?v=6">
@@ -42,16 +42,16 @@
     <a href="#mine">6.1 The mine</a>
     <a href="#currencies">6.2 Two currencies</a>
     <a href="#expeditions">6.3 Expeditions</a>
+    <a href="#other-sources">6.4 Other sources</a>
     <strong>Economy</strong>
     <a href="#sinks">7. Sinks</a>
-    <a href="#governance">8. Governance</a>
-    <a href="#funding">9. Funding &amp; transparency</a>
-    <a href="#adjustment">10. Adjustments &amp; incidents</a>
-    <a href="#model">11. Economic model</a>
+    <a href="#funding">8. Funding &amp; transparency</a>
+    <a href="#adjustment">9. Adjustments &amp; incidents</a>
+    <a href="#model">10. Economic model</a>
     <strong>Legal</strong>
-    <a href="#legal">12. Legal considerations</a>
-    <a href="#risks">13. Risks</a>
-    <a href="#revisions">14. Revision history</a>
+    <a href="#legal">11. Legal considerations</a>
+    <a href="#risks">12. Risks</a>
+    <a href="#revisions">13. Revision history</a>
   </aside>
 
   <!-- ============================ BODY ============================ -->
@@ -78,7 +78,7 @@
       </p>
       <p class="muted small">
         This document is not legal advice and has not yet been reviewed by a qualified professional.
-        See sections 12 and 13.
+        See sections 11 and 12.
       </p>
     </div>
 
@@ -117,9 +117,9 @@
           the first block, with no prior private sale.</li>
         <li>Automatic migration to a <strong>DAMM v2</strong> pool once the threshold is reached,
           with <strong>liquidity locked at 100%</strong>.</li>
-        <li><strong>Fair launch</strong> — no private sale, no allocation reserved for investors or
-          a centralised exchange, no privileged team purchase on the curve. Every buyer enters on
-          the same terms from the first block.</li>
+        <li><strong>No private sale</strong> — no team allocation on the curve, no allocation
+          reserved for investors or a centralised exchange, no privileged team purchase. Every buyer
+          enters on the same terms from the first block.</li>
       </ul>
 
       <h3 id="supply">3.1 Supply distribution</h3>
@@ -282,7 +282,7 @@
       </p>
       <p>
         What this floor prevents is not excess income — a few dozen players on an empty network would
-        earn pennies anyway while the market cap is small. It prevents an <strong>supply
+        earn pennies anyway while the market cap is small. It prevents a <strong>supply
         overhang</strong>: without it, a handful of accounts would accumulate several percent of
         total supply within a year, acquired when the token was worth nothing, and that claim would
         land on the market the day it was worth something. This is the mechanism that collapsed most
@@ -438,10 +438,10 @@
       </ul>
       <p>
         Randomness applies only to intermediate <em>crafting ingredients</em>; CAIRN itself is never
-        subject to a draw — see section 12.
+        subject to a draw — see section 11.
       </p>
 
-      <h3>6.4 Other sources</h3>
+      <h3 id="other-sources">6.4 Other sources</h3>
       <div class="tablewrap"><table>
         <thead><tr><th>Source</th><th>Mechanism</th></tr></thead>
         <tbody>
@@ -464,32 +464,9 @@
       </table></div>
     </section>
 
-    <!-- ---------------- 8. GOVERNANCE ---------------- -->
+    <!-- ---------------- 8. FUNDING ---------------- -->
     <section>
-      <h2 id="governance">8. Governance — veCAIRN (roadmap)</h2>
-      <ul>
-        <li><strong>Phase 1 (launch)</strong> — simple staking: lock and yield, no governance vote,
-          capped in total volume to limit exposure during the running-in period.</li>
-        <li><strong>Phase 2</strong> — full veCAIRN: chosen lock duration (3 to 24 months), governance
-          power <strong>decaying linearly</strong> to expiry (unlike models where power is acquired
-          for life, which would unfairly favour the earliest stakers over newcomers), early-exit
-          penalty.</li>
-        <li><strong>What governance will NEVER cover</strong> — the emission schedule (section 6.1).
-          Letting locked tokens vote on the pay of active players would institutionalise a conflict
-          of interest, and it could be bought. Governance covers fees, seasons, new resources and
-          content — not what miners receive.</li>
-        <li>Yield comes from <strong>real fees generated by game activity</strong> (marketplace,
-          territory), never from emission created for the occasion.</li>
-        <li><strong>Claim window</strong> — staking rewards must be claimed within a set period (e.g.
-          4 weeks) after they are made available. Past that, unclaimed amounts are
-          <strong>burned</strong>, which avoids an indefinite build-up of outstanding claims and adds
-          a further sink.</li>
-      </ul>
-    </section>
-
-    <!-- ---------------- 9. FUNDING ---------------- -->
-    <section>
-      <h2 id="funding">9. Funding and transparency</h2>
+      <h2 id="funding">8. Funding and transparency</h2>
       <ul>
         <li>The project raises no initial liquidity: it is formed organically by the first buyers
           through the bonding curve — <strong>no privileged team purchase on the curve</strong>,
@@ -497,6 +474,12 @@
           before launch and locked on-chain</strong>, never acquired at buyers' expense.</li>
         <li>Revenue comes from transaction fees generated by the token's trading activity, claimed at
           regular intervals (every 15 days), plus the fees of the locked liquidity pool.</li>
+        <li><strong>The project does not collect the entirety of these fees, and this must be said.</strong>
+          Meteora's program takes a <strong>20% protocol fee</strong> on every trade; the remaining 80%
+          returns to the liquidity pool, shared between partner and creator. Our configuration sets
+          <code>creatorTradingFeePercentage: 100</code>, both of those roles being held by the project:
+          it therefore collects <strong>80% of trading fees, never 100%</strong>. The split in section
+          8.0 below applies to those 80%.</li>
         <li><strong>Spending principle: the project spends only what it has produced.</strong> No
           expense is committed from personal funds or in anticipation of future revenue — every line
           item is funded by fees already collected.</li>
@@ -508,7 +491,7 @@
           an explorer yourself.</li>
       </ul>
 
-      <h3>9.0 Sliding split of creator fees</h3>
+      <h3>8.0 Sliding split of creator fees</h3>
       <p>
         The team's share automatically decreases as monthly revenue grows — the more the project
         succeeds, the larger the share reinvested into it:
@@ -528,7 +511,7 @@
         shifts to reinvestment (audit, development, marketing) rather than personal pay.
       </p>
 
-      <h3>9.0.1 First Infrastructure spend — the public token listing</h3>
+      <h3>8.0.1 First Infrastructure spend — the public token listing</h3>
       <p>
         A correctly indexed token with <strong>no logo, no description and no link to the site</strong>
         is indistinguishable, on aggregators, from the thousands of launches with no project behind
@@ -552,7 +535,7 @@
           for speed.</li>
       </ol>
       <ul>
-        <li><strong>Never in anticipation</strong> — per the principle in section 9, the expense is
+        <li><strong>Never in anticipation</strong> — per the principle in section 8, the expense is
           committed only once the corresponding fees have actually been collected.</li>
         <li><strong>One-off spend</strong>, published like any treasury operation.</li>
       </ul>
@@ -573,13 +556,13 @@
         The project's visibility budget remains the quality of the game.
       </p>
 
-      <h3>9.1 Wallet architecture</h3>
+      <h3>8.1 Wallet architecture</h3>
       <div class="tablewrap"><table>
         <thead><tr><th>Wallet</th><th>Role</th><th>Type</th></tr></thead>
         <tbody>
           <tr><td>Launch creator</td><td>Token creation, claiming trading fees and locked-pool fees</td><td>Hot (operational)</td></tr>
-          <tr><td>Team</td><td>Compensation (sliding share, 9.0); <strong>also receives the locked allocation of 3.1 as it unlocks</strong></td><td>Cold wallet</td></tr>
-          <tr><td>Infrastructure</td><td>Hosting, servers, and the public token listing (9.0.1)</td><td>Hot (regular spending)</td></tr>
+          <tr><td>Team</td><td>Compensation (sliding share, 8.0); <strong>also receives the locked allocation of 3.1 as it unlocks</strong></td><td>Cold wallet</td></tr>
+          <tr><td>Infrastructure</td><td>Hosting, servers, and the public token listing (8.0.1)</td><td>Hot (regular spending)</td></tr>
           <tr><td>Project treasury</td><td>Reserve, future development; also receives the non-burned share of marketplace fees</td><td>Cold wallet or multisig</td></tr>
           <tr><td>Marketplace program deploy authority</td><td>Deployment and upgrades of the smart contract</td><td>Separate cold wallet, the most protected</td></tr>
         </tbody>
@@ -589,7 +572,7 @@
         movement of funds stays publicly verifiable.
       </p>
 
-      <h3>9.2 Marketplace program authority</h3>
+      <h3>8.2 Marketplace program authority</h3>
       <p>
         The program's upgrade authority and its internal configuration authority
         (<code>config.authority</code>) remain permanently active — the game and its mechanics evolve
@@ -601,13 +584,13 @@
           wallet.</li>
         <li>Solo-run project: no multisig planned at this stage.</li>
         <li>Two instructions allow economic parameters to be adjusted without a full redeploy — see
-          section 10 for the detail and the associated guardrails.</li>
+          section 9 for the detail and the associated guardrails.</li>
       </ul>
     </section>
 
-    <!-- ---------------- 10. ADJUSTMENT ---------------- -->
+    <!-- ---------------- 9. ADJUSTMENT ---------------- -->
     <section>
-      <h2 id="adjustment">10. Adjustment and incident response</h2>
+      <h2 id="adjustment">9. Adjustment and incident response</h2>
       <p>
         A living project must be able to correct an observed imbalance — whether spotted by the team
         or reported by the community. The question is not <em>whether</em> an adjustment will be
@@ -646,9 +629,9 @@
       </div>
     </section>
 
-    <!-- ---------------- 11. MODEL ---------------- -->
+    <!-- ---------------- 10. MODEL ---------------- -->
     <section>
-      <h2 id="model">11. Economic model</h2>
+      <h2 id="model">10. Economic model</h2>
       <p>
         Emission pays out <strong>2% of what remains</strong> in the reserve each month. This single
         rule needs no simulation to be understood: it is geometric decay, and its properties read
@@ -686,9 +669,9 @@
       </p>
     </section>
 
-    <!-- ---------------- 12. LEGAL ---------------- -->
+    <!-- ---------------- 11. LEGAL ---------------- -->
     <section>
-      <h2 id="legal">12. Legal considerations</h2>
+      <h2 id="legal">11. Legal considerations</h2>
       <p>
         The game's design deliberately excludes any mechanism combining, at once, a financial stake, a
         random outcome and a monetisable gain — a combination which, in several jurisdictions
@@ -708,9 +691,9 @@
       </p>
     </section>
 
-    <!-- ---------------- 13. RISKS ---------------- -->
+    <!-- ---------------- 12. RISKS ---------------- -->
     <section>
-      <h2 id="risks">13. Disclaimer and risks</h2>
+      <h2 id="risks">12. Disclaimer and risks</h2>
       <p>
         Crypto-assets are risk instruments subject to high volatility. Nothing in this document
         constitutes investment, legal or tax advice. CAIRN is designed as a utility token for use
@@ -742,15 +725,15 @@
       <p>
         This document may be revised to reflect the project's evolution (clarifications, corrections,
         new features). Any revision touching an on-chain economic parameter remains subject to the
-        process described in section 10 (public announcement, 48-hour delay before application) — this
+        process described in section 9 (public announcement, 48-hour delay before application) — this
         document can never be used to bypass that process. Revisions are published on the official
         channels with a change history.
       </p>
     </section>
 
-    <!-- ---------------- 14. REVISIONS ---------------- -->
+    <!-- ---------------- 13. REVISIONS ---------------- -->
     <section>
-      <h2 id="revisions">14. Revision history</h2>
+      <h2 id="revisions">13. Revision history</h2>
       <div class="tablewrap"><table>
         <thead><tr><th>Date</th><th>Section</th><th>Change</th></tr></thead>
         <tbody>

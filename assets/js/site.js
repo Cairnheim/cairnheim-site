@@ -181,7 +181,6 @@ const LINK_META = {
       <div class="co"><b id="o-day"></b><span>CAIRN / day</span></div>
       <div class="co"><b id="o-month"></b><span>CAIRN / month</span></div>
       <div class="co"><b id="o-cost"></b><span>CAIRN spent on picks</span></div>
-      <div class="co"><b id="o-back"></b><span>to earn it back</span></div>
     </div>
     <p class="muted small" id="c-note"></p>`;
 
@@ -219,12 +218,6 @@ const LINK_META = {
     q('#o-day').textContent = nf(parJour, parJour < 10 ? 2 : 0);
     q('#o-month').textContent = nf(parMois, 0);
     q('#o-cost').textContent = nf(cout);
-    // REMBOURSEMENT : seul le rendement IMPUTABLE AUX PIOCHES compte. Le socle gratuit rapporte de
-    // toute façon, qu'on achète ou non — le porter au crédit de l'achat surestimait le retour d'un
-    // facteur 1,57 au rig de référence (0,9 jour annoncé pour 1,4 réel).
-    const partPioches = strike > 0 ? (picks * T.pick.strike) / strike : 0;
-    const jourPioches = parJour * partPioches;
-    q('#o-back').textContent = cout === 0 ? '—' : (jourPioches > 0 ? nf(cout / jourPioches, 1) + ' days' : 'never');
 
     q('#c-note').innerHTML = `Emission is <b>${(100 * T.emission.tauxMensuel).toFixed(0)} %</b> of the remaining `
       + `reserve each month — ${nf(T.emission.reserve)} CAIRN at launch, so <b>${nf(mois)}</b> shared `
@@ -238,10 +231,10 @@ const LINK_META = {
         : '')
       + (panier.length
         ? ` <b>A pick is not paid once.</b> At this rig the shaft consumes <b>${panier.join(', ')}</b> every hour, `
-          + `for as long as you run it — coal first, then stone and planks past 150 added Strike, ingots past 400, `
+          + `for as long as you run it — emberwood first, then stone and planks past 150 added Strike, ingots past 400, `
           + `wages past 800. That bill, not the price, is what limits a rig.`
         : '')
-      + ` Thrift starts at <b>${T.thrift.start}</b> coal per hundred strikes and floors at <b>${T.thrift.floor}</b>. `
+      + ` Thrift starts at <b>${T.thrift.start}</b> emberwood per hundred strikes and floors at <b>${T.thrift.floor}</b>. `
       + `Figures generated from the game's own balance file on ${T.genere}.`;
   };
   el.addEventListener('input', maj);

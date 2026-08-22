@@ -196,7 +196,7 @@
       <p>
         A separate ordering decides which good jumps the queue at a saturated cairn. Gems, gold,
         coins and tools go first; bulk materials like stone and planks go last, on the grounds that
-        they can afford to wait. Full order, highest first:
+        they can afford to wait. A slice of that order, highest first:
       </p>
       <p class="muted small">
         diamond · platinum · gold ore · gold ingot · coin · axe · saw · pickaxe · scythe · rod ·
@@ -351,7 +351,7 @@
         are divided by at least the floor, however few miners are actually online — and whatever
         nobody claims is not redistributed, it <strong>stays in the reserve</strong> for the players
         who arrive later. It costs a regular player nothing; it stops the first fifty accounts from
-        quietly accumulating several percent of the supply while the token is still worth nothing.
+        quietly accumulating several percent of the supply before the token has any market value.
       </p>
       <h3>Thrift — the emberwood sink</h3>
       <p>
@@ -369,7 +369,7 @@
       </p>
       <p>
         <strong>Comfort</strong> closes the same gap, and it is free — the colony earns it by
-        building well. Between them, comfort alone reaches about 22 %; only diamonds go the rest of
+        building well. Between them, comfort alone reaches about 14 %; only diamonds go the rest of
         the way to the floor.
       </p>
       <div class="tablewrap"><table>
@@ -394,7 +394,7 @@
       <div class="tablewrap"><table>
         <thead><tr><th>Added Strike</th><th>Per hour, per 100 Strike</th><th>Why</th></tr></thead>
         <tbody>
-          <tr><td>from the first</td><td>40 coal, down to 12 with Thrift</td><td>the fire that drives the shaft</td></tr>
+          <tr><td>from the first</td><td>40 emberwood, down to 12 with Thrift</td><td>the fire that drives the shaft</td></tr>
           <tr><td>≥ 150</td><td>+ 70 stone, 14 planks</td><td>roads chewed up by the hauling; shoring as it descends</td></tr>
           <tr><td>≥ 400</td><td>+ 8 iron ingots, 6 copper ingots</td><td>tools worn out at the face; pipes for the pumps</td></tr>
           <tr><td>≥ 800</td><td>+ 5 coins</td><td>wages for the crew</td></tr>
@@ -484,7 +484,7 @@
           <tr><td>Palisade / watchtower</td><td>1 plank / 4 planks + 1 stone</td><td>—</td><td>Free placement, no road needed</td></tr>
           <tr><td>Charcoal burner</td><td>see in game</td><td>—</td><td>Turns logs into emberwood, the mine's fuel</td></tr>
           <tr><td>Platinum smelter</td><td>see in game</td><td>—</td><td>Expedition metal only</td></tr>
-          <tr><td>Corn farm · Chicken coop · Fish farm</td><td>see in game</td><td>—</td><td>Second food tier</td></tr>
+          <tr><td>Maize farm · Chicken coop · Fish farm</td><td>see in game</td><td>—</td><td>Second food tier</td></tr>
           <tr><td>Kitchen · Provisioner</td><td>see in game</td><td>—</td><td>Cooked meals, worth more than raw food</td></tr>
           <tr><td>Geologists' guild</td><td>see in game</td><td>—</td><td>Trains and sends geologists · 8 coins a survey</td></tr>
           <tr><td>Military school</td><td>see in game</td><td>—</td><td>Raises a general's troop cap: 24 basic, 48 premium</td></tr>
@@ -620,17 +620,10 @@
     <section>
       <h2 id="quests">Quests</h2>
       <p>A chain of objectives guides the early game. Each reward is a choice: materials to reinvest, or coins.</p>
-      <div class="tablewrap"><table>
-        <thead><tr><th>Objective</th><th>Materials</th><th>or Coins</th></tr></thead>
-        <tbody>
-          <tr><td>Chop 50 logs</td><td>10 planks</td><td>15</td></tr>
-          <tr><td>Saw 30 planks</td><td>10 stone</td><td>20</td></tr>
-          <tr><td>Build 3 houses</td><td>15 planks + 8 stone</td><td>25</td></tr>
-          <tr><td>Grow to 15 colonists</td><td>20 planks</td><td>30</td></tr>
-          <tr><td>Mint 20 coins</td><td>15 stone</td><td>40</td></tr>
-          <tr><td>Train 5 soldiers</td><td>25 planks + 15 stone</td><td>50</td></tr>
-        </tbody>
-      </table></div>
+      <p>
+        The full, live quest chain — six acts, eighteen objectives — is generated from the game's
+        balance file on the <a href="/guide.html">Guide</a> page, each with its exact reward.
+      </p>
     </section>
 
     <!-- ---------------- EXPEDITIONS ---------------- -->
