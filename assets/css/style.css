@@ -358,6 +358,17 @@ td img { width: 22px; height: 22px; object-fit: contain; display: inline-block; 
   border: 1px solid var(--line-strong); border-radius: 999px; font-size: 14.5px; font-weight: 600; text-decoration: none; }
 .links .lnk:hover { border-color: var(--accent); }
 
+/* Contrat officiel — bloc CA (section tokenomics) */
+.ca-note .ca-row { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin: 14px 0 12px; }
+.ca-note .ca { font-family: var(--mono); font-size: .95rem; font-weight: 600; color: var(--ink);
+  background: var(--paper-hi); border: 1px solid var(--line-strong); border-radius: 8px;
+  padding: 9px 12px; word-break: break-all; flex: 1 1 340px; user-select: all; }
+.ca-note .ca-copy { flex: 0 0 auto; }
+.ca-note .ca-copy.copied { border-color: var(--grass); color: var(--grass-deep); }
+.ca-links { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 12px; }
+.ca-links .btn { font-size: 14.5px; }
+.ca-verify { margin-bottom: 0; }
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .btn:hover { transform: none; }

@@ -287,3 +287,26 @@ const LINK_META = {
   addEventListener('resize', update);
   update();
 })();
+
+// Bouton « Copy » du contrat officiel. navigator.clipboard d'abord (autorisé par le CSP :
+// ce n'est pas une requête réseau), repli sur la sélection + execCommand si indisponible.
+(function copie() {
+  document.querySelectorAll('[data-copy]').forEach((btn) => {
+    btn.addEventListener('click', async () => {
+      const src = document.getElementById(btn.dataset.copy);
+      if (!src) return;
+      const txt = src.textContent.trim();
+      try {
+        await navigator.clipboard.writeText(txt);
+      } catch {
+        const r = document.createRange(); r.selectNodeContents(src);
+        const sel = getSelection(); sel.removeAllRanges(); sel.addRange(r);
+        try { document.execCommand('copy'); } catch { /* copie indisponible : la sélection reste, l'utilisateur fait Ctrl+C */ }
+        sel.removeAllRanges();
+      }
+      const old = btn.textContent;
+      btn.textContent = 'Copied'; btn.classList.add('copied');
+      setTimeout(() => { btn.textContent = old; btn.classList.remove('copied'); }, 1400);
+    });
+  });
+})();
