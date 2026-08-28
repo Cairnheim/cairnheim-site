@@ -61,7 +61,7 @@ const LINK_META = {
     a.removeAttribute('aria-disabled');
     a.removeAttribute('title');
     const label = a.querySelector('[data-play-label]') || a;
-    label.textContent = a.dataset.play === 'short' ? 'Play' : 'Play the prototype';
+    label.textContent = a.dataset.play === 'short' ? 'Play' : 'Play the game';
   });
 })();
 
