@@ -369,6 +369,13 @@ td img { width: 22px; height: 22px; object-fit: contain; display: inline-block; 
 .ca-links .btn { font-size: 14.5px; }
 .ca-verify { margin-bottom: 0; }
 
+/* Barre contrat en haut de page (compacte) */
+.ca-strip { background: var(--paper-lo); border-bottom: 1px solid var(--line-strong); }
+.ca-strip-inner { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; padding: 9px 0; }
+.ca-strip-label { font-weight: 700; color: var(--gold-text); font-size: 14px; white-space: nowrap; }
+.ca-strip .ca { flex: 1 1 280px; font-size: .82rem; padding: 7px 10px; }
+.ca-strip .btn { padding: 7px 14px; font-size: 14px; }
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .btn:hover { transform: none; }
