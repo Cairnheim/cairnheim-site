@@ -70,6 +70,73 @@
   <!-- ═══════════════════════════════════════════════════════════════════════════════════════ -->
   <article class="dl-entry">
     <p class="dl-date">11 September 2026</p>
+    <h2>How the art actually gets made</h2>
+
+    <p>
+      The building sprites are generated. I use an image model, I pick from what comes back, and
+      then the real work starts. I would rather write that here, in my own words, than have someone
+      find it out and decide I was hiding it.
+    </p>
+    <p>
+      Here is what the honest version of that sentence looks like, because &ldquo;I used AI&rdquo;
+      and &ldquo;I pressed a button and shipped it&rdquo; are not the same job.
+    </p>
+
+    <p><strong>A generated picture is not a game asset.</strong> A building in Cairnheim sits on an
+      isometric grid. It has to occupy an exact number of tiles, meet the ground at an exact point,
+      and sort correctly against everything in front of and behind it. What a model returns is an
+      image on a square canvas with the drawing floating somewhere inside it. The sawmill&rsquo;s
+      artwork fills 46.4&nbsp;% of its texture width, so it needs a scale of 2.09 for the
+      <em>drawing</em> — not the file — to cover a 2&nbsp;×&nbsp;2 block. Every building in the game
+      has that pair of numbers, measured, one at a time.
+    </p>
+
+    <p><strong>The construction stages were the hard part</strong>, and they are the reason this
+      entry exists. Each stage has to occupy the same pixels as the finished building, because the
+      game swaps one texture for another — a stage four pixels off makes the structure jump when it
+      completes. Nothing about a generated image respects that. I ended up writing a tool that
+      measures the distance between the silhouettes of two pictures and reports the offset, because
+      doing it by eye cost an hour per building and still drifted.
+    </p>
+
+    <p><strong>The walk cycles needed rebuilding outright.</strong> A sheet comes back with frames
+      at irregular spacing and inconsistent size; a script cuts it, recomposes it into a regular
+      5&nbsp;×&nbsp;2 grid and re-aligns the feet so the settler does not bob. The digging poses came
+      back about a third smaller than the walking ones. A carrier who shrinks when he picks up a
+      shovel is not something you notice in a gallery of pictures. You notice it immediately in
+      motion, which is the only place this game exists.
+    </p>
+
+    <p><strong>Nothing is generated while you play.</strong> The game ships fixed files. No model
+      runs on your machine, none runs on the server, nothing about your colony is invented on the
+      fly, and there is no service that has to stay alive for the art to exist. What you install is
+      what there is.
+    </p>
+
+    <p><strong>Sound is mostly not generated at all.</strong> Most of the effects are synthesised in
+      code with Web Audio — the hammer, the pick, the little chime when a good is set down are maths,
+      not recordings. A handful of the heavier ones are generated audio files, with the synthesised
+      version kept as a fallback.
+    </p>
+
+    <p>
+      I am not going to argue the tool is neutral, or pretend the choice costs nothing. If you would
+      rather not buy a game whose sprites were generated, that is a completely reasonable position
+      and I would rather you knew now than after paying.
+    </p>
+    <p>
+      But I will say what I think the actual test is. Open a screenshot of a busy colony and look at
+      a junction: can you tell the sawmill from the bakery from the mine without reading a label?
+      Does the queue at a cairn read as a queue? Does the half-built hall look like a hall waiting
+      for its carpenter? That is the part I spend my time on, it is the part that decides whether
+      this game is any good, and it is the part no model does for you.
+    </p>
+    <p class="dl-tags"><span>art</span><span>process</span></p>
+  </article>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════════════════════ -->
+  <article class="dl-entry">
+    <p class="dl-date">11 September 2026</p>
     <h2>Your colony keeps its own hours</h2>
 
     <p>
@@ -82,6 +149,14 @@
       Which means the colony cannot live on your hard drive. It moved onto a server this week, and
       that decision drags two consequences behind it that I would rather state plainly now than
       have anyone discover after buying.
+    </p>
+    <p>
+      <strong>What that buys.</strong> Other players' colonies are places you go. Visiting already
+      ran on an earlier build of this engine — you sail to someone else's island and walk their road
+      network, which in a game about logistics is the single most useful thing one player can show
+      another. You steal their junction layout, or you work out why theirs is faster than yours.
+      Guilds and guild objectives come after that. None of it survives a world that is a file on a
+      hard drive, frozen the moment its owner closes the game.
     </p>
     <p>
       <strong>You need a connection to play.</strong> If the server cannot be reached, the game
