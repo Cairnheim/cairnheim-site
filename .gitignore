@@ -12,3 +12,4 @@ Thumbs.db
 # mais la règle reste, au cas où.
 .env
 .env.*
+.vercel

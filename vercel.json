@@ -54,6 +54,5 @@
       "destination": "/",
       "permanent": true
     }
-  ],
-  "$commentaire_csp": "style-src accepte 'unsafe-inline' A DESSEIN : les pages portent des attributs style= (13 au total), et les hashes CSP ne couvrent PAS les attributs de style — il n'existe donc aucune alternative sans reecrire chaque page. script-src reste STRICT ('self' seul) : c'est la directive qui protege reellement, et tout script vit dans un fichier. Ne pas y ajouter 'unsafe-inline'. Symptome si on oublie : la page marche en local (http.server n'envoie aucun en-tete) et reste morte en ligne."
+  ]
 }

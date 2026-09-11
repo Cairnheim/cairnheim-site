@@ -64,3 +64,31 @@ a.render();
 
 Avant la prise : masquer les pastilles d'état (`b.gfx.children` de type `Text` → `visible = false`),
 sinon les ⛔/⏳ parasitent l'image.
+
+## ⚠️ CSP — pourquoi `style-src` accepte `'unsafe-inline'` et pas `script-src`
+
+`vercel.json` pose une Content-Security-Policy. JSON n'accepte pas de commentaires et Vercel refuse
+toute propriété hors schéma, donc l'explication vit ici — et elle compte, parce que « durcir » cette
+ligne casse des pages **sans que rien ne se voie en local**.
+
+- **`script-src 'self'`, strict, et ça reste.** C'est la directive qui protège réellement. Tout
+  script vit dans un fichier. Le rendu du guide était inline : en production il ne s'exécutait pas,
+  et `guide.html` affichait « Loading the chain… » pour toujours. Sorti dans
+  `assets/js/guide-render.js` le 11/09.
+- **`style-src 'self' 'unsafe-inline'`, assumé.** Les pages portent des attributs `style=`, et les
+  hashes CSP **ne couvrent pas** les attributs de style — il n'existe donc aucune alternative sans
+  réécrire chaque page, pour un site statique sans la moindre entrée utilisateur.
+
+Le symptôme, si quelqu'un l'oublie : **la page marche en local et reste morte en ligne.** Le serveur
+de développement (`py -m http.server`) n'envoie aucun en-tête, donc aucune CSP.
+
+## Déploiement
+
+Le projet Vercel est **`cairnheim-site`** (équipe `cairnheim-team`). Déployer :
+
+```bash
+cd site && npx vercel --prod
+```
+
+⚠️ Lancer `vercel` sans projet lié crée un projet **`site`** d'après le nom du dossier. Vérifier que
+`.vercel/project.json` pointe bien sur `cairnheim-site` avant de déployer.
