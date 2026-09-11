@@ -4,7 +4,7 @@
  * Régénérer après tout changement de la chaîne de quêtes ou de la boucle d'expédition.
  */
 window.CAIRN_GUIDE = {
-  "genere": "2026-08-10",
+  "genere": "2026-09-11",
   "actes": [
     {
       "titre": "Act I — Take root",
@@ -12,8 +12,8 @@ window.CAIRN_GUIDE = {
       "quetes": [
         {
           "id": "logs",
-          "titre": "Chop 50 logs",
-          "cible": 50,
+          "titre": "Chop 25 logs",
+          "cible": 25,
           "aide": "Place a Woodcutter (Resources menu) with trees inside his work radius, then draw a road from your castle to his door. Nothing in Cairnheim moves on its own — every good is carried by hand along the roads you draw. Add a Forester beside him and the woods never run out.",
           "recompense": {
             "pieces": 15,
@@ -84,7 +84,7 @@ window.CAIRN_GUIDE = {
           "id": "shaft",
           "titre": "Clear the ancient shaft",
           "cible": 1,
-          "aide": "Click the Cairn Mine and pay the first stage: 30 stone and 30 planks — exactly what the last quest paid you. From that moment the shaft yields CAIRN, a trickle at first. It never stops, and it keeps running while you are away.",
+          "aide": "Click the old shaft and pay the first stage: 30 stone and 30 planks — exactly what the last quest paid you. From that moment it yields runestones, a trickle at first. It never stops, and it keeps running while you are away.",
           "recompense": {
             "pieces": 40,
             "materiaux": null
@@ -107,10 +107,32 @@ window.CAIRN_GUIDE = {
           }
         },
         {
+          "id": "guild",
+          "titre": "Build the Geologists' guild",
+          "cible": 1,
+          "aide": "The Geologists' guild (Resources menu) is where surveyors are hired — on its own it finds nothing, it is only the door. Build it, then recruit inside (the next step). Its reward is a copper pickaxe you cannot forge yet — and that is exactly what the geologist you hire next demands.",
+          "recompense": {
+            "pieces": 40,
+            "materiaux": {
+              "copper_pickaxe": 1
+            }
+          }
+        },
+        {
+          "id": "geologist",
+          "titre": "Recruit a geologist",
+          "cible": 1,
+          "aide": "Open the Geologists' guild and recruit — it costs 40 coins (you can mint those) plus a copper pickaxe (take the last quest's copper-pickaxe reward; the copper chain comes later). Then send your geologist to a deposit you have run dry: they REOPEN exhausted veins, so iron, copper and gold keep flowing once the map's first ore runs low. A spread-out colony that never hires one eventually starves its own mines.",
+          "recompense": {
+            "pieces": 70,
+            "materiaux": null
+          }
+        },
+        {
           "id": "army",
           "titre": "Train 5 soldiers",
           "cible": 5,
-          "aide": "A Training camp (Military) turns one FREE colonist plus a full kit of equipment into a soldier. The kit comes from the Weaponsmith and the Fletcher — so those must be running first. Three troop types exist, and each one beats another: an army of one kind will lose to the right answer.",
+          "aide": "A Training camp (Military) turns one FREE colonist plus a full kit of equipment into a soldier. The kit comes from the Weaponsmith and the Fletcher (both in the Military menu) — so those must be running first. Three troop types exist, and each one beats another: an army of one kind will lose to the right answer.",
           "recompense": {
             "pieces": 80,
             "materiaux": null
@@ -178,7 +200,7 @@ window.CAIRN_GUIDE = {
           "id": "glass",
           "titre": "Forge 25 spyglasses",
           "cible": 25,
-          "aide": "Spyglasses are forged from copper and glass. They are not equipment you keep: an explorer takes 25 of them with him as his fee when you hire him. This is why the copper chain exists.",
+          "aide": "Order them at the Toolmaker (Processing) — one copper ingot apiece, so keep the copper chain fed: Copper Mine → Copper Smelter → Toolmaker. Spyglasses are not equipment you keep: an explorer takes 25 of them as his fee when you hire him. That is the whole reason the copper chain exists.",
           "recompense": {
             "pieces": 80,
             "materiaux": {
@@ -204,7 +226,7 @@ window.CAIRN_GUIDE = {
           "id": "chart",
           "titre": "Bring back a chart",
           "cible": 1,
-          "aide": "Go to Inventory ▸ Explorers and send him scouting. It costs rations and takes 30 REAL minutes — the search finishes even with the tab closed, so send him and go do something else. He returns with a chart to one of the two isles. Your second chart is always the other one, so you are never stuck on the same island twice.",
+          "aide": "Go to Inventory ▸ Explorers and send him scouting. It costs 2 rations — order them at the Provisioner (Processing); each ration packs 5 bread, 5 meat and 20 coins — and takes 30 REAL minutes. The search finishes even with the tab closed, so send him and go do something else. He returns with a chart to one of the two isles. Your second chart is always the other one, so you are never stuck on the same island twice.",
           "recompense": {
             "pieces": 90,
             "materiaux": {
@@ -214,9 +236,21 @@ window.CAIRN_GUIDE = {
           }
         },
         {
+          "id": "kits",
+          "titre": "Pack 4 expedition mines",
+          "cible": 4,
+          "aide": "Order mine kits at the Toolmaker (Processing) — each is a heavy job (40 planks + 40 iron ingots), so start early. A kit becomes an Expedition mine you raise ON the isle, right on a vein: the more mines you plant, the faster the hold fills — four mines fill it four times faster than one. Pack them BEFORE you sail; a general who lands with mines digs while the rations tick down, instead of coming home half-empty. This quest hands you 2 kits to get the first expedition rolling.",
+          "recompense": {
+            "pieces": 100,
+            "materiaux": {
+              "mine_kit": 2
+            }
+          }
+        },
+        {
           "id": "marble",
           "titre": "Bring home 100 marble",
-          "cible": 100,
+          "cible": 200,
           "aide": "Inventory ▸ Maps, click your chart. Load a general with troops, then load the HOLD: mine kits raise mines over there, rations are your clock — one buys 30 minutes on the isle, and the countdown only starts once every camp has fallen. The panel shows exactly what your load will bring home BEFORE you sail; read that line, it saves you a second voyage. Then clear the three camps, raise a mine on a vein, and recall when the hold is full.",
           "recompense": {
             "pieces": 100,
@@ -229,7 +263,7 @@ window.CAIRN_GUIDE = {
         {
           "id": "plat",
           "titre": "Bring home 100 platinum",
-          "cible": 100,
+          "cible": 200,
           "aide": "Same voyage, other isle — and it is held just as firmly. An isle holds 300 ore in all, so one successful expedition covers this and more. Kits matter more than you think: four mines fill the hold four times faster than one.",
           "recompense": {
             "pieces": 120,
@@ -244,9 +278,9 @@ window.CAIRN_GUIDE = {
       "quetes": [
         {
           "id": "awaken",
-          "titre": "Awaken the Cairn Mine",
+          "titre": "Awaken the rune shaft",
           "cible": 2,
-          "aide": "Open the Cairn Mine and pay the last stage: 200 marble and 200 platinum. Everything before this was preparation. Once awake, the shaft yields eleven times what it did — and from there the real economy begins: picks to raise your Strike, diamonds and comfort to lower what it burns.",
+          "aide": "Open the rune shaft and pay the last stage: 200 marble and 200 platinum. Everything before this was preparation. Once awake, the shaft yields eleven times what it did — and from there the real economy begins: picks to raise your Strike, diamonds and comfort to lower what it burns.",
           "recompense": {
             "pieces": 200,
             "materiaux": null
@@ -263,7 +297,7 @@ window.CAIRN_GUIDE = {
     "secondesParUnite": 30,
     "minutesParRation": 30,
     "renfortsParRation": 5,
-    "rationsRecherche": 6,
+    "rationsRecherche": 2,
     "minutesRecherche": 30,
     "explorateurCout": {
       "longuesVues": 25,
@@ -371,8 +405,8 @@ window.CAIRN_GUIDE = {
         "max": 10
       },
       "ile1": {
-        "min": 20,
-        "max": 26
+        "min": 6,
+        "max": 8
       },
       "ile2": {
         "min": 34,

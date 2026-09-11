@@ -3,22 +3,26 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Cairnheim — a logistics colony builder in your browser</title>
-<meta name="description" content="Cairnheim is an isometric colony builder in the spirit of The Settlers: every good is carried by hand, cairn by cairn, along the roads you draw. Playable in the browser.">
+<title>Cairnheim — a logistics colony builder</title>
+<meta name="description" content="Cairnheim is an isometric colony builder in the spirit of The Settlers: every good is carried by hand, cairn by cairn, along the roads you draw. Coming to Steam.">
 <meta property="og:title" content="Cairnheim — a logistics colony builder">
-<meta property="og:description" content="Every good is carried by hand, cairn by cairn, along the roads you draw.">
-<meta property="og:image" content="https://cairnheim.com/assets/img/og-cairn.jpg">
+<meta property="og:description" content="Every good is carried by hand, cairn by cairn, along the roads you draw. Coming to Steam.">
+<!-- Carte d'apercu (X, Discord, Slack...). C'etait le LOGO DU TOKEN, un medaillon dore :
+     l'image que voyait quiconque partageait le lien. Remplacee par le key art du jeu.
+     Nouveau NOM de fichier volontairement : les CDN sociaux cachent l'ancienne image des
+     semaines, et seule une URL differente force le rafraichissement. -->
+<meta property="og:image" content="https://cairnheim.com/assets/img/og-keyart.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:url" content="https://cairnheim.com/">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Cairnheim — a logistics colony builder">
-<meta name="twitter:description" content="Every good is carried by hand, cairn by cairn, along the roads you draw.">
-<meta name="twitter:image" content="https://cairnheim.com/assets/img/og-cairn.jpg">
+<meta name="twitter:description" content="Every good is carried by hand, cairn by cairn, along the roads you draw. Coming to Steam.">
+<meta name="twitter:image" content="https://cairnheim.com/assets/img/og-keyart.jpg">
 <meta name="theme-color" content="#f2e6cf">
 <link rel="icon" href="/assets/img/cairn.webp">
-<link rel="stylesheet" href="/assets/css/style.css?v=9">
+<link rel="stylesheet" href="/assets/css/style.css?v=10">
 </head>
 <body>
 
@@ -30,35 +34,22 @@
       <a href="#loop">The loop</a>
       <a href="#chains">Chains</a>
       <a href="#mine">The mine</a>
-      <a href="#calc">Calculator</a>
       <a href="#world">World</a>
-      <a href="#ownership">Ownership</a>
-      <a href="#tokenomics">Tokenomics</a>
       <a href="#roadmap">Roadmap</a>
+      <a href="/devlog.html">Devlog</a>
       <a href="/guide.html">Guide</a>
       <a href="/docs.html">Docs</a>
-      <a href="/whitepaper.html">Whitepaper</a>
-      <a class="btn btn-primary" data-play="short" href="#roadmap" aria-disabled="true" title="The playable build is not online yet."><span data-play-label>Coming soon</span></a>
+      <a class="btn btn-primary" href="#roadmap" aria-disabled="true" title="Steam page coming soon"><span>Coming to Steam</span></a>
     </nav>
   </div>
 </header>
-
-<!-- Barre contrat — visible en haut de page. Le bloc complet (transparence) reste en section Tokenomics. -->
-<div class="ca-strip">
-  <div class="wrap ca-strip-inner">
-    <span class="ca-strip-label">Official $CAIRN contract</span>
-    <code class="ca" id="cairn-ca-top" tabindex="0">FKgFKXmQf7WXEPrwfx8ZPwkoUQsVRSgFzdJwa2FKYgWt</code>
-    <button class="btn btn-ghost ca-copy" type="button" data-copy="cairn-ca-top" aria-label="Copy contract address">Copy</button>
-    <a class="btn btn-primary" href="https://jup.ag/swap?sell=So11111111111111111111111111111111111111112&amp;buy=FKgFKXmQf7WXEPrwfx8ZPwkoUQsVRSgFzdJwa2FKYgWt" target="_blank" rel="noopener">Get $CAIRN ↗</a>
-  </div>
-</div>
 
 <main>
 
 <!-- ============================ HERO ============================ -->
 <section class="hero">
   <div class="wrap hero-inner">
-    <p class="eyebrow">Isometric colony builder · playable in the browser</p>
+    <p class="eyebrow">Isometric colony builder · coming to Steam</p>
     <h1>Nothing moves<br>unless <span>someone carries it</span></h1>
     <p class="lede">
       Cairnheim is a colony builder in the lineage of <em>The Settlers</em>. There is no abstract
@@ -66,10 +57,10 @@
       up and walks to its destination, cairn by cairn, along roads you drew yourself.
     </p>
     <div class="hero-cta">
-      <a class="btn btn-primary" data-play="long" href="#roadmap" aria-disabled="true" title="The playable build is not online yet."><span data-play-label>Playable build coming soon</span></a>
+      <a class="btn btn-primary" href="#roadmap" aria-disabled="true" title="Steam page coming soon"><span>Coming to Steam</span></a>
       <a class="btn btn-ghost" href="/docs.html">Read the docs</a>
     </div>
-    <p class="hero-note">Free · nothing to install · sign in with a Solana wallet, and your colony follows the wallet</p>
+    <p class="hero-note">An isometric colony builder in the spirit of The Settlers — a desktop game, coming to Steam.</p>
 
     <figure class="shot">
       <img src="/assets/img/hero.webp" width="1440" height="810" alt="An isometric colony around a stone castle: roads, cairns, carriers walking with goods, forests and rock deposits.">
@@ -111,7 +102,7 @@
         <h3>A colony that is yours</h3>
         <p>
           Your map is private and persistent. What it becomes is the product of the hours and the
-          planning you put into it — which is exactly what makes it worth owning later.
+          planning you put into it — a colony you build the hard way, and keep.
         </p>
       </article>
     </div>
@@ -286,7 +277,7 @@
       <div class="tile"><img src="/assets/img/buildings/watchtower.webp" loading="lazy" alt=""><span>Watchtower</span></div>
       <div class="tile"><img src="/assets/img/buildings/expedition_mine.webp" loading="lazy" alt=""><span>Expedition mine</span></div>
       <div class="tile"><img src="/assets/img/buildings/geologist_guild.webp" loading="lazy" alt=""><span>Geologists' guild</span></div>
-      <div class="tile"><img src="/assets/img/buildings/cairn_mine.webp" loading="lazy" alt=""><span>Cairn Mine</span></div>
+      <div class="tile"><img src="/assets/img/buildings/cairn_mine.webp" loading="lazy" alt=""><span>Rune Shaft</span></div>
       <div class="tile"><img src="/assets/img/buildings/chapel.webp" loading="lazy" alt=""><span>Chapel</span></div>
       <div class="tile"><img src="/assets/img/buildings/bathhouse.webp" loading="lazy" alt=""><span>Bathhouse</span></div>
       <div class="tile"><img src="/assets/img/buildings/temple.webp" loading="lazy" alt=""><span>Temple</span></div>
@@ -294,7 +285,7 @@
   </div>
 </section>
 
-<!-- ============================ THE CAIRN MINE ============================ -->
+<!-- ============================ THE RUNE SHAFT ============================ -->
 <section id="mine">
   <div class="wrap">
     <div class="section-head">
@@ -302,8 +293,8 @@
       <h2>One ruin on your map, and it is the whole endgame</h2>
       <p class="lede">
         Every colony starts with a collapsed shaft it did not build. Restoring it is the long
-        project the rest of the economy exists to serve — and it is the only thing that mints
-        $CAIRN.
+        project the rest of the economy exists to serve — the clearest measure of how far a colony
+        has come.
       </p>
     </div>
 
@@ -317,13 +308,11 @@
         </p>
       </article>
       <article class="card">
-        <h3>Strike is your share</h3>
+        <h3>Strike is your standing</h3>
         <p>
-          The network mints a fixed amount per day and splits it by Strike. Your share is your
-          Strike over the whole network's — so the pot never grows when players arrive, the slices
-          just get thinner. Emission is bounded by construction, not by attendance. And the divisor
-          has a <strong>floor</strong>: on an empty network what nobody claims is not handed to the
-          few who are there, it stays in the reserve for the players who come later.
+          Strike is the shaft's output, and the plainest badge of a mature colony. A deeper working is a
+          bigger achievement — built the hard way, one pick and one supply line at a time. It is the
+          endgame the whole map works toward.
         </p>
       </article>
       <article class="card">
@@ -331,9 +320,9 @@
         <p>
           The base shaft burns nothing and never stops. Every pick you set beyond it eats <strong>emberwood</strong> — charcoal from the burners, never the mountain coal your smelters need:
           <strong>40</strong> per hundred strikes at first, down to a hard floor of <strong>12</strong>.
-          You buy that efficiency with diamonds — and with comfort. Push the rig further and the bill
+          You buy that efficiency with diamonds — and with comfort. Push the shaft further and the bill
           widens: <strong>stone and planks</strong> past 150 added Strike, <strong>iron and copper</strong>
-          past 400, <strong>wages</strong> past 800. A big rig is an industrial estate, not a purchase.
+          past 400, <strong>wages</strong> past 800. A deep shaft is an industrial estate, not a purchase.
         </p>
       </article>
     </div>
@@ -342,7 +331,7 @@
       <div>
         <h3>Comfort buildings — the second lever</h3>
         <p>
-          A miner who lives well works cleaner. Three buildings, one of each per colony, close a
+          A crew that lives well works cleaner. Three buildings, one of each per colony, close a
           share of the gap between your current Thrift and its floor:
         </p>
         <ul>
@@ -363,27 +352,12 @@
   </div>
 </section>
 
-<!-- ============================ CALCULATEUR ============================ -->
-<section id="calc">
-  <div class="wrap wrap--narrow">
-    <div class="section-head">
-      <p class="eyebrow">Run the numbers</p>
-      <h2>What a pick actually produces</h2>
-      <p class="lede">
-        Every figure below is read straight from the game's balance file — not a marketing estimate.
-        Move the sliders and check it yourself.
-      </p>
-    </div>
-    <div id="calc-rig" class="calc"></div>
-  </div>
-</section>
-
 <!-- ============================ WORLD ============================ -->
 <section id="world">
   <div class="wrap">
     <div class="split reverse">
       <figure class="shot shot--flush">
-        <img src="/assets/img/map.webp" width="1100" height="629" loading="lazy" alt="A wide view of the colony: the awakened Cairn Mine glowing at its centre, ringed by smelters, forests, rock deposits and a lake.">
+        <img src="/assets/img/map.webp" width="1100" height="629" loading="lazy" alt="A wide view of the colony: the awakened rune shaft glowing at its centre, ringed by smelters, forests, rock deposits and a lake.">
         <figcaption>A single map is 156 × 156 tiles — 24,336 of them.</figcaption>
       </figure>
       <div>
@@ -405,8 +379,8 @@
         </p>
         <p>
           You start with <strong>ten colonists</strong>. More are recruited with <strong>coins</strong>
-          — 8 apiece. Coins are also what a large Cairn Mine pays its crew in wages, so a working
-          mint stops being optional the moment your rig gets serious.
+          — 8 apiece. Coins are also what a large rune shaft pays its crew in wages, so a working
+          mint stops being optional the moment it gets serious.
         </p>
         <p>
           Hunger never kills anyone. Running out of food slows production down to half speed and no
@@ -422,86 +396,6 @@
   </div>
 </section>
 
-<!-- ============================ OWNERSHIP ============================ -->
-<section id="ownership">
-  <div class="wrap">
-    <div class="section-head">
-      <p class="eyebrow">Where this is going</p>
-      <h2>Ownership later — fun first</h2>
-      <p class="lede">
-        Cairnheim is designed to end up with real ownership of land and rare goods on Solana. It is
-        also built on one rule that outranks that plan.
-      </p>
-    </div>
-
-    <div class="note green">
-      <p>
-        <strong>The golden rule of the project:</strong> the game has to be worth playing on its own
-        merits. The blockchain adds <em>ownership</em> and <em>trade</em> — never <em>fun</em>.
-        If you removed the crypto and the game stopped being enjoyable, we would have failed.
-      </p>
-    </div>
-
-    <div class="grid grid-3">
-      <article class="card">
-        <h3>Not a faucet</h3>
-        <p>
-          No token rains down for logging in. What you can sell is what you actually built: a
-          developed map, a surplus of rare goods, a trained specialist. Value comes from time and
-          skill, not from emission.
-        </p>
-      </article>
-      <article class="card">
-        <h3>Not pay-to-win</h3>
-        <p>
-          Paying buys CAIRN, and CAIRN buys picks for your mine — mining rate, and time. It never
-          buys a carrier, a road or a shorter route. Route planning stays the only thing that
-          separates a good colony from a bad one.
-        </p>
-      </article>
-      <article class="card">
-        <h3>Not a pyramid</h3>
-        <p>
-          Studio revenue comes from trading fees and marketplace fees — activity that already
-          happened, not new entrants arriving. Capped emission, real sinks, a ceiling on offline
-          production.
-        </p>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- ============================ TOKENOMICS ============================ -->
-<section id="tokenomics">
-  <div class="wrap wrap--narrow">
-    <div class="section-head">
-      <p class="eyebrow">Tokenomics</p>
-      <h2>Where the billion goes</h2>
-      <p class="lede">
-        Fixed supply, no private sale, and every share fixed at creation — verifiable on-chain from
-        the first block. The figures below are generated from the launch configuration itself.
-      </p>
-    </div>
-    <div class="note ca-note">
-      <p><strong>Official $CAIRN contract.</strong> This is the one and only address — always verify
-        here. Any token using this name or logo at any other address is a fake.</p>
-      <div class="ca-row">
-        <code class="ca" id="cairn-ca" tabindex="0">FKgFKXmQf7WXEPrwfx8ZPwkoUQsVRSgFzdJwa2FKYgWt</code>
-        <button class="btn btn-ghost ca-copy" type="button" data-copy="cairn-ca" aria-label="Copy contract address">Copy</button>
-      </div>
-      <div class="ca-links">
-        <a class="btn btn-ghost" href="https://solscan.io/token/FKgFKXmQf7WXEPrwfx8ZPwkoUQsVRSgFzdJwa2FKYgWt" target="_blank" rel="noopener">Verify on Solscan ↗</a>
-        <a class="btn btn-ghost" href="https://dexscreener.com/solana/7t6gzodRR3MnLrN5emFApLLnBbWgsJtwY12YyooTDkpC" target="_blank" rel="noopener">Chart ↗</a>
-        <a class="btn btn-primary" href="https://jup.ag/swap?sell=So11111111111111111111111111111111111111112&amp;buy=FKgFKXmQf7WXEPrwfx8ZPwkoUQsVRSgFzdJwa2FKYgWt" target="_blank" rel="noopener">Get $CAIRN ↗</a>
-      </div>
-      <p class="muted small ca-verify">Fixed supply · mint &amp; freeze authorities revoked · 100% of the
-        pool liquidity permanently locked at graduation · reserve and team share vested on-chain — all
-        verifiable at the address above.</p>
-    </div>
-    <div id="tok-supply"></div>
-  </div>
-</section>
-
 <!-- ============================ ROADMAP ============================ -->
 <section id="roadmap">
   <div class="wrap">
@@ -514,15 +408,15 @@
       <div class="step done">
         <span class="tag">Done</span>
         <h3>Design document</h3>
-        <p class="muted">Pillars, loops, economy, tokenomics and the guardrails that come with them.</p>
+        <p class="muted">Pillars, loops, the economy and the guardrails that come with them.</p>
       </div>
       <div class="step done">
         <span class="tag">Done</span>
         <h3>Playable game</h3>
         <p class="muted">
           Cairn-and-road transport, 44 buildings, 41 goods, workers who walk out to the resource,
-          population and morale, tools, an army, cloud saves tied to your wallet. Everything on this
-          page is running today.
+          population and morale, tools, an army, cloud saves. Everything on this page is running
+          today.
         </p>
       </div>
       <div class="step done">
@@ -530,10 +424,19 @@
         <h3>Depth — expeditions, trade, the mine</h3>
         <p class="muted">
           Instanced expedition islands with bandit camps to take, explorers and geologists with
-          their own skill tree, a player-to-player market, and the Cairn Mine with its three stages
+          their own skill tree, and the rune shaft with its three stages
           and its emberwood sink. The two isles are <strong>hand-authored maps</strong>, not
           generated ones — Marble at 96&nbsp;×&nbsp;96 tiles and Platinum at 48&nbsp;×&nbsp;48, each
           with its own veins and camps placed by hand.
+        </p>
+      </div>
+      <div class="step now">
+        <span class="tag">In progress</span>
+        <h3>Coming to Steam</h3>
+        <p class="muted">
+          Cairnheim is moving to Steam as a <strong>desktop game</strong>: a one-time purchase, no
+          subscription and no crypto. Online and cloud-saved, so a colony follows you from one machine
+          to the next. Wishlisting opens once the store page is up.
         </p>
       </div>
       <div class="step now">
@@ -553,24 +456,7 @@
           Two more expedition tiers beyond the marble and platinum isles: heavier garrisons that a
           single kind of soldier cannot answer, two new troop types to answer them, and
           <strong>diamonds</strong> as the prize — the one thing that takes a shaft's fuel bill all
-          the way down to its floor. Today diamonds are bought with CAIRN; out there they will be
-          taken.
-        </p>
-      </div>
-      <div class="step now">
-        <span class="tag">In progress</span>
-        <h3>Ownership on Solana</h3>
-        <p class="muted">
-          Sign-in with Phantom is already how you play. The reward program is written and its full
-          test suite passes against a real chain — the 48-hour timelock, the two separate
-          authorities, the rate limit, the network floor, the pause and the 75/25 recycling. The
-          <strong>$CAIRN claim works end to end</strong>: clicked in game, signed in Phantom, tokens
-          delivered to the wallet, all against a live chain.
-        </p>
-        <p class="muted">
-          What is left is the part no local test can stand in for — a <em>public</em> network under
-          load. Then the marketplace and its fees. Nothing is initialised on
-          mainnet before the cold authority split has been rehearsed end to end.
+          the way down to its floor.
         </p>
       </div>
     </div>
@@ -583,16 +469,14 @@
     <div class="section-head"><p class="eyebrow">FAQ</p><h2>Straight answers</h2></div>
 
     <details class="faq">
-      <summary>Do I need a wallet to play?</summary>
-      <p>Yes. You sign in with a Solana wallet — Phantom — and the game starts once that session is
-        open. Nothing is installed, nothing is charged, and no transaction is signed to play: the
-        wallet is your identity, and your colony follows it from one machine to the next. It also
-        means the same browser can serve several players without them ever seeing each other's map.</p>
+      <summary>How do I play?</summary>
+      <p>Cairnheim is coming to Steam as a desktop game — download it, launch it, build. The store
+        page and wishlisting open soon; there is nothing to install yet.</p>
     </details>
     <details class="faq">
-      <summary>Is it free?</summary>
-      <p>The game is free to play. What access to the full, on-chain game will look like is detailed at
-        the token launch, not before.</p>
+      <summary>How much is it?</summary>
+      <p>A one-time purchase on Steam — buy it once and it is yours. No subscription, no
+        microtransactions, nothing to grind for real money.</p>
     </details>
     <details class="faq">
       <summary>Is this multiplayer?</summary>
@@ -602,17 +486,15 @@
     </details>
     <details class="faq">
       <summary>What is Strike?</summary>
-      <p>Your mining power at the Cairn Mine, and the only thing that sets your share of what the
-        network mints. Your share is your Strike divided by the whole network's, yours included —
-        so growing your own Strike dilutes the pot a little for everyone, yourself included.
-        Nothing here scales for free.</p>
+      <p>The output of your rune shaft — how much the restored pit brings up. It is the endgame
+        measure of a colony: the deeper the working, the more it took to build. Nothing here scales for
+        free; every point of Strike is paid for in construction and upkeep.</p>
     </details>
     <details class="faq">
-      <summary>What stops someone from cheating the balance?</summary>
+      <summary>What stops someone from cheating?</summary>
       <p>A headless copy of the game engine runs on our own server and replays what each client
         reports. Today it runs in shadow mode — it records disagreements and sanctions nobody. It
-        goes live before any real value moves, and it is the reason the market is not open to
-        strangers yet.</p>
+        becomes the authority for the shared parts of the game, which is what keeps a trader honest.</p>
     </details>
     <details class="faq">
       <summary>How close is it to The Settlers?</summary>
@@ -620,12 +502,6 @@
         leg, distribution priorities that decay by half per unit in stock. Several timings come
         straight from the original — a farmer's harvest, for instance, takes 7.8 seconds because
         that is what it took in Settlers 1.</p>
-    </details>
-    <details class="faq">
-      <summary>What does the token actually do?</summary>
-      <p>It is a utility token: premium crafting, rare recipes, lower marketplace fees. Capped
-        supply, burned by the crafts that use it. It is not distributed for playing and it is not a
-        yield promise.</p>
     </details>
     <details class="faq">
       <summary>Can I lose my colony?</summary>
@@ -640,6 +516,42 @@
   </div>
 </section>
 
+<!-- ============================ DEVLOG ============================ -->
+<section id="devlog">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Devlog</p>
+      <h2>Made in the open, by one person</h2>
+      <p class="lede">
+        The decisions that were hard, the bugs that were embarrassing, and the numbers behind both.
+      </p>
+    </div>
+    <div class="grid grid-3">
+      <article class="card">
+        <p class="muted small">11 September 2026</p>
+        <h3><a href="/devlog.html">Your colony keeps its own hours</a></h3>
+        <p>It does not stop when you close the game — which means it cannot live on your hard
+          drive. What that costs, said out loud before anyone buys anything.</p>
+      </article>
+      <article class="card">
+        <p class="muted small">10 September 2026</p>
+        <h3><a href="/devlog.html">Five clicks to kill a colony</a></h3>
+        <p>Forty planks, a five-plank woodcutter and an unlimited two-plank fence. Do the
+          arithmetic in the wrong order and the colony never recovers.</p>
+      </article>
+      <article class="card">
+        <p class="muted small">9 September 2026</p>
+        <h3><a href="/devlog.html">Nothing is switched on</a></h3>
+        <p>Thirty-eight buildings now go up in painted stages instead of appearing. The painting
+          was the easy half.</p>
+      </article>
+    </div>
+    <p class="center-lede" style="margin-top:1.6rem">
+      <a class="btn btn-ghost" href="/devlog.html">All entries</a>
+    </p>
+  </div>
+</section>
+
 <!-- ============================ CTA ============================ -->
 <section class="cta-band">
   <div class="wrap">
@@ -649,7 +561,7 @@
       complicated on its own after that.
     </p>
     <div class="hero-cta">
-      <a class="btn btn-primary" data-play="long" href="#roadmap" aria-disabled="true" title="The playable build is not online yet."><span data-play-label>Playable build coming soon</span></a>
+      <a class="btn btn-primary" href="#roadmap" aria-disabled="true" title="Steam page coming soon"><span>Coming to Steam</span></a>
       <a class="btn btn-ghost" href="/docs.html">Read the docs</a>
     </div>
   </div>
@@ -660,7 +572,7 @@
 <footer>
   <div class="wrap foot">
     <span>Cairnheim — colony builder. Art and code in progress.</span>
-    <span><a href="/guide.html">Player's guide</a> · <a href="/docs.html">Documentation</a> · <a href="#pillars">Back to top</a></span>
+    <span><a href="/devlog.html">Devlog</a> · <a href="/guide.html">Player's guide</a> · <a href="/docs.html">Documentation</a> · <a href="#pillars">Back to top</a></span>
   </div>
   <!-- Liens communauté : remplis par site.js. Une entrée vide n'est pas rendue, et si aucune
        n'est renseignée le bloc se retire de lui-même — jamais d'icône morte sur la page. -->
@@ -669,9 +581,8 @@
 
 <!-- `?v=` : le site n'a pas d'étape de build, donc rien ne renomme les fichiers quand ils changent.
      Sans ce marqueur, un visiteur déjà venu garde l'ancien JS en cache et ne voit pas la mise à
-     jour. À incrémenter quand on touche à site.js ou au calculateur. -->
-<script src="/assets/js/tokenomics.js?v=7"></script>
-<script src="/assets/js/site.js?v=8"></script>
+     jour. À incrémenter quand on touche à site.js. -->
+<script src="/assets/js/site.js?v=10"></script>
 <!-- Vercel Web Analytics — visites/pages vues. Le script est servi par Vercel une fois
      « Web Analytics » activé dans le dashboard du projet ; sans ça il renvoie 404. -->
 <script defer src="/_vercel/insights/script.js"></script>

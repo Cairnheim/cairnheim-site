@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cairnheim — Devlog</title>
+<meta name="description" content="Notes from building Cairnheim: what changed, what broke, and why. A solo-developed isometric colony builder, coming to Steam.">
+<meta property="og:title" content="Cairnheim — Devlog">
+<meta property="og:description" content="Notes from building Cairnheim: what changed, what broke, and why.">
+<meta property="og:image" content="https://cairnheim.com/assets/img/og-keyart.jpg">
+<meta property="og:url" content="https://cairnheim.com/devlog.html">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cairnheim.com/assets/img/og-keyart.jpg">
+<meta name="theme-color" content="#f2e6cf">
+<link rel="icon" href="/assets/img/cairn.webp">
+<link rel="stylesheet" href="/assets/css/style.css?v=10">
+<style>
+  /* Le devlog est une COLONNE DE LECTURE, pas la mise en page marketing de l'accueil — même parti
+     pris que le guide. Une entrée = un article ; rien d'autre à retenir pour en ajouter une. */
+  .dl-entry { border-top: 1px solid var(--line, #d9cbb0); padding-top: 2.2rem; margin-top: 2.6rem; }
+  .dl-entry:first-of-type { border-top: 0; padding-top: 0; margin-top: 1.6rem; }
+  .dl-date { font-size: .82rem; letter-spacing: .07em; text-transform: uppercase;
+    color: var(--mut, #6d6152); font-weight: 700; margin: 0 0 .3rem; }
+  .dl-entry h2 { margin: 0 0 .9rem; font-size: 1.62rem; line-height: 1.25; }
+  .dl-entry p { line-height: 1.7; }
+  .dl-entry ul { line-height: 1.7; padding-left: 1.2rem; }
+  /* Encadré de chiffres : le cœur d'une entrée de devlog est souvent un petit tableau de faits
+     qu'on veut pouvoir lire sans lire le paragraphe autour. */
+  .dl-facts { border: 1px solid var(--line, #d9cbb0); border-left: 3px solid #c9a26b;
+    border-radius: 10px; background: var(--surf, #fbf5e9); padding: .9rem 1.1rem; margin: 1.3rem 0; }
+  .dl-facts dl { display: grid; grid-template-columns: auto 1fr; gap: .35rem 1rem; margin: 0; }
+  .dl-facts dt { font-variant-numeric: tabular-nums; font-weight: 700; white-space: nowrap; }
+  .dl-facts dd { margin: 0; color: var(--mut, #6d6152); }
+  .dl-shot { margin: 1.5rem 0 .6rem; }
+  .dl-shot img { width: 100%; height: auto; display: block; }
+  .dl-shot figcaption { font-size: .9rem; color: var(--mut, #6d6152); margin-top: .5rem; }
+  .dl-tags { margin: 1.1rem 0 0; font-size: .86rem; color: var(--mut, #6d6152); }
+  .dl-tags span { display: inline-block; border: 1px solid var(--line, #d9cbb0); border-radius: 999px;
+    padding: 2px 10px; margin-right: 6px; }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="/"><span class="mark" aria-hidden="true"></span> Cairnheim</a>
+    <button class="nav-toggle" aria-expanded="false" aria-label="Menu">☰</button>
+    <nav class="nav-links">
+      <a href="/">Home</a>
+      <a href="/devlog.html" aria-current="page">Devlog</a>
+      <a href="/guide.html">Guide</a>
+      <a href="/docs.html">Docs</a>
+      <a class="btn btn-primary" href="/#roadmap" aria-disabled="true" title="Steam page coming soon"><span>Coming to Steam</span></a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap wrap--narrow" style="padding-top:2.5rem;padding-bottom:4rem">
+
+  <div class="section-head" style="text-align:left">
+    <p class="eyebrow">Devlog</p>
+    <h1 style="margin-bottom:.4rem">What changed, what broke, and why</h1>
+    <p class="lede">
+      Cairnheim is made by one person. These are the notes I take anyway — the decisions that were
+      hard, the bugs that were embarrassing, and the numbers behind both. Newest first.
+    </p>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════════════════════ -->
+  <article class="dl-entry">
+    <p class="dl-date">11 September 2026</p>
+    <h2>Your colony keeps its own hours</h2>
+
+    <p>
+      A colony in Cairnheim does not stop when you close the game. Your carriers keep walking, your
+      foresters keep replanting, and the shaft keeps bringing up stone while you are at work. That
+      is the point of the thing — a logistics network you set up well should pay you back for
+      hours, not only while you watch it.
+    </p>
+    <p>
+      Which means the colony cannot live on your hard drive. It moved onto a server this week, and
+      that decision drags two consequences behind it that I would rather state plainly now than
+      have anyone discover after buying.
+    </p>
+    <p>
+      <strong>You need a connection to play.</strong> If the server cannot be reached, the game
+      refuses to open rather than starting you on an empty map — because an empty map would be
+      autosaved ten seconds later straight over a colony that was perfectly intact.
+    </p>
+    <p>
+      <strong>There is one colony, and no save files.</strong> No quicksave, no reloading an hour
+      ago because the last decision went badly. I am aware this is a real cost in a genre where
+      save-scumming is half the fun for some players. It buys something I want more: choices that
+      actually count, and a shared world where your colony is the same colony everyone else sees.
+    </p>
+    <p>
+      It also forces a rule on me that I think makes the game better anyway — nothing in Cairnheim
+      may be both available at any moment and permanently unrecoverable. The next entry is what
+      happened when I went looking for places I had broken that rule.
+    </p>
+    <p class="dl-tags"><span>servers</span><span>design</span></p>
+  </article>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════════════════════ -->
+  <article class="dl-entry">
+    <p class="dl-date">10 September 2026</p>
+    <h2>Five clicks to kill a colony</h2>
+
+    <p>
+      I went hunting for dead ends — states a player could reach and never get out of. I found one
+      immediately, and it was mine.
+    </p>
+
+    <div class="dl-facts">
+      <dl>
+        <dt>40 planks</dt><dd>what the starting chest holds</dd>
+        <dt>5 planks</dt><dd>the Woodcutter — the only source of logs in the entire game</dd>
+        <dt>2 planks</dt><dd>a Palisade. No prerequisite, no limit on how many you place</dd>
+        <dt>0 planks</dt><dd>what demolishing a finished building gave you back</dd>
+      </dl>
+    </div>
+
+    <p>
+      Twenty palisades before the woodcutter — exactly what a player does when their instinct is to
+      fence the village first — and the colony never has another plank, therefore never another
+      woodcutter, therefore never another plank. Dead. Permanently. In about five clicks, in the
+      first two minutes, with no save to go back to.
+    </p>
+    <p>
+      The fix is old and boring: <strong>tearing a building down now returns half its build cost</strong>,
+      rounded down. Not all of it — at 100% you stop thinking before you place, and thinking before
+      you place is most of the game. At 50% a mistake is a real loss you can still walk away from.
+      Twenty palisades give back twenty planks: enough to start again, nowhere near enough to
+      rebuild the same village.
+    </p>
+    <p>
+      The salvage is written into the confirmation box, too. An escape hatch nobody can see does
+      not exist.
+    </p>
+    <p>
+      What stung is that the rule was already in the game, and had been for weeks — in one place
+      only. Colonists never leave during a famine, and there is a comment next to that line saying
+      why: <em>it would create a spiral you cannot climb out of</em>. I had understood the principle
+      perfectly for food and never once applied it to materials.
+    </p>
+    <p class="dl-tags"><span>economy</span><span>bugs</span></p>
+  </article>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════════════════════ -->
+  <article class="dl-entry">
+    <p class="dl-date">10 September 2026</p>
+    <h2>Bandits you can see coming</h2>
+
+    <p>
+      There are two bandit camps on the starting map, and an objective that asks you to clear them.
+      Players were not finding them. Not because the map is large — because a bandit camp looked
+      like scenery. A cluster of tents among four hundred other props.
+    </p>
+    <p>
+      Three changes, in ascending order of how much I should have done them sooner:
+    </p>
+    <ul>
+      <li><strong>A red banner above every camp</strong>, carrying the size of its garrison. You can
+        read a camp's strength from across the map without clicking it.</li>
+      <li><strong>They hold territory.</strong> A camp now projects a zone nothing of yours crosses
+        — no road, no carrier, no general walking past. On the starting map that is an annoyance
+        you clear. On the isles, where the thing you came for sits behind the camp, it is the
+        whole problem.</li>
+      <li><strong>New art for both tiers</strong>, so a camp reads as hostile rather than as a
+        hamlet someone forgot to connect.</li>
+    </ul>
+    <p>
+      Combat got rebuilt underneath all that. Three rules, none of which existed before:
+      <strong>overkill is wasted</strong> — a hit kills at most one defender and the excess damage
+      is thrown away, so a wall of cheap spearmen is a real strategy rather than a rounding error.
+      <strong>Armour subtracts</strong> rather than scaling, which is what makes the heavy red
+      bandits feel heavy. And a camp's <strong>palisade</strong> absorbs the first rounds, so you
+      arrive with enough or you do not arrive.
+    </p>
+    <p>
+      I tuned this on a bench that ran every army composition against every camp shape, and the
+      bench lied to me twice before I noticed why: it compared armies of equal <em>headcount</em>,
+      and an archer costs 0.91 worker-minutes to field against 3.86 for a swordsman. Equal numbers
+      was never the constraint. Equal cost is.
+    </p>
+    <p class="dl-tags"><span>combat</span><span>art</span></p>
+  </article>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════════════════════ -->
+  <article class="dl-entry">
+    <p class="dl-date">9 September 2026</p>
+    <h2>Nothing is switched on</h2>
+
+    <figure class="dl-shot">
+      <img src="/assets/img/devlog-phases.webp" width="1454" height="340" loading="lazy"
+           alt="Four painted stages of the military school: a levelled yard with a crane and stacked timber, then a raised frame and scaffolded tower, then walls closed around the frame, then the finished hall with banners and lit windows.">
+      <figcaption>The military school, start to finish. Same footprint, four paintings.</figcaption>
+    </figure>
+
+    <p>
+      Until this week, putting up a building in Cairnheim meant watching a progress bar and then
+      having a building. It worked. It was also the single most lifeless thing on the screen.
+    </p>
+    <p>
+      Every building now goes up in painted stages. A digger levels the ground first and leaves a
+      bare yard; a builder then works through two to four painted states before the real sprite
+      appears. Materials are not consumed on click — they are carried to the site by the same
+      carriers that carry everything else, and spent on the last hammer blow. A half-built sawmill
+      with planks stacked beside it is a sawmill waiting for its carpenter, and it looks like one.
+    </p>
+    <p>
+      The hard part was not the painting. It was that every stage has to occupy <em>exactly</em> the
+      same pixels as the finished building — the game swaps one texture for another, so a stage
+      that is four pixels off makes the whole structure jump when it completes. I ended up writing
+      a small alignment tool that measures the distance between the silhouettes of two images and
+      reports the offset, because doing it by eye was costing an hour per building and still
+      drifting.
+    </p>
+    <p>
+      Thirty-eight buildings, all of them staged. The two exceptions are deliberate: the expedition
+      mine, which a player plants on a vein and should appear at once, and the ruined shaft, which
+      is restored rather than built.
+    </p>
+    <p class="dl-tags"><span>art</span><span>construction</span></p>
+  </article>
+
+</div>
+
+<footer class="foot">
+  <div class="wrap">
+    <p class="muted small">Cairnheim — an isometric logistics colony builder. <a href="/guide.html">Player's guide</a> · <a href="/docs.html">Full documentation</a>.</p>
+  </div>
+</footer>
+
+<script src="/assets/js/site.js?v=10"></script>
+<script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>

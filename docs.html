@@ -7,7 +7,7 @@
 <meta name="description" content="How Cairnheim works: the cairn-and-road transport network, distribution priorities, every production chain, building costs, population, food and the military.">
 <meta name="theme-color" content="#f2e6cf">
 <link rel="icon" href="/assets/img/cairn.webp">
-<link rel="stylesheet" href="/assets/css/style.css?v=7">
+<link rel="stylesheet" href="/assets/css/style.css?v=10">
 </head>
 <body>
 
@@ -17,10 +17,10 @@
     <button class="nav-toggle" aria-expanded="false" aria-label="Menu">☰</button>
     <nav class="nav-links">
       <a href="/">Home</a>
+      <a href="/devlog.html">Devlog</a>
       <a href="/guide.html">Guide</a>
       <a href="/docs.html" aria-current="page">Docs</a>
-      <a href="/whitepaper.html">Whitepaper</a>
-      <a class="btn btn-primary" data-play="short" href="/#roadmap" aria-disabled="true" title="The playable build is not online yet."><span data-play-label>Coming soon</span></a>
+      <a class="btn btn-primary" href="/#roadmap" aria-disabled="true" title="Steam page coming soon"><span>Coming to Steam</span></a>
     </nav>
   </div>
 </header>
@@ -39,7 +39,7 @@
     <a href="#population">Population &amp; attractiveness</a>
     <a href="#food">Food &amp; morale</a>
     <a href="#military">Military</a>
-    <a href="#cairnmine">The Cairn Mine</a>
+    <a href="#cairnmine">The rune shaft</a>
     <a href="#expeditions">Expeditions</a>
     <strong>Reference</strong>
     <a href="#chains">Production chains</a>
@@ -48,8 +48,6 @@
     <a href="#decorations">Decorations</a>
     <a href="#world">World &amp; resources</a>
     <a href="#quests">Quests</a>
-    <strong>Coming</strong>
-    <a href="#web3">Ownership</a>
   </aside>
 
   <!-- ============================ CORPS ============================ -->
@@ -324,12 +322,12 @@
       </p>
     </section>
 
-    <!-- ---------------- CAIRN MINE ---------------- -->
+    <!-- ---------------- RUNE SHAFT ---------------- -->
     <section>
-      <h2 id="cairnmine">The Cairn Mine</h2>
+      <h2 id="cairnmine">The rune shaft</h2>
       <p>
         Every map carries one collapsed shaft it did not build. Restoring it is the long project the
-        rest of the economy exists to serve, and it is the only thing that mints $CAIRN.
+        rest of the economy exists to serve — the endgame the whole colony works toward.
       </p>
       <div class="tablewrap"><table>
         <thead><tr><th>Stage</th><th>Cost to reach it</th><th>Effect</th></tr></thead>
@@ -340,18 +338,9 @@
         </tbody>
       </table></div>
       <p>
-        <strong>Strike</strong> is your mining power, and the only thing that sets your share. The
-        network mints a fixed amount per day and splits it by Strike: your share is your Strike over
-        the whole network's, yours included. The pot does not grow when players arrive — the slices
-        get thinner. Emission is bounded by construction, not by attendance.
-      </p>
-      <p>
-        That divisor has a <strong>floor</strong>. Pro-rata splitting has a blind spot: on an empty
-        network the divisor collapses and a handful of players would take the entire pot. So shares
-        are divided by at least the floor, however few miners are actually online — and whatever
-        nobody claims is not redistributed, it <strong>stays in the reserve</strong> for the players
-        who arrive later. It costs a regular player nothing; it stops the first fifty accounts from
-        quietly accumulating several percent of the supply before the token has any market value.
+        <strong>Strike</strong> is the shaft's output — how much the restored pit brings up, and the
+        plainest measure of how far a colony has come. It is bounded by construction: a bigger figure
+        is a deeper working, built pick by pick and paid for in upkeep, never bought outright.
       </p>
       <h3>Thrift — the emberwood sink</h3>
       <p>
@@ -362,10 +351,8 @@
       <p>
         <strong>Diamonds</strong> are set into the wellhead and never consumed: each one closes 8 %
         of whatever gap is left down to the floor, so the twentieth still helps and none is ever
-        wasted. Prise one back out and it returns to you intact, free to sell. They are bought with
-        <strong>CAIRN</strong>, at a price that follows your own Strike — a bigger shaft saves more
-        from the same stone, so it pays more for it. The harder isles will drop them too; that part
-        is on the roadmap.
+        wasted. Prise one back out and it returns to you intact. They are the rarest thing in the
+        economy — the prize the harder expedition isles will drop (roadmap).
       </p>
       <p>
         <strong>Comfort</strong> closes the same gap, and it is free — the colony earns it by
@@ -389,7 +376,7 @@
         A pick is not paid once. It raises Strike, and Strike is billed to the colony <em>every hour,
         for as long as you run it</em>. Emberwood alone at first; then the bill widens as the shaft goes
         deeper. Thresholds are on <strong>added</strong> Strike — the free base shaft is never
-        charged, so a colony that runs dry loses the yield its rig was buying, never its monument.
+        charged, so a colony that runs dry loses the yield the picks were buying, never its monument.
       </p>
       <div class="tablewrap"><table>
         <thead><tr><th>Added Strike</th><th>Per hour, per 100 Strike</th><th>Why</th></tr></thead>
@@ -401,10 +388,10 @@
         </tbody>
       </table></div>
       <p class="muted small">
-        This is the ASIC-to-electricity relationship: mining more pays more <em>and</em> costs more.
-        It is also the real ceiling on a rig — 100,000 Strike would demand 40,000 emberwood an hour,
+        The rule is blunt: digging deeper pays more <em>and</em> costs more, for as long as you dig.
+        That is also the real ceiling — 100,000 Strike would demand 40,000 emberwood an hour,
         more than 520 charcoal burners running flat out, fed by some 260 woodcutters. No colony can
-        feed that, which is why capital cannot simply buy the pot.
+        feed that, and no amount of coin shortcuts it.
       </p>
     </section>
 
@@ -492,7 +479,7 @@
           <tr><td>Chapel</td><td>40 planks + 40 stone + 60 coins</td><td>Awakened shaft</td><td>Comfort · one per colony</td></tr>
           <tr><td>Bathhouse</td><td>60 planks + 60 stone + 40 copper ingots + 80 coins</td><td>Awakened shaft</td><td>Comfort · one per colony</td></tr>
           <tr><td>Temple</td><td>80 planks + 80 stone + 30 gold ingots + 120 coins</td><td>Awakened shaft</td><td>Comfort · one per colony</td></tr>
-          <tr><td>Cairn Mine</td><td>pre-placed, in ruin</td><td>—</td><td><a href="#cairnmine">Restored in three stages</a></td></tr>
+          <tr><td>Rune Shaft</td><td>pre-placed, in ruin</td><td>—</td><td><a href="#cairnmine">Restored in three stages</a></td></tr>
         </tbody>
       </table></div>
       <p class="muted small">
@@ -636,9 +623,8 @@
       <ul>
         <li><strong>Explorers</strong> trained at the explorer's hut bring back charts to new sites.</li>
         <li><strong>Rare veins</strong> — marble and platinum — exist only out there, mined by a
-          single all-purpose expedition mine. <strong>Diamonds</strong> are not mined on the two
-          starting isles: today they are bought with CAIRN, and the harder isles will drop them
-          (roadmap).</li>
+          single all-purpose expedition mine. <strong>Diamonds</strong> are the endgame prize the
+          harder isles will drop (roadmap).</li>
         <li><strong>Camp defences</strong>: palisades and watchtowers, placed freely with no road
           and no worker, to fence off a temporary dig.</li>
       </ul>
@@ -663,40 +649,6 @@
       </p>
     </section>
 
-    <!-- ---------------- WEB3 ---------------- -->
-    <section>
-      <h2 id="web3">Ownership <span class="soon">— in progress</span></h2>
-      <div class="note green">
-        <p>
-          <strong>You already sign in with a Solana wallet</strong> — that is how the game knows
-          which colony is yours, and it follows you from one machine to the next. Nothing is
-          charged and no transaction is signed to play. Everything below is what comes after, and
-          the rule stands: none of it may be required to enjoy the game.
-        </p>
-      </div>
-      <p>
-        A headless copy of the engine already runs on our own server and re-checks what every client
-        reports. It is live in <strong>shadow mode</strong>: it logs disagreements and sanctions
-        nobody. It becomes the ledger that counts before any real value moves — which is also why
-        the player-to-player market is not open to strangers yet.
-      </p>
-      <ul>
-        <li><strong>$CAIRN, and nothing else</strong> — one utility token, with capped and
-          decreasing emission. There are no NFTs in Cairnheim: no land, no buildings, no settlers,
-          no cosmetics. Your colony is yours because your wallet signs for it, not because a token
-          says so.</li>
-        <li><strong>You mine it, or you buy it</strong> — CAIRN comes from the Cairn Mine you
-          restore and equip, and it is burned back by what you build with it. Nothing is handed out
-          for merely logging in.</li>
-        <li><strong>Marketplace</strong> — player to player, with a fee that funds the studio. That
-          fee is the business model: it depends on activity, not on new arrivals.</li>
-        <li><strong>Guardrails, written into the contracts</strong> — emission cap, a sink for every
-          faucet, a ceiling on offline production so bot farms are pointless, and no pay-only
-          gameplay advantage.</li>
-      </ul>
-      <p><a href="/#ownership">The reasoning behind this model →</a></p>
-    </section>
-
   </main>
 </div>
 
@@ -707,7 +659,7 @@
   </div>
 </footer>
 
-<script src="/assets/js/site.js?v=7"></script>
+<script src="/assets/js/site.js?v=10"></script>
 <script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>
